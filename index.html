@@ -22,7 +22,21 @@
 		<div class="t_container">
 
 			<div class="header">
-				<span>${nickname}</span>
+				<div style="height: 100%;padding-top: 10px;margin: 0px;">
+		            <p style="float: right;margin: 0px 20px;height: 25px">
+		                <span id="currentTime" style="font-size: 16px"></span>
+		            </p>
+		            <p style="margin: 0px 130px;">
+		                <span></span>
+		                <span class="head_nickName">${currentUser.nickName}</span>
+		            </p>
+		            <p style="margin-left:400px;margin-top: 0px">
+		               <span class="head_en">
+		                    Keep track of what I really think.<br>
+		                    Hope that many years later, we still have the courage to remember!
+		               </span>
+		            </p>
+		        </div>
 			</div>
 
 			<div class="stripes"><span></span></div>
@@ -74,4 +88,24 @@
 			</div>
 		</div>
 	</body>
+
+	<script type="text/javascript">
+	    hljs.initHighlightingOnLoad();
+	    $("code").attr("class","code_custom_calss");
+    	$("pre").attr("class","pre_custom_class");
+
+    	setDate();
+    	function setDate() {
+	        var mydate = new Date();
+	        var str = "";
+	        str += (mydate.getMonth() + 1) + "月";
+	        str += mydate.getDate() + "日 ";
+	        var dday = mydate.getDay();
+	        var weekday=["星期日","星期一","星期二","星期三","星期四","星期五","星期六"];
+	        str += weekday[dday];
+	        $("#currentTime").text(str);
+	    };
+
+	</script>
+
 </html>
