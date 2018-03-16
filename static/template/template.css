@@ -11,7 +11,7 @@ http://www.cssmoban.com/license/
 */
 
 body {
-	background: #111 url(./img/bg.jpg) repeat-y center top;
+	background: #111 url(img/bg.jpg) repeat-y center top;
 	color: #BBB;
 	/*font: normal 62.5% "Lucida Sans Unicode",sans-serif;*/
 }
@@ -35,7 +35,7 @@ h2 {
 /* misc */
 .clearer {clear: both;}
 .stripes {
-	background: #333 url(./img/stripe.gif);
+	background: #333 url(img/stripe.gif);
 	height: 6px;
 }
 .left {float: left;}
@@ -70,9 +70,9 @@ h2 {
 }
 
 /* navigation */
-.nav {background: #191919 url(./img/nav.gif);}
+.nav {background: #191919 url(img/nav.gif);}
 .nav a {
-	background: #191919 url(./img/nav.gif);
+	background: #191919 url(img/nav.gif);
 	border-right: 1px solid #161616;
 	color: #CCC;
 	float: left;
@@ -82,7 +82,7 @@ h2 {
 	text-decoration: none;
 }
 .nav a:hover {
-	background: #191919 url(./img/nav_hover.gif);
+	background: #191919 url(img/nav_hover.gif);
 }
 
 /* sub-navigation */
