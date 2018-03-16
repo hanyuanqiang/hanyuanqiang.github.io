@@ -13,8 +13,8 @@
 </head>
 
 	<!-- default margin = default layout -->
-	<body style="width:1200px;margin: 0 auto">
-		<div class="t_container">
+	<body>
+		<div class="t_container" style="width:1200px;margin: 0 auto">
 			<div class="header">
 				<div style="height: 100%;padding-top: 10px;margin: 0px;">
 		            <p style="float: right;margin: 0px 20px;height: 25px">
@@ -22,7 +22,7 @@
 		            </p>
 		            <p style="margin: 0px 130px;">
 		                <span></span>
-		                <span class="head_nickName">${currentUser.nickName}</span>
+		                <span class="head_nickName">${nickName}</span>
 		            </p>
 		            <p style="margin-left:400px;margin-top: 0px">
 		               <span class="head_en">
@@ -75,16 +75,15 @@
 				<div class="clearer"><span></span></div>
 			</div>
 
-			<div class="footer">
-				<div align="center" style="margin-top: 0px;height: 20px;">
-		            <span>${copyright}</span>
+			<div class="footer" style="padding-top: 20px">
+		        <div align="center" style="margin-top: 0px">
+		            <span id="copyright">Copyright©2018 ${nickName}</span>
 		        </div>
-			</div>
+		    </div>
 		</div>
 	</body>
 
 	<script type="text/javascript">
-		hljs.language = "java";
 	    hljs.initHighlightingOnLoad();
 	    $("code").attr("id","codeId");
     	$("pre").attr("id","preId");
