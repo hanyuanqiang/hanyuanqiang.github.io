@@ -32,6 +32,26 @@
 				<div class="left">
 					<div class="content">
 						${article_list}
+						<div>
+							<pre><code>public static double similarDegree(String s1, String s2) {
+        s1 = StringUtil.removeAllPunct(s1);
+        s2 = StringUtil.removeAllPunct(s2);
+
+        s1 = removeSign(s1);
+        s2 = removeSign(s2);
+
+        if (s1.length() &gt; s2.length()) {
+            int temp = Math.max(s1.length(), s2.length());
+            int temp2 = longestCommonSubstring(s1, s2).length();
+            return temp2 * 1.0 / temp;
+        } else {
+            int temp = Math.max(s2.length(), s1.length());
+            int temp2 = longestCommonSubstring(s2, s1).length();
+            return temp2 * 1.0 / temp;
+        }
+
+    }</code></pre>
+						</div>
 					</div>
 				</div>
 
