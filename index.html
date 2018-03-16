@@ -13,48 +13,42 @@
     <script src="/static/highlight/highlight.pack.js"></script>
     <script src="/static/layer/layer.js"></script>
 
-<title>挪威司机</title>
+<title>${nickname}</title>
 </head>
 
-<!-- default margin = default layout -->
-<body style="margin: 0 auto;width: 1000px">
+	<!-- default margin = default layout -->
+	<body style="margin: 0 auto;width: 1000px">
 
-	<div class="t_container">
+		<div class="t_container">
 
-		<div class="header">
-			<span>挪威司机</span>
-		</div>
+			<div class="header">
+				<span>${nickname}</span>
+			</div>
 
-		<div class="stripes"><span></span></div>
+			<div class="stripes"><span></span></div>
+			
+			<div class="main">
+			
+				<div class="left">
 
-		<div class="stripes"><span></span></div>
-
-		<div class="main">
-		
-			<div class="left">
-
-				<div class="content">
-					
+					<div class="content">
+						${article_list}
+					</div>
 				</div>
-			</div>
 
-			<div class="right">
-				<div class="subnav">
-					<h1>文章分类</h1>
-					<ul>
-						<li><a href="#">111</a></li>
-					</ul>
+				<div class="right">
+					<div class="subnav">
+						<h3>文章分类</h3>
+						<ul>
+							<li><a href="#">${article_type_list}</a></li>
+						</ul>
+					</div>
 				</div>
+				<div class="clearer"><span></span></div>
 			</div>
-			<div class="clearer"><span></span></div>
-		</div>
-		<div class="footer">
-			<div class="col3">
+			<div class="footer">
+				<p align="center">${copyright}</p>
 			</div>
 		</div>
-	</div>
-
-</body>
-
-
+	</body>
 </html>
