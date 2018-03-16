@@ -110,7 +110,7 @@
     color: yellow
 }
 
-.code_custom_calss{
+#codeId{
     border: solid #126573 1px;
     font-size: 16px;
     font-family: Arial;
@@ -120,7 +120,7 @@
     border-radius: 15px;
     margin: 0;
 }
-.pre_custom_class{
+#preId{
     padding:0px;
     background-color: inherit;
 }
