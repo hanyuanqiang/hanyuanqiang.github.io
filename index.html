@@ -38,28 +38,70 @@
 								        <h3 style="margin:0px;padding: 0px;">文章列表</h3>
 								    </td>    
 								</tr>
-								<tr style="height: 13px">
-								    <td colspan="4">
-								        <p style="height: 0;border-bottom: 1px #404000 solid;margin: 0;padding: 0px;"></p>
-								    </td>
+								<tr style="height: 15px">
+								    <td colspan="3"></td>
 								</tr>
-								<tr>
-								    <td align="center" style="width: 20px">
-								        <img style="width: 16px;height: 17px;" src="/files/icons/article_list.png">
-								    </td>
-								    <td style="width: 500px">
-								        <a id="article_list_a" href="#">${article.title}</a>
-								    </td>
-								    <td align="center" width="120px">
-								        <span id="article_list_date_span">${article.createTime}</span>
-								    </td>
-								</tr>
-								<tr style="height: 13px">
-								    <td colspan="4">
-								        <p style="height: 0;border-bottom: 1px #404000 solid;margin: 0;padding: 0px;"></p>
-								    </td>
-								</tr>
-						    
+
+
+
+<tr>
+    <td align="center" style="width: 20px">
+        <img style="width: 16px;height: 17px;" src="/files/icons/article_list.png">
+    </td>
+    <td style="width: 500px">
+        <a id="article_list_a" href="#">${article.title}</a>
+    </td>
+    <td align="center" width="120px">
+        <span id="article_list_date_span">${article.createTime}</span>
+    </td>
+</tr>
+<tr style="height: 13px">
+    <td colspan="3">
+        <p style="height: 0;border-bottom: 1px #404000 solid;margin: 0;padding: 0px;"></p>
+    </td>
+</tr>
+<tr>
+    <td align="center" style="width: 20px">
+        <img style="width: 16px;height: 17px;" src="/files/icons/article_list.png">
+    </td>
+    <td style="width: 500px">
+        <a id="article_list_a" href="#">${article.title}</a>
+    </td>
+    <td align="center" width="120px">
+        <span id="article_list_date_span">${article.createTime}</span>
+    </td>
+</tr>
+<tr style="height: 13px">
+    <td colspan="3">
+        <p style="height: 0;border-bottom: 1px #404000 solid;margin: 0;padding: 0px;"></p>
+    </td>
+</tr>
+<tr>
+    <td align="center" style="width: 20px">
+        <img style="width: 16px;height: 17px;" src="/files/icons/article_list.png">
+    </td>
+    <td style="width: 500px">
+        <a id="article_list_a" href="#">${article.title}</a>
+    </td>
+    <td align="center" width="120px">
+        <span id="article_list_date_span">${article.createTime}</span>
+    </td>
+</tr>
+<tr style="height: 13px">
+    <td colspan="3">
+        <p style="height: 0;border-bottom: 1px #404000 solid;margin: 0;padding: 0px;"></p>
+    </td>
+</tr>
+
+
+
+
+
+
+
+
+
+
 						        ${article_list_table_tr}
 						    </table>
 						</div>
@@ -69,9 +111,40 @@
 				<div class="right">
 					<div class="subnav">
 						<h3>文章分类</h3>
-						<ul>
-							<li><a href="#">${article_type_list}</a></li>
-						</ul>
+						
+<ul>
+    <li class="main_type_list_li">
+        <a class="main_type_list_a" href="#">
+            <span><img src="/files/icons/type_list.png"></span>
+            <span>${type.typeName}</span>
+            <span style="margin-left: 5px;color: #9f9f9f;">(${type.articleNum})</span>
+        </a>
+    </li>
+    <li class="main_type_list_li">
+        <a class="main_type_list_a" href="#">
+            <span><img src="/files/icons/type_list.png"></span>
+            <span>${type.typeName}</span>
+            <span style="margin-left: 5px;color: #9f9f9f;">(${type.articleNum})</span>
+        </a>
+    </li>
+    <li class="main_type_list_li">
+        <a class="main_type_list_a" href="#">
+            <span><img src="/files/icons/type_list.png"></span>
+            <span>${type.typeName}</span>
+            <span style="margin-left: 5px;color: #9f9f9f;">(${type.articleNum})</span>
+        </a>
+    </li>
+    <li class="main_type_list_li">
+        <a class="main_type_list_a" href="#">
+            <span><img src="/files/icons/type_list.png"></span>
+            <span>${type.typeName}</span>
+            <span style="margin-left: 5px;color: #9f9f9f;">(${type.articleNum})</span>
+        </a>
+    </li>
+</ul>
+
+
+
 					</div>
 				</div>
 
