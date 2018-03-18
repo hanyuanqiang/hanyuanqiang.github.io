@@ -46,7 +46,7 @@
         <span class="article_detail_time_type">分类：数据结构和算法</span>
     </p>
     <div class="common_line"></div>
-    <p><p>上次写了个用深度优先搜索解决数独的程序，写完后试了好几个数独，感觉大部分都在递归10000次以内可以解决(前提是先用initSolve()进行初步解决)，但是递归毕竟耗内存，于是在想能不能用堆栈代替递归，琢磨了好久写了个凑合能看到程序<img src="http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/6a/laugh.gif">，具体如下：<br></p><p>1、定义一个描述空格节点的类BlankNode.java</p><pre style="max-width:100%;overflow-x:auto;"><code class="java hljs" codemark="1"><span class="hljs-keyword">package</span> com.hyq.sudoku;
+    <p><p>上次写了个用深度优先搜索解决数独的程序，写完后试了好几个数独，感觉大部分都在递归10000次以内可以解决(前提是先用initSolve()进行初步解决)，但是递归毕竟耗内存，于是在想能不能用堆栈代替递归，琢磨了好久写了个凑合能看到程序<img src="/files/article_pic/laugh.gif">，具体如下：<br></p><p>1、定义一个描述空格节点的类BlankNode.java</p><pre style="max-width:100%;overflow-x:auto;"><code class="java hljs" codemark="1"><span class="hljs-keyword">package</span> com.hyq.sudoku;
 
 <span class="hljs-keyword">import</span> java.util.ArrayList;
 <span class="hljs-keyword">import</span> java.util.List;
@@ -402,7 +402,7 @@
         <span class="hljs-keyword">return</span> n;
     }
 }
-</code></pre><p>上面类中initSolve()方法和<a href="/blog/article_foreDetail?articleId=26" target="_blank" style="">使用深度优先搜素递归求解数组</a><span> 中的方法一样，</span>都用于初步求解(下面结果可以看出初步求解已经求出了很多数字)。程序输出如下：</p><p><span><img src="/MyBlog/files/article_pic/bfa51fa2-4c56-4537-8c52-106fd3c9510b.png" alt="搜狗截图20161017201855" style="max-width:100%;"></span></p><p>值得说明的是：相同数组使用深度优先搜索的temp大约是使用栈的2倍（我估计的），就上面这道数组题使用深度优先搜索求解后的temp为：</p><p><img src="/MyBlog/files/article_pic/7a0cde28-32ac-42fe-9016-5abfe9dbee30.png" alt="搜狗截图20161017202624" style="max-width:100%;"></p><p><br></p></p>
+</code></pre><p>上面类中initSolve()方法和<a href="/blog/article_foreDetail?articleId=26" target="_blank" style="">使用深度优先搜素递归求解数组</a><span> 中的方法一样，</span>都用于初步求解(下面结果可以看出初步求解已经求出了很多数字)。程序输出如下：</p><p><span><img src="/files/article_pic/bfa51fa2-4c56-4537-8c52-106fd3c9510b.png" alt="搜狗截图20161017201855" style="max-width:100%;"></span></p><p>值得说明的是：相同数组使用深度优先搜索的temp大约是使用栈的2倍（我估计的），就上面这道数组题使用深度优先搜索求解后的temp为：</p><p><img src="/files/article_pic/7a0cde28-32ac-42fe-9016-5abfe9dbee30.png" alt="搜狗截图20161017202624" style="max-width:100%;"></p><p><br></p></p>
     <p style="height: 0;border-bottom: 1px #707172 solid;margin: 5px 0px"></p>
     <p>关键词：<span style="font-size: 18px;font-family: 楷体;color: yellow;">使用栈代替深度优先搜索</span></p>
 </div>

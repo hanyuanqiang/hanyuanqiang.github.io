@@ -76,7 +76,7 @@
 	}
 	
 }
-</code></pre><p class="cye-lm-tag">上面程序输入内容中存在如下几处乱码：</p><p class="cye-lm-tag"><img src="/MyBlog/files/article_pic/ae22e487-f04e-4233-96c3-840d1091760e.png" alt="搜狗截图20161101192801" style="max-width:100%;" class="">&nbsp; &nbsp;</p><p class="cye-lm-tag"><img src="/MyBlog/files/article_pic/660d08ca-59df-43ae-a510-4f723b486471.png" alt="搜狗截图20161101192154" style="max-width: 100%;"></p><p class="cye-lm-tag"><img src="/MyBlog/files/article_pic/6b9530ab-9e91-476e-b5a4-5b2d88203277.png" alt="搜狗截图20161101192226" style="max-width: 100%;"></p><p class="cye-lm-tag"><img src="/MyBlog/files/article_pic/701c83e3-9c24-4857-affe-c4c0321e2ef5.png" alt="搜狗截图20161101192207" style="max-width: 100%;"></p><p>可以看出出现乱码的地方都原本应该是单个汉字出现的地方，个人猜想可能原因是上面代码中input.read(buffer)读取字符流的时候，本次读取刚好把某个汉字的字符流截断，导致后面转码失败，出现乱码。</p><p><br></p><p><font size="5" color="#008080">2、改进读取字符流的方法，代码如下：</font></p><pre style="max-width: 100%;"><code class="java hljs" codemark="1"><span class="hljs-keyword">package</span> com.urlResource;
+</code></pre><p class="cye-lm-tag">上面程序输入内容中存在如下几处乱码：</p><p class="cye-lm-tag"><img src="/files/article_pic/ae22e487-f04e-4233-96c3-840d1091760e.png" alt="搜狗截图20161101192801" style="max-width:100%;" class="">&nbsp; &nbsp;</p><p class="cye-lm-tag"><img src="/files/article_pic/660d08ca-59df-43ae-a510-4f723b486471.png" alt="搜狗截图20161101192154" style="max-width: 100%;"></p><p class="cye-lm-tag"><img src="/files/article_pic/6b9530ab-9e91-476e-b5a4-5b2d88203277.png" alt="搜狗截图20161101192226" style="max-width: 100%;"></p><p class="cye-lm-tag"><img src="/files/article_pic/701c83e3-9c24-4857-affe-c4c0321e2ef5.png" alt="搜狗截图20161101192207" style="max-width: 100%;"></p><p>可以看出出现乱码的地方都原本应该是单个汉字出现的地方，个人猜想可能原因是上面代码中input.read(buffer)读取字符流的时候，本次读取刚好把某个汉字的字符流截断，导致后面转码失败，出现乱码。</p><p><br></p><p><font size="5" color="#008080">2、改进读取字符流的方法，代码如下：</font></p><pre style="max-width: 100%;"><code class="java hljs" codemark="1"><span class="hljs-keyword">package</span> com.urlResource;
 
 <span class="hljs-keyword">import</span> java.io.InputStream;
 <span class="hljs-keyword">import</span> java.net.HttpURLConnection;
@@ -124,7 +124,7 @@
 	}
 
 }
-</code></pre><p>可以看到控制台有如下输出：</p><p><img src="/MyBlog/files/article_pic/a9b358f2-7d07-4b10-b080-7866d9dc828a.png" alt="搜狗截图20161101194531" style="max-width:100%;"></p><p>可看出buffer每次从输入流中读取的数据都有可能不一样，所以该问题的解决办法本质上是先不输入流中的所有字节读取到buffer中，然后统一转码为utf-8格式的字符串，这样就不会出现局部乱码问题。</p><p>值得注意的是，上面程序中出现了用Thread.sleep(700)，使用线程睡眠是为了防止由于读取速度过快导致读取的字节数为零(如上面输出结果中有些读取操作就为0)，适当延迟是为了从输入流中读取更多的字节数。上面程序只有当两次读取均为0字节时才认为输入流中的字节全部读取完毕。</p><p><br></p></p>
+</code></pre><p>可以看到控制台有如下输出：</p><p><img src="/files/article_pic/a9b358f2-7d07-4b10-b080-7866d9dc828a.png" alt="搜狗截图20161101194531" style="max-width:100%;"></p><p>可看出buffer每次从输入流中读取的数据都有可能不一样，所以该问题的解决办法本质上是先不输入流中的所有字节读取到buffer中，然后统一转码为utf-8格式的字符串，这样就不会出现局部乱码问题。</p><p>值得注意的是，上面程序中出现了用Thread.sleep(700)，使用线程睡眠是为了防止由于读取速度过快导致读取的字节数为零(如上面输出结果中有些读取操作就为0)，适当延迟是为了从输入流中读取更多的字节数。上面程序只有当两次读取均为0字节时才认为输入流中的字节全部读取完毕。</p><p><br></p></p>
     <p style="height: 0;border-bottom: 1px #707172 solid;margin: 5px 0px"></p>
     <p>关键词：<span style="font-size: 18px;font-family: 楷体;color: yellow;">InputStream流</span></p>
 </div>

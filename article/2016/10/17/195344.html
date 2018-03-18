@@ -233,7 +233,7 @@
 	}
 	
 }
-</code></pre><p>输出结果如下：</p><p><img src="/MyBlog/files/article_pic/63754669-5c3d-4d62-9467-af3378697233.png" alt="搜狗截图20161017131442" style="max-width:100%;"></p><p>其他说明：接口实现类@Cacheable有如下属性：</p><ul><li>value：必须属性。该属性可指定多个缓存区的名字，用于指定将方法返回值放入指定的缓存区内。</li><li>key：通过SpEL表达式显式治死你个缓存的key。例如key=“#name” 表示只要调用的方法具有相同的name参数，Spring缓存机制就会生效。</li><li>condition：该属性指定一个返回boolean值的SpEL表达式，只有当该表达式返回true时，Spring才会缓存方法返回值。例如condition=“#age&lt;100” 表示Spring缓存生效的条件是#age&lt;100，这样只要调用方法时age参数小于100，Spring缓存机制就会生效。</li><li>unless：该属性指定一个返回boolean值的SpEL表达式，当该表达式返回true时，Spring就不缓存方法返回值(跟condition相反)<br></li></ul><p>例如修改UserServiceImpl.java为如下：</p><pre style="max-width:100%;overflow-x:auto;"><code class="java hljs" codemark="1"><span class="hljs-keyword">package</span> com.hyq.cache.service.impl;
+</code></pre><p>输出结果如下：</p><p><img src="/files/article_pic/63754669-5c3d-4d62-9467-af3378697233.png" alt="搜狗截图20161017131442" style="max-width:100%;"></p><p>其他说明：接口实现类@Cacheable有如下属性：</p><ul><li>value：必须属性。该属性可指定多个缓存区的名字，用于指定将方法返回值放入指定的缓存区内。</li><li>key：通过SpEL表达式显式治死你个缓存的key。例如key=“#name” 表示只要调用的方法具有相同的name参数，Spring缓存机制就会生效。</li><li>condition：该属性指定一个返回boolean值的SpEL表达式，只有当该表达式返回true时，Spring才会缓存方法返回值。例如condition=“#age&lt;100” 表示Spring缓存生效的条件是#age&lt;100，这样只要调用方法时age参数小于100，Spring缓存机制就会生效。</li><li>unless：该属性指定一个返回boolean值的SpEL表达式，当该表达式返回true时，Spring就不缓存方法返回值(跟condition相反)<br></li></ul><p>例如修改UserServiceImpl.java为如下：</p><pre style="max-width:100%;overflow-x:auto;"><code class="java hljs" codemark="1"><span class="hljs-keyword">package</span> com.hyq.cache.service.impl;
 
 <span class="hljs-keyword">import</span> org.springframework.cache.annotation.CacheEvict;
 <span class="hljs-keyword">import</span> org.springframework.cache.annotation.Cacheable;
@@ -297,7 +297,7 @@
 	}
 	
 }
-</code></pre><p>输出结果如下：</p><p><img src="/MyBlog/files/article_pic/cf5189c4-6e73-4985-a142-11014f63c27e.png" alt="搜狗截图20161017133650" style="max-width:100%;"></p><p><br></p><p>当然，@Cacheable一样可以修饰方法，例如把UserServiceImpl.java修改为：</p><pre style="max-width:100%;overflow-x:auto;"><code class="java hljs" codemark="1"><span class="hljs-keyword">package</span> com.hyq.cache.service.impl;
+</code></pre><p>输出结果如下：</p><p><img src="/files/article_pic/cf5189c4-6e73-4985-a142-11014f63c27e.png" alt="搜狗截图20161017133650" style="max-width:100%;"></p><p><br></p><p>当然，@Cacheable一样可以修饰方法，例如把UserServiceImpl.java修改为：</p><pre style="max-width:100%;overflow-x:auto;"><code class="java hljs" codemark="1"><span class="hljs-keyword">package</span> com.hyq.cache.service.impl;
 
 <span class="hljs-keyword">import</span> org.springframework.cache.annotation.CacheEvict;
 <span class="hljs-keyword">import</span> org.springframework.cache.annotation.Cacheable;
