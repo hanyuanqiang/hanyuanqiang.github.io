@@ -69,7 +69,7 @@
 
 			<div class="footer" style="padding-top: 20px">
 		        <div align="center" style="margin-top: 0px">
-		            <span id="copyright">Copyright©2018 ${github.user.nickName}</span>
+		            <span id="copyright">Copyright©<span id="copyrightYear"></span> ${github.user.nickName}</span>
 		        </div>
 		    </div>
 		</div>
@@ -91,6 +91,7 @@
 	        var weekday=["星期日","星期一","星期二","星期三","星期四","星期五","星期六"];
 	        str += weekday[dday];
 	        $("#currentTime").text(str);
+	        $("#copyrightYear").text(mydate.getFullYear());
 	    };
 	</script>
 
