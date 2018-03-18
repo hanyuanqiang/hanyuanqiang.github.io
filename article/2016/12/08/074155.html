@@ -1,0 +1,183 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+<link rel="stylesheet" type="text/css" href="/static/highlight/styles/docco.css">
+<link rel="stylesheet" type="text/css" href="/static/template/template.css">
+<link rel="stylesheet" type="text/css" href="/static/css/my.css">
+
+<script src="/static/jquery/jquery.min.js"></script>
+<script src="/static/highlight/highlight.pack.js"></script>
+<title>挪威司机</title>
+</head>
+
+	<!-- default margin = default layout -->
+	<body>
+		<div class="t_container" style="width:1200px;margin: 0 auto">
+			<div class="header">
+				<div style="height: 100%;padding-top: 10px;margin: 0px;">
+		            <p id="currentTime" align="right" style="margin: 0px 20px;height: 25px;font-size: 16px"></p>
+		            <p class="head_en" style="margin: 0px 130px;">
+		            	Keep track of what I really think.<br>
+		                Hope that many years later, we still have the courage to remember!
+		            </p>
+		        </div>
+			</div>
+
+			<div class="stripes"><span></span></div>
+
+			<div class="main">
+
+				<div class="left">
+					<div class="content">
+						<div id="article_detail">
+    <p id="article_detail_title" align="center">Thinking in java第二章——一切都是对象(学习笔记)</p>
+    <p align="center" style="margin-bottom: 5px;">
+        <span class="article_detail_time_type">2016-12-08 07:41:55</span>
+        <span style="margin: 0 10px;"></span>
+        <span class="article_detail_time_type">原创</span>
+        <span style="margin: 0 10px;"></span>
+        <span class="article_detail_time_type">分类：Thinking In Java 学习笔记</span>
+    </p>
+    <div class="common_line"></div>
+    <p><p><font color="#00ff00" size="5">1、新创建的对象存储到什么地方？</font></p><p><b>1）寄存器</b>。这是最快的存储区，因为它位于不同于其他存储区的地方——处理器内部。但是寄存器的数量及其有限，所以寄存器根据需求进行分配。不能直接控制，也不能在程序中感觉到寄存器存在的任何迹象。</p><p><b>2）堆栈</b>。位于通用RAM(随机访问存储器)中，但通过堆栈指针可以从处理器那里获得直接支持。堆栈指针若向下移动，则分配新的内存；若向上移动，则释放那些内存。这是一种快速有效的分配存储方法，仅次于寄存器。创建程序时，Java系统必须知道存储在堆栈内所有项的确切生命周期，以便上下移动堆栈指针。这一约束限制了程序的灵活性，所以虽然某些java数据存储于堆栈中——特别是对象引用，但java对象并不存储于其中。</p><p><b>3）堆</b>。一种通用的内存池(也位于RAM区)，用于存放所有的java对象。堆不同于堆栈的好处是：编译器不需要知道存储的数据在堆里存活多长时间。因此，在堆里分配存储有很大的灵活性。当需要一个对象时，只需要用new写一行简单的代码，当执行这行代码时，会自动在堆里进行存储代码分配。当然，为了这种灵活性必须付出相应的代价：用堆进行存储分配和清理可能比用堆栈进行存储分配需要更多的时间。</p><p><b>4）常量存储</b>。常量值通常直接存放在程序代码内部，这样做是安全的，因为它永远不会被改变。有时，在嵌入式系统中，常量本身会和其他部分分隔离开，所以这种情况下可选择将其存放在ROM（只读存储器中）。</p><p><b>5）非RAM存储</b>。如果数据完全存活于程序之外，那么它可以不受程序的任何控制，在程序没有运行时也可以存在。其中两个基本的例子就是流对象和持久化对象。在流对象中，对象转化为字节流，通常被发送到另一台机器上。在持久化对象中，对象被存放于硬盘中，因此，即使程序终止，它们仍可以保持自己的状态。</p><p><br></p><p>2、Java中基本成员默认值</p><p>只有当变量作为类的成员时，Java才会确保给定其默认值，以确保那些是基本类型的成员变量得到初始化，防止产生程序错误。但是java不会给局部“变量”初始化(即并非某个类的变量)。</p><table border="1"><tbody><tr><td style="text-align: center;">&nbsp;基本类型</td><td>默认值&nbsp;</td></tr><tr><td>&nbsp;boolean</td><td>false&nbsp;</td></tr><tr><td>&nbsp;char</td><td>‘\u0000’(null)&nbsp;</td></tr><tr><td>&nbsp;byte</td><td>(byte)0&nbsp;</td></tr><tr><td>&nbsp;short&nbsp;</td><td>(short)0&nbsp;</td></tr><tr><td>&nbsp;int</td><td>0&nbsp;</td></tr><tr><td>&nbsp;long</td><td>0L&nbsp;</td></tr><tr><td>&nbsp;float</td><td>0.0f&nbsp;</td></tr><tr><td>&nbsp;double</td><td>0.0d&nbsp;</td></tr></tbody></table><p><br></p></p>
+    <p style="height: 0;border-bottom: 1px #707172 solid;margin: 5px 0px"></p>
+    <p>关键词：<span style="font-size: 18px;font-family: 楷体;color: yellow;">对象</span></p>
+</div>
+					</div>
+				</div>
+
+				<div class="right">
+					<div class="subnav">
+						<h3 align="center">个人简介</h3>
+		                <p align="center">
+		                    <img src="les/a161ea4a-ade2-4695-b2c3-85c568706ad9.jpg" style="width: 100px;height: 100px;">
+		                </p>
+		                <p>
+		                	<span style="margin-right: 10px;font-size: 16px;color: yellow">签名:</span>
+		                	<span style="color: #f1fdff;font-size: 18px;font-family: 楷体">不为繁华易匠心</span>
+		                </p>
+		                <p>
+		                	<span style="margin-right: 10px;font-size: 16px;color: yellow;">介绍:</span>
+		                	<span style="color: #f1fdff;font-size: 18px;font-family: 楷体">${github.introduce}</span>
+		                </p>
+
+		                <p style="height: 0;border-bottom: 1px #f9fbfd solid;margin: 5px 0px"></p>
+
+						<h3>文章分类</h3>
+						<ul>
+						    <li class="main_type_list_li">
+    <a class="main_type_list_a" href="/type//29.html">
+        <span><img src="/files/icons/type_list.png"></span>
+        <span>1</span>
+        <span style="margin-left: 5px;color: #9f9f9f;">(1)</span>
+    </a>
+</li><li class="main_type_list_li">
+    <a class="main_type_list_a" href="/type//26.html">
+        <span><img src="/files/icons/type_list.png"></span>
+        <span>新类型</span>
+        <span style="margin-left: 5px;color: #9f9f9f;">(0)</span>
+    </a>
+</li><li class="main_type_list_li">
+    <a class="main_type_list_a" href="/type//17.html">
+        <span><img src="/files/icons/type_list.png"></span>
+        <span>Thinking In Java 学习笔记</span>
+        <span style="margin-left: 5px;color: #9f9f9f;">(1)</span>
+    </a>
+</li><li class="main_type_list_li">
+    <a class="main_type_list_a" href="/type//16.html">
+        <span><img src="/files/icons/type_list.png"></span>
+        <span>Spring Mvc相关</span>
+        <span style="margin-left: 5px;color: #9f9f9f;">(2)</span>
+    </a>
+</li><li class="main_type_list_li">
+    <a class="main_type_list_a" href="/type//15.html">
+        <span><img src="/files/icons/type_list.png"></span>
+        <span>MyBatis相关</span>
+        <span style="margin-left: 5px;color: #9f9f9f;">(5)</span>
+    </a>
+</li><li class="main_type_list_li">
+    <a class="main_type_list_a" href="/type//14.html">
+        <span><img src="/files/icons/type_list.png"></span>
+        <span>mysql相关</span>
+        <span style="margin-left: 5px;color: #9f9f9f;">(1)</span>
+    </a>
+</li><li class="main_type_list_li">
+    <a class="main_type_list_a" href="/type//13.html">
+        <span><img src="/files/icons/type_list.png"></span>
+        <span>一些感想</span>
+        <span style="margin-left: 5px;color: #9f9f9f;">(1)</span>
+    </a>
+</li><li class="main_type_list_li">
+    <a class="main_type_list_a" href="/type//12.html">
+        <span><img src="/files/icons/type_list.png"></span>
+        <span>Servlet&Jsp</span>
+        <span style="margin-left: 5px;color: #9f9f9f;">(4)</span>
+    </a>
+</li><li class="main_type_list_li">
+    <a class="main_type_list_a" href="/type//11.html">
+        <span><img src="/files/icons/type_list.png"></span>
+        <span>Util类汇总</span>
+        <span style="margin-left: 5px;color: #9f9f9f;">(6)</span>
+    </a>
+</li><li class="main_type_list_li">
+    <a class="main_type_list_a" href="/type//10.html">
+        <span><img src="/files/icons/type_list.png"></span>
+        <span>学习网站收集</span>
+        <span style="margin-left: 5px;color: #9f9f9f;">(1)</span>
+    </a>
+</li><li class="main_type_list_li">
+    <a class="main_type_list_a" href="/type//9.html">
+        <span><img src="/files/icons/type_list.png"></span>
+        <span>Spring相关</span>
+        <span style="margin-left: 5px;color: #9f9f9f;">(5)</span>
+    </a>
+</li><li class="main_type_list_li">
+    <a class="main_type_list_a" href="/type//8.html">
+        <span><img src="/files/icons/type_list.png"></span>
+        <span>数据结构和算法</span>
+        <span style="margin-left: 5px;color: #9f9f9f;">(3)</span>
+    </a>
+</li><li class="main_type_list_li">
+    <a class="main_type_list_a" href="/type//7.html">
+        <span><img src="/files/icons/type_list.png"></span>
+        <span>Java基础</span>
+        <span style="margin-left: 5px;color: #9f9f9f;">(9)</span>
+    </a>
+</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="clearer"><span></span></div>
+			</div>
+
+			<div class="footer" style="padding-top: 20px">
+		        <div align="center" style="margin-top: 0px">
+		            <span id="copyright">Copyright©2018 挪威司机</span>
+		        </div>
+		    </div>
+		</div>
+	</body>
+
+	<script type="text/javascript">
+	    $("code").attr("class","java");
+		$("code").attr("id","codeId");
+    	$("pre").attr("id","preId");
+	    hljs.initHighlightingOnLoad();
+	    
+    	setDate();
+    	function setDate() {
+	        var mydate = new Date();
+	        var str = "";
+	        str += (mydate.getMonth() + 1) + "月";
+	        str += mydate.getDate() + "日 ";
+	        var dday = mydate.getDay();
+	        var weekday=["星期日","星期一","星期二","星期三","星期四","星期五","星期六"];
+	        str += weekday[dday];
+	        $("#currentTime").text(str);
+	    };
+	</script>
+
+</html>

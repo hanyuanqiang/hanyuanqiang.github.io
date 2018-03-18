@@ -1,0 +1,280 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+<link rel="stylesheet" type="text/css" href="/static/highlight/styles/docco.css">
+<link rel="stylesheet" type="text/css" href="/static/template/template.css">
+<link rel="stylesheet" type="text/css" href="/static/css/my.css">
+
+<script src="/static/jquery/jquery.min.js"></script>
+<script src="/static/highlight/highlight.pack.js"></script>
+<title>挪威司机</title>
+</head>
+
+	<!-- default margin = default layout -->
+	<body>
+		<div class="t_container" style="width:1200px;margin: 0 auto">
+			<div class="header">
+				<div style="height: 100%;padding-top: 10px;margin: 0px;">
+		            <p id="currentTime" align="right" style="margin: 0px 20px;height: 25px;font-size: 16px"></p>
+		            <p class="head_en" style="margin: 0px 130px;">
+		            	Keep track of what I really think.<br>
+		                Hope that many years later, we still have the courage to remember!
+		            </p>
+		        </div>
+			</div>
+
+			<div class="stripes"><span></span></div>
+
+			<div class="main">
+
+				<div class="left">
+					<div class="content">
+						<div id="article_detail">
+    <p id="article_detail_title" align="center">Spring MVC 配置步骤</p>
+    <p align="center" style="margin-bottom: 5px;">
+        <span class="article_detail_time_type">2016-11-02 20:51:49</span>
+        <span style="margin: 0 10px;"></span>
+        <span class="article_detail_time_type">原创</span>
+        <span style="margin: 0 10px;"></span>
+        <span class="article_detail_time_type">分类：Spring Mvc相关</span>
+    </p>
+    <div class="common_line"></div>
+    <p><p class="cye-lm-tag">配置一个Spring MVC只需要三个步骤：1.在web.xml中配置Servlet；2.创建Spring MVC的xml配置文件；3.创建Controller和view。具体介绍如下：</p><p class="cye-lm-tag">1、在web.xml中配置Servlet</p><pre style="max-width: 100%;"><code class="xml hljs" codemark="1"><span class="hljs-pi cye-lm-tag">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="hljs-tag cye-lm-tag">&lt;<span class="hljs-title cye-lm-tag">web-app</span> <span class="hljs-attribute cye-lm-tag">xmlns</span>=<span class="hljs-value cye-lm-tag">"http://xmlns.jcp.org/xml/ns/javaee"</span>
+         <span class="hljs-attribute cye-lm-tag">xmlns:xsi</span>=<span class="hljs-value cye-lm-tag">"http://www.w3.org/2001/XMLSchema-instance"</span>
+         <span class="hljs-attribute cye-lm-tag">xsi:schemaLocation</span>=<span class="hljs-value cye-lm-tag">"http://xmlns.jcp.org/xml/ns/javaee &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"</span>
+         <span class="hljs-attribute cye-lm-tag">version</span>=<span class="hljs-value cye-lm-tag">"3.1"</span>&gt;</span>
+    <span class="hljs-tag cye-lm-tag">&lt;<span class="hljs-title cye-lm-tag">display-name</span>&gt;</span>TEST<span class="hljs-tag cye-lm-tag">&lt;/<span class="hljs-title cye-lm-tag">display-name</span>&gt;</span>
+
+    <span class="hljs-tag cye-lm-tag">&lt;<span class="hljs-title cye-lm-tag">welcome-file-list</span>&gt;</span>
+        <span class="hljs-tag cye-lm-tag">&lt;<span class="hljs-title cye-lm-tag">welcome-file</span>&gt;</span>index<span class="hljs-tag cye-lm-tag">&lt;/<span class="hljs-title cye-lm-tag">welcome-file</span>&gt;</span>
+    <span class="hljs-tag cye-lm-tag">&lt;/<span class="hljs-title cye-lm-tag">welcome-file-list</span>&gt;</span>
+
+    <span class="hljs-tag cye-lm-tag">&lt;<span class="hljs-title cye-lm-tag">servlet</span>&gt;</span>
+        <span class="hljs-tag cye-lm-tag">&lt;<span class="hljs-title cye-lm-tag">servlet-name</span>&gt;</span>springmvc<span class="hljs-tag cye-lm-tag">&lt;/<span class="hljs-title cye-lm-tag">servlet-name</span>&gt;</span>
+        <span class="hljs-tag cye-lm-tag">&lt;<span class="hljs-title cye-lm-tag">servlet-class</span>&gt;</span>org.springframework.web.servlet.DispatcherServlet<span class="hljs-tag cye-lm-tag">&lt;/<span class="hljs-title cye-lm-tag">servlet-class</span>&gt;</span>
+        <span class="hljs-tag cye-lm-tag">&lt;<span class="hljs-title cye-lm-tag">load-on-startup</span>&gt;</span>1<span class="hljs-tag cye-lm-tag">&lt;/<span class="hljs-title cye-lm-tag">load-on-startup</span>&gt;</span>
+    <span class="hljs-tag cye-lm-tag">&lt;/<span class="hljs-title cye-lm-tag">servlet</span>&gt;</span>
+    <span class="hljs-tag cye-lm-tag">&lt;<span class="hljs-title cye-lm-tag">servlet-mapping</span>&gt;</span>
+        <span class="hljs-tag cye-lm-tag">&lt;<span class="hljs-title cye-lm-tag">servlet-name</span>&gt;</span>springmvc<span class="hljs-tag cye-lm-tag">&lt;/<span class="hljs-title cye-lm-tag">servlet-name</span>&gt;</span>
+        <span class="hljs-tag cye-lm-tag">&lt;<span class="hljs-title cye-lm-tag">url-pattern</span>&gt;</span>/<span class="hljs-tag cye-lm-tag">&lt;/<span class="hljs-title cye-lm-tag">url-pattern</span>&gt;</span>
+    <span class="hljs-tag cye-lm-tag">&lt;/<span class="hljs-title cye-lm-tag">servlet-mapping</span>&gt;</span>
+
+<span class="hljs-tag cye-lm-tag">&lt;/<span class="hljs-title cye-lm-tag">web-app</span>&gt;</span></code></pre><p class="cye-lm-tag">上面配置了一个叫springmvc的Servlet，自动启动，然后mapping到所有请求。所配置的Servlet是DispatcherServlet类型，它是Spring MVC的入口，Spring MVC的本质就是一个Servlet。在配置DispatcherServlet的时候可以设置contextConfigLocation参数来指定Spring MVC配置文件的位置，例如：</p><pre style="max-width: 100%;"><code class="xml hljs" codemark="1"><span class="hljs-tag cye-lm-tag">&lt;<span class="hljs-title cye-lm-tag">servlet</span>&gt;</span>
+        <span class="hljs-tag cye-lm-tag">&lt;<span class="hljs-title cye-lm-tag">servlet-name</span>&gt;</span>springmvc<span class="hljs-tag cye-lm-tag">&lt;/<span class="hljs-title cye-lm-tag">servlet-name</span>&gt;</span>
+        <span class="hljs-tag cye-lm-tag">&lt;<span class="hljs-title cye-lm-tag">servlet-class</span>&gt;</span>org.springframework.web.servlet.DispatcherServlet<span class="hljs-tag cye-lm-tag">&lt;/<span class="hljs-title cye-lm-tag">servlet-class</span>&gt;</span>
+        <span class="hljs-tag cye-lm-tag">&lt;<span class="hljs-title cye-lm-tag">init-param</span>&gt;</span>
+		<span class="hljs-tag cye-lm-tag">&lt;<span class="hljs-title cye-lm-tag">param-name</span>&gt;</span>contextConfigLocation<span class="hljs-tag cye-lm-tag">&lt;/<span class="hljs-title cye-lm-tag">param-name</span>&gt;</span>
+		<span class="hljs-tag cye-lm-tag">&lt;<span class="hljs-title cye-lm-tag">param-value</span>&gt;</span>classpath:spring-mvc.xml<span class="hljs-tag cye-lm-tag">&lt;/<span class="hljs-title cye-lm-tag">param-value</span>&gt;</span>
+	<span class="hljs-tag cye-lm-tag">&lt;/<span class="hljs-title cye-lm-tag">init-param</span>&gt;</span>
+        <span class="hljs-tag cye-lm-tag">&lt;<span class="hljs-title cye-lm-tag">load-on-startup</span>&gt;</span>1<span class="hljs-tag cye-lm-tag">&lt;/<span class="hljs-title cye-lm-tag">load-on-startup</span>&gt;
+</span><span class="hljs-tag cye-lm-tag">&lt;/<span class="hljs-title cye-lm-tag">servlet</span>&gt;</span>
+<span class="hljs-tag cye-lm-tag">&lt;<span class="hljs-title cye-lm-tag">servlet-mapping</span>&gt;</span>
+        <span class="hljs-tag cye-lm-tag">&lt;<span class="hljs-title cye-lm-tag">servlet-name</span>&gt;</span>springmvc<span class="hljs-tag cye-lm-tag">&lt;/<span class="hljs-title cye-lm-tag">servlet-name</span>&gt;</span>
+        <span class="hljs-tag cye-lm-tag">&lt;<span class="hljs-title cye-lm-tag">url-pattern</span>&gt;</span>/<span class="hljs-tag cye-lm-tag">&lt;/<span class="hljs-title cye-lm-tag">url-pattern</span>&gt;</span>
+<span class="hljs-tag cye-lm-tag">&lt;/<span class="hljs-title cye-lm-tag">servlet-mapping</span>&gt;</span></code></pre><p class="cye-lm-tag">上面配置表示Spring MVC配置文件为WEB-INF/spring-mvc.xml，如果不指定就默认使用WEB-INF/[ServletName]-servlet.xml文件，这里使用默认值，也就是WEB-INF/springmvc-servlet.xml</p><p class="cye-lm-tag">2、创建Spring MVC的xml配置文件spring-mvc.xml</p><pre style="max-width: 100%;"><code class="xml hljs" codemark="1"><span class="hljs-pi cye-lm-tag">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="hljs-tag cye-lm-tag">&lt;<span class="hljs-title cye-lm-tag">beans</span> <span class="hljs-attribute cye-lm-tag">default-lazy-init</span>=<span class="hljs-value cye-lm-tag">"true"</span>
+       <span class="hljs-attribute cye-lm-tag">xmlns</span>=<span class="hljs-value cye-lm-tag">"http://www.springframework.org/schema/beans"</span> <span class="hljs-attribute cye-lm-tag">xmlns:p</span>=<span class="hljs-value cye-lm-tag">"http://www.springframework.org/schema/p"</span>
+       <span class="hljs-attribute cye-lm-tag">xmlns:xsi</span>=<span class="hljs-value cye-lm-tag">"http://www.w3.org/2001/XMLSchema-instance"</span> <span class="hljs-attribute cye-lm-tag">xmlns:context</span>=<span class="hljs-value cye-lm-tag">"http://www.springframework.org/schema/context"</span>
+       <span class="hljs-attribute cye-lm-tag">xmlns:mvc</span>=<span class="hljs-value cye-lm-tag">"http://www.springframework.org/schema/mvc"</span>
+       <span class="hljs-attribute cye-lm-tag">xsi:schemaLocation</span>=<span class="hljs-value cye-lm-tag">"
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+       http://www.springframework.org/schema/mvc
+       http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context-3.0.xsd"</span>&gt;</span>
+
+    <span class="hljs-tag cye-lm-tag">&lt;<span class="hljs-title cye-lm-tag">mvc:annotation-driven</span>/&gt;</span>
+    <span class="hljs-tag cye-lm-tag">&lt;<span class="hljs-title cye-lm-tag">context:component-scan</span> <span class="hljs-attribute cye-lm-tag">base-package</span>=<span class="hljs-value cye-lm-tag">"com.hyq.mvc"</span>/&gt;</span>
+
+<span class="hljs-tag cye-lm-tag">&lt;/<span class="hljs-title cye-lm-tag">beans</span>&gt;</span></code></pre><p class="cye-lm-tag">&lt;mvc:annotation-driven/&gt;是Spring MVC提供的一键式的配置方法，配置此标签后Spring MVC会帮我们自动做一些注册组件之类的事。</p><p class="cye-lm-tag">3、创建Controller和view</p><p class="cye-lm-tag">在com.hyq.mvc包下建一个GoController.java类</p><pre style="max-width: 100%;"><code class="java hljs" codemark="1"><span class="hljs-keyword cye-lm-tag">package</span> com.hyq.mvc;
+
+<span class="hljs-keyword cye-lm-tag">import</span> org.apache.commons.logging.Log;
+<span class="hljs-keyword cye-lm-tag">import</span> org.apache.commons.logging.LogFactory;
+<span class="hljs-keyword cye-lm-tag">import</span> org.springframework.stereotype.Controller;
+<span class="hljs-keyword cye-lm-tag">import</span> org.springframework.ui.Model;
+<span class="hljs-keyword cye-lm-tag">import</span> org.springframework.web.bind.annotation.RequestMapping;
+<span class="hljs-keyword cye-lm-tag">import</span> org.springframework.web.bind.annotation.RequestMethod;
+
+<span class="hljs-comment cye-lm-tag">/**
+ * Created by Administrator on 2016/11/2.
+ */</span>
+<span class="hljs-annotation cye-lm-tag">@Controller</span>
+<span class="hljs-keyword cye-lm-tag">public</span> <span class="hljs-class cye-lm-tag"><span class="hljs-keyword cye-lm-tag">class</span> <span class="hljs-title cye-lm-tag">GoController</span> </span>{
+
+    <span class="hljs-keyword cye-lm-tag">private</span> <span class="hljs-keyword cye-lm-tag">final</span> Log logger = LogFactory.getLog(GoController.class);
+
+    <span class="hljs-comment cye-lm-tag">//处理HEAD类型的"/"请求</span>
+    <span class="hljs-annotation cye-lm-tag">@RequestMapping</span>(value = {<span class="hljs-string cye-lm-tag">"/"</span>},method = {RequestMethod.HEAD})
+    <span class="hljs-function cye-lm-tag"><span class="hljs-keyword cye-lm-tag">public</span> String <span class="hljs-title cye-lm-tag">head</span><span class="hljs-params cye-lm-tag">()</span></span>{
+        logger.info(<span class="hljs-string cye-lm-tag">"----head----"</span>);
+        <span class="hljs-keyword cye-lm-tag">return</span> <span class="hljs-string cye-lm-tag">"go.jsp"</span>;
+    }
+
+    <span class="hljs-annotation cye-lm-tag">@RequestMapping</span>(value = {<span class="hljs-string cye-lm-tag">"/index"</span>,<span class="hljs-string cye-lm-tag">"/"</span>},method = {RequestMethod.GET})
+    <span class="hljs-function cye-lm-tag"><span class="hljs-keyword cye-lm-tag">public</span> String <span class="hljs-title cye-lm-tag">index</span><span class="hljs-params cye-lm-tag">(Model model)</span><span class="hljs-keyword cye-lm-tag">throws</span> Exception</span>{
+        logger.info(<span class="hljs-string cye-lm-tag">"--------processed by index---------"</span>);
+        model.addAttribute(<span class="hljs-string cye-lm-tag">"msg"</span>,<span class="hljs-string cye-lm-tag">"GO GO GO!!!"</span>);
+        <span class="hljs-keyword cye-lm-tag">return</span> <span class="hljs-string cye-lm-tag">"go.jsp"</span>;
+    }
+
+}
+</code></pre><p class="cye-lm-tag">在根目录下建一个go.jsp页面：</p><pre style="max-width: 100%;"><code class="java hljs" codemark="1">&lt;%--
+  Created by IntelliJ IDEA.
+  User: Administrator
+  Date: <span class="hljs-number cye-lm-tag">2016</span>/<span class="hljs-number cye-lm-tag">11</span>/<span class="hljs-number cye-lm-tag">2</span>
+  Time: <span class="hljs-number cye-lm-tag">10</span>:<span class="hljs-number cye-lm-tag">54</span>
+  To change <span class="hljs-keyword cye-lm-tag">this</span> template use File | Settings | File Templates.
+--%&gt;
+&lt;%@ page contentType=<span class="hljs-string cye-lm-tag">"text/html;charset=UTF-8"</span> language=<span class="hljs-string cye-lm-tag">"java"</span> %&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Let<span class="hljs-string cye-lm-tag">'s GO&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+${msg}
+&lt;/body&gt;
+&lt;/html&gt;
+</span></code></pre><p class="cye-lm-tag">部署到tomcat中，运行结果如下：</p><p class="cye-lm-tag"><img src="/MyBlog/files/36cbf42a-ff3e-47b7-b5ed-2826d25a8f89.png" alt="搜狗截图20161102130815" style="max-width:100%;" class=""></p><p class="cye-lm-tag"><br></p></p>
+    <p style="height: 0;border-bottom: 1px #707172 solid;margin: 5px 0px"></p>
+    <p>关键词：<span style="font-size: 18px;font-family: 楷体;color: yellow;"></span></p>
+</div>
+					</div>
+				</div>
+
+				<div class="right">
+					<div class="subnav">
+						<h3 align="center">个人简介</h3>
+		                <p align="center">
+		                    <img src="les/a161ea4a-ade2-4695-b2c3-85c568706ad9.jpg" style="width: 100px;height: 100px;">
+		                </p>
+		                <p>
+		                	<span style="margin-right: 10px;font-size: 16px;color: yellow">签名:</span>
+		                	<span style="color: #f1fdff;font-size: 18px;font-family: 楷体">不为繁华易匠心</span>
+		                </p>
+		                <p>
+		                	<span style="margin-right: 10px;font-size: 16px;color: yellow;">介绍:</span>
+		                	<span style="color: #f1fdff;font-size: 18px;font-family: 楷体">${github.introduce}</span>
+		                </p>
+
+		                <p style="height: 0;border-bottom: 1px #f9fbfd solid;margin: 5px 0px"></p>
+
+						<h3>文章分类</h3>
+						<ul>
+						    <li class="main_type_list_li">
+    <a class="main_type_list_a" href="/type//29.html">
+        <span><img src="/files/icons/type_list.png"></span>
+        <span>1</span>
+        <span style="margin-left: 5px;color: #9f9f9f;">(1)</span>
+    </a>
+</li><li class="main_type_list_li">
+    <a class="main_type_list_a" href="/type//26.html">
+        <span><img src="/files/icons/type_list.png"></span>
+        <span>新类型</span>
+        <span style="margin-left: 5px;color: #9f9f9f;">(0)</span>
+    </a>
+</li><li class="main_type_list_li">
+    <a class="main_type_list_a" href="/type//17.html">
+        <span><img src="/files/icons/type_list.png"></span>
+        <span>Thinking In Java 学习笔记</span>
+        <span style="margin-left: 5px;color: #9f9f9f;">(1)</span>
+    </a>
+</li><li class="main_type_list_li">
+    <a class="main_type_list_a" href="/type//16.html">
+        <span><img src="/files/icons/type_list.png"></span>
+        <span>Spring Mvc相关</span>
+        <span style="margin-left: 5px;color: #9f9f9f;">(2)</span>
+    </a>
+</li><li class="main_type_list_li">
+    <a class="main_type_list_a" href="/type//15.html">
+        <span><img src="/files/icons/type_list.png"></span>
+        <span>MyBatis相关</span>
+        <span style="margin-left: 5px;color: #9f9f9f;">(5)</span>
+    </a>
+</li><li class="main_type_list_li">
+    <a class="main_type_list_a" href="/type//14.html">
+        <span><img src="/files/icons/type_list.png"></span>
+        <span>mysql相关</span>
+        <span style="margin-left: 5px;color: #9f9f9f;">(1)</span>
+    </a>
+</li><li class="main_type_list_li">
+    <a class="main_type_list_a" href="/type//13.html">
+        <span><img src="/files/icons/type_list.png"></span>
+        <span>一些感想</span>
+        <span style="margin-left: 5px;color: #9f9f9f;">(1)</span>
+    </a>
+</li><li class="main_type_list_li">
+    <a class="main_type_list_a" href="/type//12.html">
+        <span><img src="/files/icons/type_list.png"></span>
+        <span>Servlet&Jsp</span>
+        <span style="margin-left: 5px;color: #9f9f9f;">(4)</span>
+    </a>
+</li><li class="main_type_list_li">
+    <a class="main_type_list_a" href="/type//11.html">
+        <span><img src="/files/icons/type_list.png"></span>
+        <span>Util类汇总</span>
+        <span style="margin-left: 5px;color: #9f9f9f;">(6)</span>
+    </a>
+</li><li class="main_type_list_li">
+    <a class="main_type_list_a" href="/type//10.html">
+        <span><img src="/files/icons/type_list.png"></span>
+        <span>学习网站收集</span>
+        <span style="margin-left: 5px;color: #9f9f9f;">(1)</span>
+    </a>
+</li><li class="main_type_list_li">
+    <a class="main_type_list_a" href="/type//9.html">
+        <span><img src="/files/icons/type_list.png"></span>
+        <span>Spring相关</span>
+        <span style="margin-left: 5px;color: #9f9f9f;">(5)</span>
+    </a>
+</li><li class="main_type_list_li">
+    <a class="main_type_list_a" href="/type//8.html">
+        <span><img src="/files/icons/type_list.png"></span>
+        <span>数据结构和算法</span>
+        <span style="margin-left: 5px;color: #9f9f9f;">(3)</span>
+    </a>
+</li><li class="main_type_list_li">
+    <a class="main_type_list_a" href="/type//7.html">
+        <span><img src="/files/icons/type_list.png"></span>
+        <span>Java基础</span>
+        <span style="margin-left: 5px;color: #9f9f9f;">(9)</span>
+    </a>
+</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="clearer"><span></span></div>
+			</div>
+
+			<div class="footer" style="padding-top: 20px">
+		        <div align="center" style="margin-top: 0px">
+		            <span id="copyright">Copyright©2018 挪威司机</span>
+		        </div>
+		    </div>
+		</div>
+	</body>
+
+	<script type="text/javascript">
+	    $("code").attr("class","java");
+		$("code").attr("id","codeId");
+    	$("pre").attr("id","preId");
+	    hljs.initHighlightingOnLoad();
+	    
+    	setDate();
+    	function setDate() {
+	        var mydate = new Date();
+	        var str = "";
+	        str += (mydate.getMonth() + 1) + "月";
+	        str += mydate.getDate() + "日 ";
+	        var dday = mydate.getDay();
+	        var weekday=["星期日","星期一","星期二","星期三","星期四","星期五","星期六"];
+	        str += weekday[dday];
+	        $("#currentTime").text(str);
+	    };
+	</script>
+
+</html>

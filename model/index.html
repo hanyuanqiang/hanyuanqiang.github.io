@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+<link rel="stylesheet" type="text/css" href="/static/highlight/styles/docco.css">
+<link rel="stylesheet" type="text/css" href="/static/template/template.css">
+<link rel="stylesheet" type="text/css" href="/static/css/my.css">
+
+<script src="/static/jquery/jquery.min.js"></script>
+<script src="/static/highlight/highlight.pack.js"></script>
+<title>${nickname}</title>
+</head>
+
+	<!-- default margin = default layout -->
+	<body>
+		<div class="t_container" style="width:1200px;margin: 0 auto">
+			<div class="header">
+				<div style="height: 100%;padding-top: 10px;margin: 0px;">
+		            <p id="currentTime" align="right" style="margin: 0px 20px;height: 25px;font-size: 16px"></p>
+		            <p class="head_en" style="margin: 0px 130px;">
+		            	Keep track of what I really think.<br>
+		                Hope that many years later, we still have the courage to remember!
+		            </p>
+		        </div>
+			</div>
+
+			<div class="stripes"><span></span></div>
+
+			<div class="main">
+
+				<div class="left">
+					<div class="content">
+						<div id="article_list">
+							<table>
+								<tr>
+								    <td align="center" colspan="3">
+								        <h3 style="margin:0px;padding: 0px;">文章列表</h3>
+								    </td>    
+								</tr>
+								<tr style="height: 15px">
+								    <td colspan="3"></td>
+								</tr>
+						        ${article_list_table_tr}
+						    </table>
+						</div>
+					</div>
+				</div>
+
+				<div class="right">
+					<div class="subnav">
+						<h3 align="center">个人简介</h3>
+		                <p align="center">
+		                    <img src="${avatar.url}" style="width: 100px;height: 100px;">
+		                </p>
+		                <p>
+		                	<span style="margin-right: 10px;font-size: 16px;color: yellow">签名:</span>
+		                	<span style="color: #f1fdff;font-size: 18px;font-family: 楷体">${singature}</span>
+		                </p>
+		                <p>
+		                	<span style="margin-right: 10px;font-size: 16px;color: yellow;">介绍:</span>
+		                	<span style="color: #f1fdff;font-size: 18px;font-family: 楷体">${introduce}</span>
+		                </p>
+
+		                <p style="height: 0;border-bottom: 1px #f9fbfd solid;margin: 5px 0px"></p>
+
+						<h3>文章分类</h3>
+						<ul>
+						    ${type_list_ul_li}
+						</ul>
+					</div>
+				</div>
+
+				<div class="clearer"><span></span></div>
+			</div>
+
+			<div class="footer" style="padding-top: 20px">
+		        <div align="center" style="margin-top: 0px">
+		            <span id="copyright">Copyright©2018 ${nickName}</span>
+		        </div>
+		    </div>
+		</div>
+	</body>
+
+	<script type="text/javascript">
+	    $("code").attr("class","java");
+		$("code").attr("id","codeId");
+    	$("pre").attr("id","preId");
+	    hljs.initHighlightingOnLoad();
+	    
+
+    	setDate();
+    	function setDate() {
+	        var mydate = new Date();
+	        var str = "";
+	        str += (mydate.getMonth() + 1) + "月";
+	        str += mydate.getDate() + "日 ";
+	        var dday = mydate.getDay();
+	        var weekday=["星期日","星期一","星期二","星期三","星期四","星期五","星期六"];
+	        str += weekday[dday];
+	        $("#currentTime").text(str);
+	    };
+	</script>
+
+</html>

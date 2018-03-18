@@ -1,0 +1,318 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+<link rel="stylesheet" type="text/css" href="/static/highlight/styles/docco.css">
+<link rel="stylesheet" type="text/css" href="/static/template/template.css">
+<link rel="stylesheet" type="text/css" href="/static/css/my.css">
+
+<script src="/static/jquery/jquery.min.js"></script>
+<script src="/static/highlight/highlight.pack.js"></script>
+<title>挪威司机</title>
+</head>
+
+	<!-- default margin = default layout -->
+	<body>
+		<div class="t_container" style="width:1200px;margin: 0 auto">
+			<div class="header">
+				<div style="height: 100%;padding-top: 10px;margin: 0px;">
+		            <p id="currentTime" align="right" style="margin: 0px 20px;height: 25px;font-size: 16px"></p>
+		            <p class="head_en" style="margin: 0px 130px;">
+		            	Keep track of what I really think.<br>
+		                Hope that many years later, we still have the courage to remember!
+		            </p>
+		        </div>
+			</div>
+
+			<div class="stripes"><span></span></div>
+
+			<div class="main">
+
+				<div class="left">
+					<div class="content">
+						<div id="article_detail">
+    <p id="article_detail_title" align="center">爬取网页图片——使用java简单实现(V1.0)</p>
+    <p align="center" style="margin-bottom: 5px;">
+        <span class="article_detail_time_type">2016-10-24 06:20:20</span>
+        <span style="margin: 0 10px;"></span>
+        <span class="article_detail_time_type">原创</span>
+        <span style="margin: 0 10px;"></span>
+        <span class="article_detail_time_type">分类：Java基础</span>
+    </p>
+    <div class="common_line"></div>
+    <p><p>今天在学习正则表达式的时候，看到使用正则表达式匹配网址和图片url，也是心血来潮想用java简单实现爬取网页图片，废话不多说，直接贴代码：</p><pre style="max-width:100%;overflow-x:auto;"><code class="java hljs" codemark="1"><span class="hljs-keyword">package</span> com.urlResource;
+
+<span class="hljs-keyword">import</span> java.io.File;
+<span class="hljs-keyword">import</span> java.io.FileOutputStream;
+<span class="hljs-keyword">import</span> java.io.IOException;
+<span class="hljs-keyword">import</span> java.io.InputStream;
+<span class="hljs-keyword">import</span> java.io.OutputStream;
+<span class="hljs-keyword">import</span> java.net.HttpURLConnection;
+<span class="hljs-keyword">import</span> java.net.URL;
+<span class="hljs-keyword">import</span> java.util.ArrayList;
+<span class="hljs-keyword">import</span> java.util.List;
+<span class="hljs-keyword">import</span> java.util.regex.Matcher;
+<span class="hljs-keyword">import</span> java.util.regex.Pattern;
+
+<span class="hljs-comment">/**
+ * 抓取图片
+ * <span class="hljs-doctag">@author</span> Administrator
+ *
+ */</span>
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CatchImg</span> </span>{
+
+	<span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> List&lt;String&gt; urlList = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();	<span class="hljs-comment">//存储网址</span>
+	<span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span>  <span class="hljs-keyword">int</span> index = <span class="hljs-number">0</span>;		<span class="hljs-comment">//urlList的当前索引</span>
+
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">CatchImg</span><span class="hljs-params">(String url)</span></span>{
+		urlList.add(url);	<span class="hljs-comment">//初始化实例的时候添加一个url</span>
+	}
+
+	<span class="hljs-comment">//获取新的网页url</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">getUrl</span><span class="hljs-params">()</span></span>{
+		<span class="hljs-keyword">try</span>{
+			URL url = <span class="hljs-keyword">new</span> URL(urlList.get(index));	<span class="hljs-comment">//获取当前要抓取图片的页面url</span>
+			StringBuffer sb = <span class="hljs-keyword">new</span> StringBuffer();
+			HttpURLConnection urlConnection = (HttpURLConnection)url.openConnection();
+			InputStream input = urlConnection.getInputStream();	<span class="hljs-comment">//获取输入流</span>
+			String contentType = urlConnection.getContentType();<span class="hljs-comment">//获取网页内容类型</span>
+			<span class="hljs-keyword">int</span> tempIndex = -<span class="hljs-number">1</span>;
+			String ecoding = <span class="hljs-string">"utf-8"</span>;		<span class="hljs-comment">//默认网页编码为utf-8</span>
+			<span class="hljs-keyword">if</span>(contentType!=<span class="hljs-keyword">null</span>){
+				tempIndex = contentType.lastIndexOf(<span class="hljs-string">"charset="</span>);
+				<span class="hljs-keyword">if</span>(tempIndex!=-<span class="hljs-number">1</span>){
+					ecoding = contentType.substring(tempIndex+<span class="hljs-number">8</span>);<span class="hljs-comment">//获取网页真正的编码</span>
+				}
+			}
+			System.out.println(<span class="hljs-string">"当前网址："</span>+urlList.get(index)+<span class="hljs-string">"，编码："</span>+ecoding);
+			<span class="hljs-keyword">byte</span>[] buffer = <span class="hljs-keyword">new</span> <span class="hljs-keyword">byte</span>[<span class="hljs-number">1024</span>];
+			<span class="hljs-keyword">int</span> hasRead = <span class="hljs-number">0</span>;
+			<span class="hljs-keyword">while</span>((hasRead=input.read(buffer))!=-<span class="hljs-number">1</span>){
+				<span class="hljs-comment">//按照指定的编码获取网页文本</span>
+				sb.append(<span class="hljs-keyword">new</span> String(buffer,<span class="hljs-number">0</span>,hasRead,ecoding));
+			}
+			<span class="hljs-keyword">if</span>(input!=<span class="hljs-keyword">null</span>){
+				input.close();
+			}
+			
+			String patternString = <span class="hljs-string">"[a-zA-z]+://[^\\s\"']*"</span>;<span class="hljs-comment">//	匹配网址</span>
+			List&lt;String&gt; imgUrlList = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();
+
+			Matcher m = Pattern.compile(patternString).matcher(sb.toString());
+			<span class="hljs-keyword">while</span>(m.find()){
+				String newUrl = m.group();
+				<span class="hljs-comment">//匹配图片和网址的url</span>
+				<span class="hljs-keyword">if</span>(newUrl.endsWith(<span class="hljs-string">".jpg"</span>)||newUrl.endsWith(<span class="hljs-string">".JPG"</span>)||
+					newUrl.endsWith(<span class="hljs-string">".jpeg"</span>)||newUrl.endsWith(<span class="hljs-string">".JPEG"</span>)||
+					newUrl.endsWith(<span class="hljs-string">".bmp"</span>)||newUrl.endsWith(<span class="hljs-string">".BMP"</span>)||
+					newUrl.endsWith(<span class="hljs-string">".png"</span>)||newUrl.endsWith(<span class="hljs-string">".PNG"</span>)||
+					newUrl.endsWith(<span class="hljs-string">".gif"</span>)||newUrl.endsWith(<span class="hljs-string">".GIF"</span>)){
+				&nbsp;&nbsp;&nbsp; imgUrlList.add(newUrl);<span class="hljs-comment">//如果满足条件，则加入到存储图片的线性表中</span>
+				}<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(!urlList.contains(newUrl)){
+					<span class="hljs-comment">//如果存储网址的线性表中不存在当前url，则把url加入线性表中</span>
+					<span class="hljs-comment">//并且该只能是本站的网址</span>
+					<span class="hljs-keyword">if</span>(newUrl.contains(<span class="hljs-string">"http://picxw.com"</span>)){
+						urlList.add(newUrl);
+					}
+				}
+			}
+			
+			<span class="hljs-comment">/*
+			 * 下面表达式匹配“/uploads/allimg/c131124/13U291Y5195F-245919.jpg”
+			 * 这样src是相对路径的图片，下面如果其他网址遇到类似情况也可相同方式处理
+			 * */</span>
+			Matcher m2 = Pattern.compile(<span class="hljs-string">"/uploads/allimg/\\w*[^\\.]*\\.jpg"</span>).matcher(sb.toString());
+			<span class="hljs-keyword">while</span>(m2.find()){
+				<span class="hljs-comment">//手动拼接成完整的域名</span>
+				imgUrlList.add(<span class="hljs-string">"http://picxw.com"</span>+m2.group());
+			}
+			
+			downloadImg(imgUrlList);	<span class="hljs-comment">//下载已经查找到url的图片</span>
+			index++;		<span class="hljs-comment">//索引后移一位，处理下一个网址url</span>
+			
+			<span class="hljs-comment">//如果网址线性表中还存在未处理的网址，则继续执行该方法，否则退出</span>
+			<span class="hljs-keyword">if</span>(index&lt;urlList.size()){
+				getUrl();
+			}<span class="hljs-keyword">else</span>{
+				<span class="hljs-keyword">return</span>;
+			}
+		}<span class="hljs-keyword">catch</span>(Exception e){
+			<span class="hljs-comment">//无论发生什么异常，索引都向后移动一位(即跳过当前url，处理下一个)</span>
+			index++;
+			<span class="hljs-keyword">if</span>(index&lt;urlList.size()-<span class="hljs-number">1</span>){
+				getUrl();
+			}<span class="hljs-keyword">else</span>{
+				<span class="hljs-keyword">return</span>;
+			}
+		}
+	}
+
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">downloadImg</span><span class="hljs-params">(List&lt;String&gt; imgUrlList)</span> <span class="hljs-keyword">throws</span> IOException, InterruptedException</span>{
+		<span class="hljs-comment">//遍历存储图片url的线性表</span>
+		<span class="hljs-keyword">for</span>(String imgUrl : imgUrlList){
+			URL url = <span class="hljs-keyword">new</span> URL(imgUrl);
+			String fileName = url.getFile();
+			fileName = fileName.substring(fileName.lastIndexOf(<span class="hljs-string">"/"</span>), fileName.length());
+			
+			System.out.println(fileName);
+			
+			OutputStream output = <span class="hljs-keyword">new</span> FileOutputStream(<span class="hljs-keyword">new</span> File(<span class="hljs-string">"image03"</span>+fileName));
+			InputStream input = url.openStream();
+			<span class="hljs-keyword">byte</span>[] buffer = <span class="hljs-keyword">new</span> <span class="hljs-keyword">byte</span>[<span class="hljs-number">1024</span>];
+			<span class="hljs-keyword">int</span> hasRead = <span class="hljs-number">0</span>;
+			<span class="hljs-keyword">while</span>((hasRead=input.read(buffer))!=-<span class="hljs-number">1</span>){
+				output.write(buffer, <span class="hljs-number">0</span>, hasRead);
+			}
+			input.close();
+			output.close();
+		}
+	}
+	
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> IOException, InterruptedException </span>{
+		CatchImg catchImg = <span class="hljs-keyword">new</span> CatchImg(<span class="hljs-string">"http://picxw.com/meitui/"</span>);
+		catchImg.getUrl();
+	}
+	
+}
+</code></pre><br><p>上面代码中选用要爬取图片的网址是<a href="http://picxw.com/meitui/" target="_blank" style="">http://picxw.com/meitui/</a><span> （好吧，我找了好久终于找到一个漂亮妹子很多的网站....）；然后运行程序，就可以看到网站中的图片不断下载到<b><font color="#008080">image03</font></b>文件夹里面。下面是控制台的输出：</span></p><p><span><img src="/MyBlog/files/db45eb12-63ad-46a5-9b24-f36214ca2a91.png" alt="搜狗截图20161023221840" style="max-width:100%;"><br></span></p><p>然后查看文件夹：</p><p><img src="/MyBlog/files/07f5ecaa-7668-49ae-bb05-fdb13ee55027.png" alt="搜狗截图20161023221955" style="max-width:100%;"><br><span></span></p><p><font face="楷体" size="4" color="#ff00ff">可以看到网站里面的美女已经一个个进入我的文件夹了</font><img src="http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/6d/yx_thumb.gif"><br></p><p><br></p></p>
+    <p style="height: 0;border-bottom: 1px #707172 solid;margin: 5px 0px"></p>
+    <p>关键词：<span style="font-size: 18px;font-family: 楷体;color: yellow;">正则表达式匹配网址，爬取图片，java爬虫</span></p>
+</div>
+					</div>
+				</div>
+
+				<div class="right">
+					<div class="subnav">
+						<h3 align="center">个人简介</h3>
+		                <p align="center">
+		                    <img src="les/a161ea4a-ade2-4695-b2c3-85c568706ad9.jpg" style="width: 100px;height: 100px;">
+		                </p>
+		                <p>
+		                	<span style="margin-right: 10px;font-size: 16px;color: yellow">签名:</span>
+		                	<span style="color: #f1fdff;font-size: 18px;font-family: 楷体">不为繁华易匠心</span>
+		                </p>
+		                <p>
+		                	<span style="margin-right: 10px;font-size: 16px;color: yellow;">介绍:</span>
+		                	<span style="color: #f1fdff;font-size: 18px;font-family: 楷体">${github.introduce}</span>
+		                </p>
+
+		                <p style="height: 0;border-bottom: 1px #f9fbfd solid;margin: 5px 0px"></p>
+
+						<h3>文章分类</h3>
+						<ul>
+						    <li class="main_type_list_li">
+    <a class="main_type_list_a" href="/type//29.html">
+        <span><img src="/files/icons/type_list.png"></span>
+        <span>1</span>
+        <span style="margin-left: 5px;color: #9f9f9f;">(1)</span>
+    </a>
+</li><li class="main_type_list_li">
+    <a class="main_type_list_a" href="/type//26.html">
+        <span><img src="/files/icons/type_list.png"></span>
+        <span>新类型</span>
+        <span style="margin-left: 5px;color: #9f9f9f;">(0)</span>
+    </a>
+</li><li class="main_type_list_li">
+    <a class="main_type_list_a" href="/type//17.html">
+        <span><img src="/files/icons/type_list.png"></span>
+        <span>Thinking In Java 学习笔记</span>
+        <span style="margin-left: 5px;color: #9f9f9f;">(1)</span>
+    </a>
+</li><li class="main_type_list_li">
+    <a class="main_type_list_a" href="/type//16.html">
+        <span><img src="/files/icons/type_list.png"></span>
+        <span>Spring Mvc相关</span>
+        <span style="margin-left: 5px;color: #9f9f9f;">(2)</span>
+    </a>
+</li><li class="main_type_list_li">
+    <a class="main_type_list_a" href="/type//15.html">
+        <span><img src="/files/icons/type_list.png"></span>
+        <span>MyBatis相关</span>
+        <span style="margin-left: 5px;color: #9f9f9f;">(5)</span>
+    </a>
+</li><li class="main_type_list_li">
+    <a class="main_type_list_a" href="/type//14.html">
+        <span><img src="/files/icons/type_list.png"></span>
+        <span>mysql相关</span>
+        <span style="margin-left: 5px;color: #9f9f9f;">(1)</span>
+    </a>
+</li><li class="main_type_list_li">
+    <a class="main_type_list_a" href="/type//13.html">
+        <span><img src="/files/icons/type_list.png"></span>
+        <span>一些感想</span>
+        <span style="margin-left: 5px;color: #9f9f9f;">(1)</span>
+    </a>
+</li><li class="main_type_list_li">
+    <a class="main_type_list_a" href="/type//12.html">
+        <span><img src="/files/icons/type_list.png"></span>
+        <span>Servlet&Jsp</span>
+        <span style="margin-left: 5px;color: #9f9f9f;">(4)</span>
+    </a>
+</li><li class="main_type_list_li">
+    <a class="main_type_list_a" href="/type//11.html">
+        <span><img src="/files/icons/type_list.png"></span>
+        <span>Util类汇总</span>
+        <span style="margin-left: 5px;color: #9f9f9f;">(6)</span>
+    </a>
+</li><li class="main_type_list_li">
+    <a class="main_type_list_a" href="/type//10.html">
+        <span><img src="/files/icons/type_list.png"></span>
+        <span>学习网站收集</span>
+        <span style="margin-left: 5px;color: #9f9f9f;">(1)</span>
+    </a>
+</li><li class="main_type_list_li">
+    <a class="main_type_list_a" href="/type//9.html">
+        <span><img src="/files/icons/type_list.png"></span>
+        <span>Spring相关</span>
+        <span style="margin-left: 5px;color: #9f9f9f;">(5)</span>
+    </a>
+</li><li class="main_type_list_li">
+    <a class="main_type_list_a" href="/type//8.html">
+        <span><img src="/files/icons/type_list.png"></span>
+        <span>数据结构和算法</span>
+        <span style="margin-left: 5px;color: #9f9f9f;">(3)</span>
+    </a>
+</li><li class="main_type_list_li">
+    <a class="main_type_list_a" href="/type//7.html">
+        <span><img src="/files/icons/type_list.png"></span>
+        <span>Java基础</span>
+        <span style="margin-left: 5px;color: #9f9f9f;">(9)</span>
+    </a>
+</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="clearer"><span></span></div>
+			</div>
+
+			<div class="footer" style="padding-top: 20px">
+		        <div align="center" style="margin-top: 0px">
+		            <span id="copyright">Copyright©2018 挪威司机</span>
+		        </div>
+		    </div>
+		</div>
+	</body>
+
+	<script type="text/javascript">
+	    $("code").attr("class","java");
+		$("code").attr("id","codeId");
+    	$("pre").attr("id","preId");
+	    hljs.initHighlightingOnLoad();
+	    
+    	setDate();
+    	function setDate() {
+	        var mydate = new Date();
+	        var str = "";
+	        str += (mydate.getMonth() + 1) + "月";
+	        str += mydate.getDate() + "日 ";
+	        var dday = mydate.getDay();
+	        var weekday=["星期日","星期一","星期二","星期三","星期四","星期五","星期六"];
+	        str += weekday[dday];
+	        $("#currentTime").text(str);
+	    };
+	</script>
+
+</html>

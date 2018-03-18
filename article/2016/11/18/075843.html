@@ -1,0 +1,336 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+<link rel="stylesheet" type="text/css" href="/static/highlight/styles/docco.css">
+<link rel="stylesheet" type="text/css" href="/static/template/template.css">
+<link rel="stylesheet" type="text/css" href="/static/css/my.css">
+
+<script src="/static/jquery/jquery.min.js"></script>
+<script src="/static/highlight/highlight.pack.js"></script>
+<title>挪威司机</title>
+</head>
+
+	<!-- default margin = default layout -->
+	<body>
+		<div class="t_container" style="width:1200px;margin: 0 auto">
+			<div class="header">
+				<div style="height: 100%;padding-top: 10px;margin: 0px;">
+		            <p id="currentTime" align="right" style="margin: 0px 20px;height: 25px;font-size: 16px"></p>
+		            <p class="head_en" style="margin: 0px 130px;">
+		            	Keep track of what I really think.<br>
+		                Hope that many years later, we still have the courage to remember!
+		            </p>
+		        </div>
+			</div>
+
+			<div class="stripes"><span></span></div>
+
+			<div class="main">
+
+				<div class="left">
+					<div class="content">
+						<div id="article_detail">
+    <p id="article_detail_title" align="center">JSON格式相关知识点</p>
+    <p align="center" style="margin-bottom: 5px;">
+        <span class="article_detail_time_type">2016-11-18 07:58:43</span>
+        <span style="margin: 0 10px;"></span>
+        <span class="article_detail_time_type">原创</span>
+        <span style="margin: 0 10px;"></span>
+        <span class="article_detail_time_type">分类：Java基础</span>
+    </p>
+    <div class="common_line"></div>
+    <p><p class="cye-lm-tag">在平时写项目中我们经常会用到josn-lib来把对象转为json格式数据，首先给出maven中要使用json所需的依赖(有时候特难找，所以这里直接给出)：</p><pre style="max-width: 100%;"><code class="xml hljs" codemark="1"><span class="hljs-tag cye-lm-tag">&lt;<span class="hljs-title cye-lm-tag">dependency</span>&gt;</span>
+    <span class="hljs-tag cye-lm-tag">&lt;<span class="hljs-title cye-lm-tag">groupId</span>&gt;</span>net.sf.json-lib<span class="hljs-tag cye-lm-tag">&lt;/<span class="hljs-title cye-lm-tag">groupId</span>&gt;</span>
+    <span class="hljs-tag cye-lm-tag">&lt;<span class="hljs-title cye-lm-tag">artifactId</span>&gt;</span>json-lib<span class="hljs-tag cye-lm-tag">&lt;/<span class="hljs-title cye-lm-tag">artifactId</span>&gt;</span>
+    <span class="hljs-tag cye-lm-tag">&lt;<span class="hljs-title cye-lm-tag">version</span>&gt;</span>2.3<span class="hljs-tag cye-lm-tag">&lt;/<span class="hljs-title cye-lm-tag">version</span>&gt;</span>
+    <span class="hljs-tag cye-lm-tag">&lt;<span class="hljs-title cye-lm-tag">classifier</span>&gt;</span>jdk15<span class="hljs-tag cye-lm-tag">&lt;/<span class="hljs-title cye-lm-tag">classifier</span>&gt;</span>
+<span class="hljs-tag cye-lm-tag">&lt;/<span class="hljs-title cye-lm-tag">dependency</span>&gt;</span></code></pre><p class="cye-lm-tag">下面通过一个示例来展示json-lib中的一些其他用法：</p><p class="cye-lm-tag">首先给出一个实体类People.java：</p><pre style="max-width: 100%;" class="cye-lm-tag"><code class="java hljs cye-lm-tag" codemark="1"><span class="hljs-keyword cye-lm-tag">package</span> com.test.json;
+
+<span class="hljs-keyword cye-lm-tag">import</span> java.util.Date;
+
+<span class="hljs-keyword cye-lm-tag">public</span> <span class="hljs-class cye-lm-tag"><span class="hljs-keyword cye-lm-tag">class</span> <span class="hljs-title cye-lm-tag">People</span> </span>{
+	<span class="hljs-keyword cye-lm-tag">private</span> Integer id;
+	<span class="hljs-keyword cye-lm-tag">private</span> String name;
+	<span class="hljs-keyword cye-lm-tag">private</span> Date birth;
+	<span class="hljs-keyword cye-lm-tag">private</span> String hobby;
+	<span class="hljs-keyword cye-lm-tag">private</span> Book book;
+	<span class="hljs-function cye-lm-tag"><span class="hljs-keyword cye-lm-tag">public</span> <span class="hljs-title cye-lm-tag">People</span><span class="hljs-params cye-lm-tag">(Integer id, String name, Date birth,String hobby)</span> </span>{
+		<span class="hljs-keyword cye-lm-tag">super</span>();
+		<span class="hljs-keyword cye-lm-tag">this</span>.id = id;
+		<span class="hljs-keyword cye-lm-tag">this</span>.name = name;
+		<span class="hljs-keyword cye-lm-tag">this</span>.birth = birth;
+		<span class="hljs-keyword cye-lm-tag">this</span>.hobby = hobby;
+	}
+	<span class="hljs-function cye-lm-tag"><span class="hljs-keyword cye-lm-tag">public</span> <span class="hljs-title cye-lm-tag">People</span><span class="hljs-params cye-lm-tag">()</span> </span>{
+		<span class="hljs-keyword cye-lm-tag">super</span>();
+		<span class="hljs-comment cye-lm-tag">// TODO Auto-generated constructor stub</span>
+	}
+	<span class="hljs-comment cye-lm-tag">/**
+	 * 这里省略了getter和setter方法
+	 */</span>
+}
+</code></pre><p class="cye-lm-tag">相关联的Book.java类</p><pre style="max-width: 100%;"><code class="java hljs" codemark="1"><span class="hljs-keyword cye-lm-tag">package</span> com.test.json;
+<span class="hljs-keyword cye-lm-tag">public</span> <span class="hljs-class cye-lm-tag"><span class="hljs-keyword cye-lm-tag">class</span> <span class="hljs-title cye-lm-tag">Book</span> </span>{
+	<span class="hljs-keyword cye-lm-tag">private</span> Integer bookNo;
+	<span class="hljs-keyword cye-lm-tag">private</span> String bookName;
+	<span class="hljs-keyword cye-lm-tag">private</span> <span class="hljs-keyword cye-lm-tag">double</span> price;
+	<span class="hljs-keyword cye-lm-tag">private</span> String bookAuthor;
+	<span class="hljs-function cye-lm-tag"><span class="hljs-keyword cye-lm-tag">public</span> <span class="hljs-title cye-lm-tag">Book</span><span class="hljs-params cye-lm-tag">(Integer bookNo, String bookName, <span class="hljs-keyword cye-lm-tag">double</span> price, String bookAuthor)</span> </span>{
+		<span class="hljs-keyword cye-lm-tag">super</span>();
+		<span class="hljs-keyword cye-lm-tag">this</span>.bookNo = bookNo;
+		<span class="hljs-keyword cye-lm-tag">this</span>.bookName = bookName;
+		<span class="hljs-keyword cye-lm-tag">this</span>.price = price;
+		<span class="hljs-keyword cye-lm-tag">this</span>.bookAuthor = bookAuthor;
+	}
+	<span class="hljs-function cye-lm-tag"><span class="hljs-keyword cye-lm-tag">public</span> <span class="hljs-title cye-lm-tag">Book</span><span class="hljs-params cye-lm-tag">()</span> </span>{
+		<span class="hljs-keyword cye-lm-tag">super</span>();
+		<span class="hljs-comment cye-lm-tag">// TODO Auto-generated constructor stub</span>
+	}
+	<span class="hljs-comment cye-lm-tag">/**
+	 * 这里省略了getter和setter方法
+	 */</span>
+}
+</code></pre><p class="cye-lm-tag">下面直接先给出测试类JsonTest.java：</p><pre style="max-width: 100%;"><code class="java hljs" codemark="1"><span class="hljs-keyword cye-lm-tag">package</span> com.test.json;
+
+<span class="hljs-keyword cye-lm-tag">import</span> java.util.ArrayList;
+<span class="hljs-keyword cye-lm-tag">import</span> java.util.Date;
+<span class="hljs-keyword cye-lm-tag">import</span> java.util.List;
+<span class="hljs-keyword cye-lm-tag">import</span> net.sf.json.JSONArray;
+<span class="hljs-keyword cye-lm-tag">import</span> net.sf.json.JsonConfig;
+
+<span class="hljs-keyword cye-lm-tag">public</span> <span class="hljs-class cye-lm-tag"><span class="hljs-keyword cye-lm-tag">class</span> <span class="hljs-title cye-lm-tag">JsonTest</span> </span>{
+	<span class="hljs-function cye-lm-tag"><span class="hljs-keyword cye-lm-tag">public</span> <span class="hljs-keyword cye-lm-tag">static</span> <span class="hljs-keyword cye-lm-tag">void</span> <span class="hljs-title cye-lm-tag">main</span><span class="hljs-params cye-lm-tag">(String[] args)</span> <span class="hljs-keyword cye-lm-tag">throws</span> Exception</span>{
+		Book b1 = <span class="hljs-keyword cye-lm-tag">new</span> Book(<span class="hljs-number cye-lm-tag">11</span>,<span class="hljs-string cye-lm-tag">"java编程思想"</span>,<span class="hljs-number cye-lm-tag">99.2</span>,<span class="hljs-string cye-lm-tag">"作者1"</span>);
+		People p1 = <span class="hljs-keyword cye-lm-tag">new</span> People(<span class="hljs-number cye-lm-tag">1</span>,<span class="hljs-string cye-lm-tag">"天才"</span>,<span class="hljs-keyword cye-lm-tag">new</span> Date(),<span class="hljs-string cye-lm-tag">"打篮球"</span>);
+		p1.setBook(b1);
+		Thread.sleep(<span class="hljs-number cye-lm-tag">2000</span>);
+		Book b2 = <span class="hljs-keyword cye-lm-tag">new</span> Book(<span class="hljs-number cye-lm-tag">18</span>,<span class="hljs-string cye-lm-tag">"设计模式"</span>,<span class="hljs-number cye-lm-tag">45.12</span>,<span class="hljs-string cye-lm-tag">"作者2"</span>);
+		People p2 = <span class="hljs-keyword cye-lm-tag">new</span> People(<span class="hljs-number cye-lm-tag">2</span>,<span class="hljs-string cye-lm-tag">"天才2"</span>,<span class="hljs-keyword cye-lm-tag">new</span> Date(),<span class="hljs-string cye-lm-tag">"打乒乓球"</span>);
+		p2.setBook(b2);
+		List&lt;People&gt; peopleList = <span class="hljs-keyword cye-lm-tag">new</span> ArrayList&lt;&gt;();
+		peopleList.add(p1);
+		peopleList.add(p2);
+		JsonConfig jsonConfig = <span class="hljs-keyword cye-lm-tag">new</span> JsonConfig();
+		jsonConfig.setExcludes(<span class="hljs-keyword cye-lm-tag">new</span> String[]{<span class="hljs-string cye-lm-tag">"hobby"</span>});	<span class="hljs-comment cye-lm-tag">//忽略hobby属性</span>
+		jsonConfig.registerJsonValueProcessor(java.util.Date.class, <span class="hljs-keyword cye-lm-tag">new</span> JsonDateProcesser(<span class="hljs-string cye-lm-tag">"yyyy-MM-dd HH:mm:ss"</span>));
+		jsonConfig.registerJsonValueProcessor(Book.class, <span class="hljs-keyword cye-lm-tag">new</span> JsonObjectValueProcessor(<span class="hljs-keyword cye-lm-tag">new</span> String[]{<span class="hljs-string cye-lm-tag">"bookName"</span>,<span class="hljs-string cye-lm-tag">"price"</span>},Book.class));
+		<span class="hljs-comment cye-lm-tag">//把对象转成json数组</span>
+		JSONArray rows = JSONArray.fromObject(peopleList, jsonConfig);
+		System.out.println(rows.toString());
+	}
+}
+
+</code></pre><p class="cye-lm-tag">上面测试类中的JsonDateProcesser类代码如下：</p><pre style="max-width: 100%;"><code class="java hljs" codemark="1"><span class="hljs-keyword cye-lm-tag">package</span> com.test.json;
+<span class="hljs-keyword cye-lm-tag">import</span> java.text.SimpleDateFormat;
+<span class="hljs-keyword cye-lm-tag">import</span> net.sf.json.JsonConfig;
+<span class="hljs-keyword cye-lm-tag">import</span> net.sf.json.processors.JsonValueProcessor;
+<span class="hljs-keyword cye-lm-tag">public</span> <span class="hljs-class cye-lm-tag"><span class="hljs-keyword cye-lm-tag">class</span> <span class="hljs-title cye-lm-tag">JsonDateProcesser</span>  <span class="hljs-keyword cye-lm-tag">implements</span> <span class="hljs-title cye-lm-tag">JsonValueProcessor</span></span>{
+	<span class="hljs-keyword cye-lm-tag">private</span> String format;
+	<span class="hljs-function cye-lm-tag"><span class="hljs-keyword cye-lm-tag">public</span> <span class="hljs-title cye-lm-tag">JsonDateProcesser</span><span class="hljs-params cye-lm-tag">(String format)</span> </span>{
+		<span class="hljs-keyword cye-lm-tag">this</span>.format = format;
+	}
+	<span class="hljs-annotation cye-lm-tag">@Override</span>
+	<span class="hljs-function cye-lm-tag"><span class="hljs-keyword cye-lm-tag">public</span> Object <span class="hljs-title cye-lm-tag">processArrayValue</span><span class="hljs-params cye-lm-tag">(Object arg0, JsonConfig arg1)</span> </span>{
+		<span class="hljs-comment cye-lm-tag">// TODO Auto-generated method stub</span>
+		<span class="hljs-keyword cye-lm-tag">return</span> <span class="hljs-keyword cye-lm-tag">null</span>;
+	}
+	<span class="hljs-annotation cye-lm-tag">@Override</span>
+	<span class="hljs-function cye-lm-tag"><span class="hljs-keyword cye-lm-tag">public</span> Object <span class="hljs-title cye-lm-tag">processObjectValue</span><span class="hljs-params cye-lm-tag">(String key, Object value, JsonConfig config)</span> </span>{
+		<span class="hljs-keyword cye-lm-tag">if</span>(value == <span class="hljs-keyword cye-lm-tag">null</span>){  
+            <span class="hljs-keyword cye-lm-tag">return</span> <span class="hljs-string cye-lm-tag">""</span>;  
+        }   
+        <span class="hljs-keyword cye-lm-tag">if</span> (value <span class="hljs-keyword cye-lm-tag">instanceof</span> java.util.Date){  
+            String str = <span class="hljs-keyword cye-lm-tag">new</span> SimpleDateFormat(format).format((java.util.Date) value);  
+            <span class="hljs-keyword cye-lm-tag">return</span> str;  
+        } 
+        <span class="hljs-keyword cye-lm-tag">return</span> value.toString(); 
+	}
+}
+</code></pre><p class="cye-lm-tag">上面这个类把People实体中的日期类型的字段birth进行格式化</p><p class="cye-lm-tag">测试方法中的JsonObjectValueProcessor类的代码如下:</p><pre style="max-width: 100%;"><code class="java hljs" codemark="1"><span class="hljs-keyword cye-lm-tag">package</span> com.test.json;
+
+<span class="hljs-keyword cye-lm-tag">import</span> java.beans.PropertyDescriptor;
+<span class="hljs-keyword cye-lm-tag">import</span> java.lang.reflect.Method;
+
+<span class="hljs-keyword cye-lm-tag">import</span> net.sf.json.JSONObject;
+<span class="hljs-keyword cye-lm-tag">import</span> net.sf.json.JsonConfig;
+<span class="hljs-keyword cye-lm-tag">import</span> net.sf.json.processors.JsonValueProcessor;
+<span class="hljs-comment cye-lm-tag">/**
+ *该方法可用于解决对象级联问题
+ */</span>
+<span class="hljs-keyword cye-lm-tag">public</span> <span class="hljs-class cye-lm-tag"><span class="hljs-keyword cye-lm-tag">class</span> <span class="hljs-title cye-lm-tag">JsonObjectValueProcessor</span> <span class="hljs-keyword cye-lm-tag">implements</span> <span class="hljs-title cye-lm-tag">JsonValueProcessor</span></span>{
+	<span class="hljs-comment cye-lm-tag">//指定类中需要保留的字段</span>
+	<span class="hljs-keyword cye-lm-tag">private</span> String[] properties;  
+	<span class="hljs-comment cye-lm-tag">//指定的处理类型</span>
+	<span class="hljs-keyword cye-lm-tag">private</span> Class&lt;?&gt; clazz;  
+	<span class="hljs-function cye-lm-tag"><span class="hljs-keyword cye-lm-tag">public</span> <span class="hljs-title cye-lm-tag">JsonObjectValueProcessor</span><span class="hljs-params cye-lm-tag">(String[] properties,Class&lt;?&gt; clazz)</span></span>{  
+        <span class="hljs-keyword cye-lm-tag">this</span>.properties = properties;  
+        <span class="hljs-keyword cye-lm-tag">this</span>.clazz =clazz;  
+    }  
+	<span class="hljs-function cye-lm-tag"><span class="hljs-keyword cye-lm-tag">public</span> Object <span class="hljs-title cye-lm-tag">processArrayValue</span><span class="hljs-params cye-lm-tag">(Object arg0, JsonConfig arg1)</span> </span>{
+		<span class="hljs-keyword cye-lm-tag">return</span> <span class="hljs-keyword cye-lm-tag">null</span>;
+	}
+	<span class="hljs-function cye-lm-tag"><span class="hljs-keyword cye-lm-tag">public</span> Object <span class="hljs-title cye-lm-tag">processObjectValue</span><span class="hljs-params cye-lm-tag">(String key, Object value, JsonConfig jsonConfig)</span> </span>{
+		PropertyDescriptor pd = <span class="hljs-keyword cye-lm-tag">null</span>;  
+        Method method = <span class="hljs-keyword cye-lm-tag">null</span>;  
+        StringBuffer json = <span class="hljs-keyword cye-lm-tag">new</span> StringBuffer(<span class="hljs-string cye-lm-tag">"{"</span>);  
+        <span class="hljs-keyword cye-lm-tag">try</span>{
+            <span class="hljs-keyword cye-lm-tag">for</span>(<span class="hljs-keyword cye-lm-tag">int</span> i=<span class="hljs-number cye-lm-tag">0</span>;i&lt;properties.length;i++){
+            	<span class="hljs-comment cye-lm-tag">//传入属性名和类即可获取读取该属性的方法</span>
+                pd = <span class="hljs-keyword cye-lm-tag">new</span> PropertyDescriptor(properties[i], clazz);
+                method = pd.getReadMethod();
+                <span class="hljs-comment cye-lm-tag">//通过执行该方法获取属性值</span>
+                String v = String.valueOf(method.invoke(value));
+                <span class="hljs-comment cye-lm-tag">//手动拼接json字符串</span>
+                json.append(<span class="hljs-string cye-lm-tag">"'"</span>+properties[i]+<span class="hljs-string cye-lm-tag">"':'"</span>+v+<span class="hljs-string cye-lm-tag">"'"</span>);
+                <span class="hljs-comment cye-lm-tag">//判断是否处理到了最后一个元素</span>
+                json.append(i != properties.length-<span class="hljs-number cye-lm-tag">1</span>?<span class="hljs-string cye-lm-tag">","</span>:<span class="hljs-string cye-lm-tag">""</span>);
+            }
+            json.append(<span class="hljs-string cye-lm-tag">"}"</span>);  
+        }<span class="hljs-keyword cye-lm-tag">catch</span> (Exception e) {  
+            e.printStackTrace();  
+        }  
+        <span class="hljs-keyword cye-lm-tag">return</span> JSONObject.fromObject(json.toString());
+	}
+}
+</code></pre><p class="cye-lm-tag">上面这个方法可以避免把实体转化为json格式数据时因为跟类中的字段有级联关系而陷入死循环。</p></p>
+    <p style="height: 0;border-bottom: 1px #707172 solid;margin: 5px 0px"></p>
+    <p>关键词：<span style="font-size: 18px;font-family: 楷体;color: yellow;">json</span></p>
+</div>
+					</div>
+				</div>
+
+				<div class="right">
+					<div class="subnav">
+						<h3 align="center">个人简介</h3>
+		                <p align="center">
+		                    <img src="les/a161ea4a-ade2-4695-b2c3-85c568706ad9.jpg" style="width: 100px;height: 100px;">
+		                </p>
+		                <p>
+		                	<span style="margin-right: 10px;font-size: 16px;color: yellow">签名:</span>
+		                	<span style="color: #f1fdff;font-size: 18px;font-family: 楷体">不为繁华易匠心</span>
+		                </p>
+		                <p>
+		                	<span style="margin-right: 10px;font-size: 16px;color: yellow;">介绍:</span>
+		                	<span style="color: #f1fdff;font-size: 18px;font-family: 楷体">${github.introduce}</span>
+		                </p>
+
+		                <p style="height: 0;border-bottom: 1px #f9fbfd solid;margin: 5px 0px"></p>
+
+						<h3>文章分类</h3>
+						<ul>
+						    <li class="main_type_list_li">
+    <a class="main_type_list_a" href="/type//29.html">
+        <span><img src="/files/icons/type_list.png"></span>
+        <span>1</span>
+        <span style="margin-left: 5px;color: #9f9f9f;">(1)</span>
+    </a>
+</li><li class="main_type_list_li">
+    <a class="main_type_list_a" href="/type//26.html">
+        <span><img src="/files/icons/type_list.png"></span>
+        <span>新类型</span>
+        <span style="margin-left: 5px;color: #9f9f9f;">(0)</span>
+    </a>
+</li><li class="main_type_list_li">
+    <a class="main_type_list_a" href="/type//17.html">
+        <span><img src="/files/icons/type_list.png"></span>
+        <span>Thinking In Java 学习笔记</span>
+        <span style="margin-left: 5px;color: #9f9f9f;">(1)</span>
+    </a>
+</li><li class="main_type_list_li">
+    <a class="main_type_list_a" href="/type//16.html">
+        <span><img src="/files/icons/type_list.png"></span>
+        <span>Spring Mvc相关</span>
+        <span style="margin-left: 5px;color: #9f9f9f;">(2)</span>
+    </a>
+</li><li class="main_type_list_li">
+    <a class="main_type_list_a" href="/type//15.html">
+        <span><img src="/files/icons/type_list.png"></span>
+        <span>MyBatis相关</span>
+        <span style="margin-left: 5px;color: #9f9f9f;">(5)</span>
+    </a>
+</li><li class="main_type_list_li">
+    <a class="main_type_list_a" href="/type//14.html">
+        <span><img src="/files/icons/type_list.png"></span>
+        <span>mysql相关</span>
+        <span style="margin-left: 5px;color: #9f9f9f;">(1)</span>
+    </a>
+</li><li class="main_type_list_li">
+    <a class="main_type_list_a" href="/type//13.html">
+        <span><img src="/files/icons/type_list.png"></span>
+        <span>一些感想</span>
+        <span style="margin-left: 5px;color: #9f9f9f;">(1)</span>
+    </a>
+</li><li class="main_type_list_li">
+    <a class="main_type_list_a" href="/type//12.html">
+        <span><img src="/files/icons/type_list.png"></span>
+        <span>Servlet&Jsp</span>
+        <span style="margin-left: 5px;color: #9f9f9f;">(4)</span>
+    </a>
+</li><li class="main_type_list_li">
+    <a class="main_type_list_a" href="/type//11.html">
+        <span><img src="/files/icons/type_list.png"></span>
+        <span>Util类汇总</span>
+        <span style="margin-left: 5px;color: #9f9f9f;">(6)</span>
+    </a>
+</li><li class="main_type_list_li">
+    <a class="main_type_list_a" href="/type//10.html">
+        <span><img src="/files/icons/type_list.png"></span>
+        <span>学习网站收集</span>
+        <span style="margin-left: 5px;color: #9f9f9f;">(1)</span>
+    </a>
+</li><li class="main_type_list_li">
+    <a class="main_type_list_a" href="/type//9.html">
+        <span><img src="/files/icons/type_list.png"></span>
+        <span>Spring相关</span>
+        <span style="margin-left: 5px;color: #9f9f9f;">(5)</span>
+    </a>
+</li><li class="main_type_list_li">
+    <a class="main_type_list_a" href="/type//8.html">
+        <span><img src="/files/icons/type_list.png"></span>
+        <span>数据结构和算法</span>
+        <span style="margin-left: 5px;color: #9f9f9f;">(3)</span>
+    </a>
+</li><li class="main_type_list_li">
+    <a class="main_type_list_a" href="/type//7.html">
+        <span><img src="/files/icons/type_list.png"></span>
+        <span>Java基础</span>
+        <span style="margin-left: 5px;color: #9f9f9f;">(9)</span>
+    </a>
+</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="clearer"><span></span></div>
+			</div>
+
+			<div class="footer" style="padding-top: 20px">
+		        <div align="center" style="margin-top: 0px">
+		            <span id="copyright">Copyright©2018 挪威司机</span>
+		        </div>
+		    </div>
+		</div>
+	</body>
+
+	<script type="text/javascript">
+	    $("code").attr("class","java");
+		$("code").attr("id","codeId");
+    	$("pre").attr("id","preId");
+	    hljs.initHighlightingOnLoad();
+	    
+    	setDate();
+    	function setDate() {
+	        var mydate = new Date();
+	        var str = "";
+	        str += (mydate.getMonth() + 1) + "月";
+	        str += mydate.getDate() + "日 ";
+	        var dday = mydate.getDay();
+	        var weekday=["星期日","星期一","星期二","星期三","星期四","星期五","星期六"];
+	        str += weekday[dday];
+	        $("#currentTime").text(str);
+	    };
+	</script>
+
+</html>

@@ -1,0 +1,402 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+<link rel="stylesheet" type="text/css" href="/static/highlight/styles/docco.css">
+<link rel="stylesheet" type="text/css" href="/static/template/template.css">
+<link rel="stylesheet" type="text/css" href="/static/css/my.css">
+
+<script src="/static/jquery/jquery.min.js"></script>
+<script src="/static/highlight/highlight.pack.js"></script>
+<title>挪威司机</title>
+</head>
+
+	<!-- default margin = default layout -->
+	<body>
+		<div class="t_container" style="width:1200px;margin: 0 auto">
+			<div class="header">
+				<div style="height: 100%;padding-top: 10px;margin: 0px;">
+		            <p id="currentTime" align="right" style="margin: 0px 20px;height: 25px;font-size: 16px"></p>
+		            <p class="head_en" style="margin: 0px 130px;">
+		            	Keep track of what I really think.<br>
+		                Hope that many years later, we still have the courage to remember!
+		            </p>
+		        </div>
+			</div>
+
+			<div class="stripes"><span></span></div>
+
+			<div class="main">
+
+				<div class="left">
+					<div class="content">
+						<div id="article_detail">
+    <p id="article_detail_title" align="center">Spring Mvc知识点汇总(1)</p>
+    <p align="center" style="margin-bottom: 5px;">
+        <span class="article_detail_time_type">2016-11-12 07:30:25</span>
+        <span style="margin: 0 10px;"></span>
+        <span class="article_detail_time_type">原创</span>
+        <span style="margin: 0 10px;"></span>
+        <span class="article_detail_time_type">分类：Spring Mvc相关</span>
+    </p>
+    <div class="common_line"></div>
+    <p><p class="cye-lm-tag"><font color="#008080" size="5">1、Spring Mvc拦截器</font></p><p class="cye-lm-tag">Spring Mvc中如果要实现自己的拦截器，有两种方式：一是继承HandlerInterceptor接口，并且实现该接口的三个方法，二是通过实现HandlerInterceptorAdapter，并且重写所需方法。下面举例：</p><p class="cye-lm-tag">首先定义两个拦截器：MyInterceptor.java和MyInterceptor2.java</p><p class="cye-lm-tag"><br></p><pre style="max-width: 100%;" id="preId"><code class="java hljs" codemark="1" id="codeId"><span class="hljs-keyword cye-lm-tag"><span class="hljs-keyword">package</span></span> com.hyq.interceptor;
+
+<span class="hljs-keyword cye-lm-tag"><span class="hljs-keyword">import</span></span> org.springframework.web.servlet.HandlerInterceptor;
+<span class="hljs-keyword cye-lm-tag"><span class="hljs-keyword">import</span></span> org.springframework.web.servlet.ModelAndView;
+
+<span class="hljs-keyword cye-lm-tag"><span class="hljs-keyword">import</span></span> javax.servlet.http.HttpServletRequest;
+<span class="hljs-keyword cye-lm-tag"><span class="hljs-keyword">import</span></span> javax.servlet.http.HttpServletResponse;
+
+<span class="hljs-comment cye-lm-tag"><span class="hljs-comment">/**
+ * Created by Administrator on 2016/11/11.
+ */</span></span>
+<span class="hljs-keyword cye-lm-tag"><span class="hljs-keyword">public</span></span> <span class="hljs-class cye-lm-tag"><span class="hljs-keyword cye-lm-tag"><span class="hljs-class"><span class="hljs-keyword">class</span></span></span><span class="hljs-class"> </span><span class="hljs-title cye-lm-tag"><span class="hljs-class"><span class="hljs-title">MyInterceptor</span></span></span><span class="hljs-class"> </span><span class="hljs-keyword cye-lm-tag"><span class="hljs-class"><span class="hljs-keyword">implements</span></span></span><span class="hljs-class"> </span><span class="hljs-title cye-lm-tag"><span class="hljs-class"><span class="hljs-title">HandlerInterceptor</span></span></span></span>{
+
+    <span class="hljs-function cye-lm-tag"><span class="hljs-keyword cye-lm-tag"><span class="hljs-function"><span class="hljs-keyword">public</span></span></span><span class="hljs-function"> </span><span class="hljs-keyword cye-lm-tag"><span class="hljs-function"><span class="hljs-keyword">boolean</span></span></span><span class="hljs-function"> </span><span class="hljs-title cye-lm-tag"><span class="hljs-function"><span class="hljs-title">preHandle</span></span></span><span class="hljs-params cye-lm-tag"><span class="hljs-function"><span class="hljs-params">(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o)</span></span></span><span class="hljs-function"> </span><span class="hljs-keyword cye-lm-tag"><span class="hljs-function"><span class="hljs-keyword">throws</span></span></span><span class="hljs-function"> Exception </span></span>{
+        System.out.println(<span class="hljs-string cye-lm-tag"><span class="hljs-string">"MyInterceptor的preHandle方法..."</span></span>);
+        <span class="hljs-keyword cye-lm-tag"><span class="hljs-keyword">return</span></span> <span class="hljs-keyword cye-lm-tag"><span class="hljs-keyword">true</span></span>;
+    }
+
+    <span class="hljs-function cye-lm-tag"><span class="hljs-keyword cye-lm-tag"><span class="hljs-function"><span class="hljs-keyword">public</span></span></span><span class="hljs-function"> </span><span class="hljs-keyword cye-lm-tag"><span class="hljs-function"><span class="hljs-keyword">void</span></span></span><span class="hljs-function"> </span><span class="hljs-title cye-lm-tag"><span class="hljs-function"><span class="hljs-title">postHandle</span></span></span><span class="hljs-params cye-lm-tag"><span class="hljs-function"><span class="hljs-params">(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, ModelAndView modelAndView)</span></span></span><span class="hljs-function"> </span><span class="hljs-keyword cye-lm-tag"><span class="hljs-function"><span class="hljs-keyword">throws</span></span></span><span class="hljs-function"> Exception </span></span>{
+        System.out.println(<span class="hljs-string cye-lm-tag"><span class="hljs-string">"MyInterceptor的postHandle方法..."</span></span>);
+    }
+
+    <span class="hljs-function cye-lm-tag"><span class="hljs-keyword cye-lm-tag"><span class="hljs-function"><span class="hljs-keyword">public</span></span></span><span class="hljs-function"> </span><span class="hljs-keyword cye-lm-tag"><span class="hljs-function"><span class="hljs-keyword">void</span></span></span><span class="hljs-function"> </span><span class="hljs-title cye-lm-tag"><span class="hljs-function"><span class="hljs-title">afterCompletion</span></span></span><span class="hljs-params cye-lm-tag"><span class="hljs-function"><span class="hljs-params">(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, Exception e)</span></span></span><span class="hljs-function"> </span><span class="hljs-keyword cye-lm-tag"><span class="hljs-function"><span class="hljs-keyword">throws</span></span></span><span class="hljs-function"> Exception </span></span>{
+        System.out.println(<span class="hljs-string cye-lm-tag"><span class="hljs-string">"MyInterceptor的afterCompletion方法..."</span></span>);
+    }
+}
+</code></pre><pre style="max-width: 100%;" id="preId"><code class="java hljs" codemark="1" id="codeId"><span class="hljs-keyword cye-lm-tag"><span class="hljs-keyword">package</span></span> com.hyq.interceptor;
+
+<span class="hljs-keyword cye-lm-tag"><span class="hljs-keyword">import</span></span> com.hyq.mvc.UserController;
+<span class="hljs-keyword cye-lm-tag"><span class="hljs-keyword">import</span></span> org.springframework.ui.ModelMap;
+<span class="hljs-keyword cye-lm-tag"><span class="hljs-keyword">import</span></span> org.springframework.web.servlet.HandlerInterceptor;
+<span class="hljs-keyword cye-lm-tag"><span class="hljs-keyword">import</span></span> org.springframework.web.servlet.ModelAndView;
+
+<span class="hljs-keyword cye-lm-tag"><span class="hljs-keyword">import</span></span> javax.servlet.http.HttpServletRequest;
+<span class="hljs-keyword cye-lm-tag"><span class="hljs-keyword">import</span></span> javax.servlet.http.HttpServletResponse;
+
+<span class="hljs-comment cye-lm-tag"><span class="hljs-comment">/**
+ * Created by Administrator on 2016/11/11.
+ */</span></span>
+<span class="hljs-keyword cye-lm-tag"><span class="hljs-keyword">public</span></span> <span class="hljs-class cye-lm-tag"><span class="hljs-keyword cye-lm-tag"><span class="hljs-class"><span class="hljs-keyword">class</span></span></span><span class="hljs-class"> </span><span class="hljs-title cye-lm-tag"><span class="hljs-class"><span class="hljs-title">MyInterceptor2</span></span></span><span class="hljs-class"> </span><span class="hljs-keyword cye-lm-tag"><span class="hljs-class"><span class="hljs-keyword">implements</span></span></span><span class="hljs-class"> </span><span class="hljs-title cye-lm-tag"><span class="hljs-class"><span class="hljs-title">HandlerInterceptor</span></span></span></span>{
+
+
+    <span class="hljs-function cye-lm-tag"><span class="hljs-keyword cye-lm-tag"><span class="hljs-function"><span class="hljs-keyword">public</span></span></span><span class="hljs-function"> </span><span class="hljs-keyword cye-lm-tag"><span class="hljs-function"><span class="hljs-keyword">boolean</span></span></span><span class="hljs-function"> </span><span class="hljs-title cye-lm-tag"><span class="hljs-function"><span class="hljs-title">preHandle</span></span></span><span class="hljs-params cye-lm-tag"><span class="hljs-function"><span class="hljs-params">(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o)</span></span></span><span class="hljs-function"> </span><span class="hljs-keyword cye-lm-tag"><span class="hljs-function"><span class="hljs-keyword">throws</span></span></span><span class="hljs-function"> Exception </span></span>{
+        System.out.println(<span class="hljs-string cye-lm-tag"><span class="hljs-string">"MyInterceptor2的preHandle方法..."</span></span>);
+        <span class="hljs-keyword cye-lm-tag"><span class="hljs-keyword">return</span></span> <span class="hljs-keyword cye-lm-tag"><span class="hljs-keyword">true</span></span>;
+    }
+
+    <span class="hljs-function cye-lm-tag"><span class="hljs-keyword cye-lm-tag"><span class="hljs-function"><span class="hljs-keyword">public</span></span></span><span class="hljs-function"> </span><span class="hljs-keyword cye-lm-tag"><span class="hljs-function"><span class="hljs-keyword">void</span></span></span><span class="hljs-function"> </span><span class="hljs-title cye-lm-tag"><span class="hljs-function"><span class="hljs-title">postHandle</span></span></span><span class="hljs-params cye-lm-tag"><span class="hljs-function"><span class="hljs-params">(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, ModelAndView modelAndView)</span></span></span><span class="hljs-function"> </span><span class="hljs-keyword cye-lm-tag"><span class="hljs-function"><span class="hljs-keyword">throws</span></span></span><span class="hljs-function"> Exception </span></span>{
+        System.out.println(<span class="hljs-string cye-lm-tag"><span class="hljs-string">"MyInterceptor2的postHandle方法..."</span></span>);
+    }
+
+    <span class="hljs-function cye-lm-tag"><span class="hljs-keyword cye-lm-tag"><span class="hljs-function"><span class="hljs-keyword">public</span></span></span><span class="hljs-function"> </span><span class="hljs-keyword cye-lm-tag"><span class="hljs-function"><span class="hljs-keyword">void</span></span></span><span class="hljs-function"> </span><span class="hljs-title cye-lm-tag"><span class="hljs-function"><span class="hljs-title">afterCompletion</span></span></span><span class="hljs-params cye-lm-tag"><span class="hljs-function"><span class="hljs-params">(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, Exception e)</span></span></span><span class="hljs-function"> </span><span class="hljs-keyword cye-lm-tag"><span class="hljs-function"><span class="hljs-keyword">throws</span></span></span><span class="hljs-function"> Exception </span></span>{
+        System.out.println(<span class="hljs-string cye-lm-tag"><span class="hljs-string">"MyInterceptor2的afterCompletion方法..."</span></span>);
+    }
+}</code></pre><p class="cye-lm-tag">然后在springMvc的配置文件中加入如下配置：</p><pre style="max-width: 100%;" id="preId"><code class="xml hljs" codemark="1" id="codeId"><span class="hljs-tag cye-lm-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title cye-lm-tag"><span class="hljs-tag"><span class="hljs-name">mvc:interceptors</span></span></span><span class="hljs-tag">&gt;</span></span>
+        <span class="hljs-comment cye-lm-tag"><span class="hljs-comment">&lt;!--拦截所有请求--&gt;</span></span>
+        <span class="hljs-tag cye-lm-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title cye-lm-tag"><span class="hljs-tag"><span class="hljs-name">bean</span></span></span><span class="hljs-tag"> </span><span class="hljs-attribute cye-lm-tag"><span class="hljs-tag"><span class="hljs-attr">class</span></span></span><span class="hljs-tag">=</span><span class="hljs-value cye-lm-tag"><span class="hljs-tag"><span class="hljs-string">"com.hyq.interceptor.MyInterceptor2"</span></span></span><span class="hljs-tag">&gt;</span></span><span class="hljs-tag cye-lm-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title cye-lm-tag"><span class="hljs-tag"><span class="hljs-name">bean</span></span></span><span class="hljs-tag">&gt;</span></span>
+    <span class="hljs-tag cye-lm-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title cye-lm-tag"><span class="hljs-tag"><span class="hljs-name">mvc:interceptors</span></span></span><span class="hljs-tag">&gt;</span></span>
+    <span class="hljs-tag cye-lm-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title cye-lm-tag"><span class="hljs-tag"><span class="hljs-name">mvc:interceptors</span></span></span><span class="hljs-tag">&gt;</span></span>
+        <span class="hljs-tag cye-lm-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title cye-lm-tag"><span class="hljs-tag"><span class="hljs-name">mvc:interceptor</span></span></span><span class="hljs-tag">&gt;</span></span>
+            <span class="hljs-comment cye-lm-tag"><span class="hljs-comment">&lt;!--拦截指定请求路径的请求--&gt;</span></span>
+            <span class="hljs-tag cye-lm-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title cye-lm-tag"><span class="hljs-tag"><span class="hljs-name">mvc:mapping</span></span></span><span class="hljs-tag"> </span><span class="hljs-attribute cye-lm-tag"><span class="hljs-tag"><span class="hljs-attr">path</span></span></span><span class="hljs-tag">=</span><span class="hljs-value cye-lm-tag"><span class="hljs-tag"><span class="hljs-string">"/user/*"</span></span></span><span class="hljs-tag">/&gt;</span></span>
+            <span class="hljs-tag cye-lm-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title cye-lm-tag"><span class="hljs-tag"><span class="hljs-name">bean</span></span></span><span class="hljs-tag"> </span><span class="hljs-attribute cye-lm-tag"><span class="hljs-tag"><span class="hljs-attr">class</span></span></span><span class="hljs-tag">=</span><span class="hljs-value cye-lm-tag"><span class="hljs-tag"><span class="hljs-string">"com.hyq.interceptor.MyInterceptor"</span></span></span><span class="hljs-tag">&gt;</span></span><span class="hljs-tag cye-lm-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title cye-lm-tag"><span class="hljs-tag"><span class="hljs-name">bean</span></span></span><span class="hljs-tag">&gt;</span></span>
+        <span class="hljs-tag cye-lm-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title cye-lm-tag"><span class="hljs-tag"><span class="hljs-name">mvc:interceptor</span></span></span><span class="hljs-tag">&gt;</span></span>
+    <span class="hljs-tag cye-lm-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title cye-lm-tag"><span class="hljs-tag"><span class="hljs-name">mvc:interceptors</span></span></span><span class="hljs-tag">&gt;</span></span></code></pre><p class="cye-lm-tag">下面给出一个Controller类：UserController.java</p><pre style="max-width: 100%;" class="cye-lm-tag" id="preId"><code class="java hljs cye-lm-tag" codemark="1" id="codeId"><span class="hljs-keyword cye-lm-tag"><span class="hljs-keyword">package</span></span> com.hyq.mvc;
+
+<span class="hljs-keyword cye-lm-tag"><span class="hljs-keyword">import</span></span> org.springframework.stereotype.Controller;
+<span class="hljs-keyword cye-lm-tag"><span class="hljs-keyword">import</span></span> org.springframework.web.bind.annotation.RequestMapping;
+<span class="hljs-keyword cye-lm-tag"><span class="hljs-keyword">import</span></span> org.springframework.web.servlet.ModelAndView;
+
+<span class="hljs-comment cye-lm-tag"><span class="hljs-comment">/**
+ * Created by Administrator on 2016/11/11.
+ */</span></span>
+<span class="hljs-annotation cye-lm-tag"><span class="hljs-meta">@Controller</span></span>
+<span class="hljs-annotation cye-lm-tag"><span class="hljs-meta">@RequestMapping</span></span>(value = <span class="hljs-string cye-lm-tag"><span class="hljs-string">"/user"</span></span>)
+<span class="hljs-keyword cye-lm-tag"><span class="hljs-keyword">public</span></span> <span class="hljs-class cye-lm-tag"><span class="hljs-keyword cye-lm-tag"><span class="hljs-class"><span class="hljs-keyword">class</span></span></span><span class="hljs-class"> </span><span class="hljs-title cye-lm-tag"><span class="hljs-class"><span class="hljs-title">UserController</span></span></span><span class="hljs-class"> </span></span>{
+
+    <span class="hljs-annotation cye-lm-tag"><span class="hljs-meta">@RequestMapping</span></span>(value = <span class="hljs-string cye-lm-tag"><span class="hljs-string">"/add"</span></span>)
+    <span class="hljs-function cye-lm-tag"><span class="hljs-keyword cye-lm-tag"><span class="hljs-function"><span class="hljs-keyword">public</span></span></span><span class="hljs-function"> ModelAndView </span><span class="hljs-title cye-lm-tag"><span class="hljs-function"><span class="hljs-title">add</span></span></span><span class="hljs-params cye-lm-tag"><span class="hljs-function"><span class="hljs-params">()</span></span></span></span>{
+        System.out.println(<span class="hljs-string cye-lm-tag"><span class="hljs-string">"添加用户操作..."</span></span>);
+        ModelAndView modelAndView = <span class="hljs-keyword cye-lm-tag"><span class="hljs-keyword">new</span></span> ModelAndView();
+        modelAndView.addObject(<span class="hljs-string cye-lm-tag"><span class="hljs-string">"name"</span></span>,<span class="hljs-string cye-lm-tag"><span class="hljs-string">"张三"</span></span>);
+        modelAndView.addObject(<span class="hljs-string cye-lm-tag"><span class="hljs-string">"pass"</span></span>,<span class="hljs-string cye-lm-tag"><span class="hljs-string">"1222"</span></span>);
+        modelAndView.setViewName(<span class="hljs-string cye-lm-tag"><span class="hljs-string">"/userAdd.jsp"</span></span>);
+        <span class="hljs-keyword cye-lm-tag"><span class="hljs-keyword">return</span></span> modelAndView;
+    }
+
+}
+</code></pre><p class="cye-lm-tag">然后在浏览器地址栏中请求：<span style="background-color: rgb(255, 255, 255);" class="cye-lm-tag">http://localhost:8080/user/add，可以看到控制台有如下输出：</span></p><p class="cye-lm-tag"><span style="background-color: rgb(255, 255, 255);" class="cye-lm-tag"></span></p><pre style="max-width: 100%;" id="preId"><code class="cs hljs" codemark="1" id="codeId">MyInterceptor2的preHandle方法...
+MyInterceptor的preHandle方法...
+添加用户操作...
+MyInterceptor的postHandle方法...
+MyInterceptor2的postHandle方法...
+MyInterceptor的afterCompletion方法...
+MyInterceptor2的afterCompletion方法...</code></pre><p class="cye-lm-tag">在postHandle方法处打个断点可以看到如下结果：</p><p class="cye-lm-tag"><img src="/MyBlog/files/63cde9fc-9418-4995-a0e7-77e88dcdcf80.png" alt="搜狗截图20161111234628" style="max-width:100%;"></p><p class="cye-lm-tag">说明在此处的modelAndView就是Controller中返回，view就是将要跳转的视图名(如果controller中没有指定要跳转的视图名，则view是controller的请求路径，即“user/add”)</p><p class="cye-lm-tag"><br></p><p class="cye-lm-tag"><font size="5" color="#008080">2、Spring Mvc 异常处理</font></p><ul><li><font size="4" color="#808000">使用Spring Mvc提供的SimpleMappingExceptionResolver</font></li></ul><div>该方法只需在spring mvc的配置文件中加入如下配置：</div><div></div><pre style="max-width: 100%;" id="preId"><code class="xml hljs" codemark="1" id="codeId"><span class="hljs-comment"><span class="hljs-comment">&lt;!-- 总错误处理--&gt;</span></span>
+    <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">bean</span></span></span><span class="hljs-tag"> </span><span class="hljs-attribute"><span class="hljs-tag"><span class="hljs-attr">id</span></span></span><span class="hljs-tag">=</span><span class="hljs-value"><span class="hljs-tag"><span class="hljs-string">"exceptionResolver"</span></span></span><span class="hljs-tag"> </span><span class="hljs-attribute"><span class="hljs-tag"><span class="hljs-attr">class</span></span></span><span class="hljs-tag">=</span><span class="hljs-value"><span class="hljs-tag"><span class="hljs-string">"org.springframework.web.servlet.handler.SimpleMappingExceptionResolver"</span></span></span><span class="hljs-tag">&gt;</span></span>
+        <span class="hljs-comment"><span class="hljs-comment">&lt;!--设置发生错误时的默认跳转页面,在jsp页面中可以使用${exception}来获取异常信息--&gt;</span></span>
+        <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">property</span></span></span><span class="hljs-tag"> </span><span class="hljs-attribute"><span class="hljs-tag"><span class="hljs-attr">name</span></span></span><span class="hljs-tag">=</span><span class="hljs-value"><span class="hljs-tag"><span class="hljs-string">"defaultErrorView"</span></span></span><span class="hljs-tag">&gt;</span></span>
+            <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">value</span></span></span><span class="hljs-tag">&gt;</span></span>/error.jsp<span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">value</span></span></span><span class="hljs-tag">&gt;</span></span>
+        <span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">property</span></span></span><span class="hljs-tag">&gt;</span></span>
+        <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">property</span></span></span><span class="hljs-tag"> </span><span class="hljs-attribute"><span class="hljs-tag"><span class="hljs-attr">name</span></span></span><span class="hljs-tag">=</span><span class="hljs-value"><span class="hljs-tag"><span class="hljs-string">"defaultStatusCode"</span></span></span><span class="hljs-tag">&gt;</span></span>
+            <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">value</span></span></span><span class="hljs-tag">&gt;</span></span>500<span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">value</span></span></span><span class="hljs-tag">&gt;</span></span>
+        <span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">property</span></span></span><span class="hljs-tag">&gt;</span></span>
+        <span class="hljs-comment"><span class="hljs-comment">&lt;!--下面属性表示在发生异常时给出警告--&gt;</span></span>
+        <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">property</span></span></span><span class="hljs-tag"> </span><span class="hljs-attribute"><span class="hljs-tag"><span class="hljs-attr">name</span></span></span><span class="hljs-tag">=</span><span class="hljs-value"><span class="hljs-tag"><span class="hljs-string">"warnLogCategory"</span></span></span><span class="hljs-tag">&gt;</span></span>
+            <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">value</span></span></span><span class="hljs-tag">&gt;</span></span>org.springframework.web.servlet.handler.SimpleMappingExceptionResolver<span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">value</span></span></span><span class="hljs-tag">&gt;</span></span>
+        <span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">property</span></span></span><span class="hljs-tag">&gt;</span></span>
+    <span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">bean</span></span></span><span class="hljs-tag">&gt;</span></span></code></pre><p>当Controller层发生异常时，SpringMvc会自动捕捉该异常，并且跳转到指定页面(此处是跳转到error.jsp页面)，并且可以在页面上通过EL表达式取得异常信息，即${exception}</p><p><br></p><ul><li><font size="4" color="#808000">通过实现Spring的异常处理接口HandlerExceptionResolver来自定义自己的异常处理器，如：</font></li></ul><pre style="max-width: 100%;" id="preId"><code class="java hljs" codemark="1" id="codeId"><span class="hljs-keyword"><span class="hljs-keyword">package</span></span> com.hyq.exception;
+
+<span class="hljs-keyword"><span class="hljs-keyword">import</span></span> org.springframework.web.servlet.HandlerExceptionResolver;
+<span class="hljs-keyword"><span class="hljs-keyword">import</span></span> org.springframework.web.servlet.ModelAndView;
+<span class="hljs-keyword"><span class="hljs-keyword">import</span></span> javax.servlet.http.HttpServletRequest;
+<span class="hljs-keyword"><span class="hljs-keyword">import</span></span> javax.servlet.http.HttpServletResponse;
+
+<span class="hljs-comment"><span class="hljs-comment">/**
+ * Created by Administrator on 2016/11/11.
+ */</span></span>
+<span class="hljs-keyword"><span class="hljs-keyword">public</span></span> <span class="hljs-class"><span class="hljs-keyword"><span class="hljs-class"><span class="hljs-keyword">class</span></span></span><span class="hljs-class"> </span><span class="hljs-title"><span class="hljs-class"><span class="hljs-title">MyException</span></span></span><span class="hljs-class"> </span><span class="hljs-keyword"><span class="hljs-class"><span class="hljs-keyword">implements</span></span></span><span class="hljs-class"> </span><span class="hljs-title"><span class="hljs-class"><span class="hljs-title">HandlerExceptionResolver</span></span></span><span class="hljs-class"> </span></span>{
+    <span class="hljs-function"><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword">public</span></span></span><span class="hljs-function"> ModelAndView </span><span class="hljs-title"><span class="hljs-function"><span class="hljs-title">resolveException</span></span></span><span class="hljs-params"><span class="hljs-function"><span class="hljs-params">(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, Exception e)</span></span></span><span class="hljs-function"> </span></span>{
+        System.out.println(<span class="hljs-string"><span class="hljs-string">"下面输出异常信息...."</span></span>);
+        e.printStackTrace();
+        ModelAndView modelAndView = <span class="hljs-keyword"><span class="hljs-keyword">new</span></span> ModelAndView();
+        modelAndView.addObject(<span class="hljs-string"><span class="hljs-string">"exception"</span></span>,<span class="hljs-string"><span class="hljs-string">"这是异常信息(自定义异常处理类)"</span></span>);
+        modelAndView.setViewName(<span class="hljs-string"><span class="hljs-string">"/error.jsp"</span></span>);
+        <span class="hljs-keyword"><span class="hljs-keyword">return</span></span> modelAndView;
+    }
+}
+</code></pre><p>在上面的UserController类中加find方法：</p><pre style="max-width: 100%;" id="preId"><code class="java hljs" codemark="1" id="codeId"><span class="hljs-annotation"><span class="hljs-meta">@RequestMapping</span></span>(value = <span class="hljs-string"><span class="hljs-string">"/find"</span></span>)
+    <span class="hljs-function"><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword">public</span></span></span><span class="hljs-function"> ModelAndView </span><span class="hljs-title"><span class="hljs-function"><span class="hljs-title">find</span></span></span><span class="hljs-params"><span class="hljs-function"><span class="hljs-params">(Integer id)</span></span></span><span class="hljs-function"> </span><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword">throws</span></span></span><span class="hljs-function"> Exception </span></span>{
+        System.out.println(<span class="hljs-string"><span class="hljs-string">"查找用户操作..."</span></span>);
+        ModelAndView modelAndView = <span class="hljs-keyword"><span class="hljs-keyword">new</span></span> ModelAndView();
+        modelAndView.setViewName(<span class="hljs-string"><span class="hljs-string">"/userList.jsp"</span></span>);
+        <span class="hljs-keyword"><span class="hljs-keyword">if</span></span>(id==<span class="hljs-keyword"><span class="hljs-keyword">null</span></span>){
+            <span class="hljs-keyword"><span class="hljs-keyword">throw</span></span> <span class="hljs-keyword"><span class="hljs-keyword">new</span></span> Exception();
+        }
+        <span class="hljs-keyword"><span class="hljs-keyword">return</span></span> modelAndView;
+    }</code></pre><p>最后在Spring Mvc配置文件中加入如下配置：</p><pre style="max-width: 100%;" id="preId"><code class="xml hljs" codemark="1" id="codeId"><span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">bean</span></span></span><span class="hljs-tag"> </span><span class="hljs-attribute"><span class="hljs-tag"><span class="hljs-attr">id</span></span></span><span class="hljs-tag">=</span><span class="hljs-value"><span class="hljs-tag"><span class="hljs-string">"myException"</span></span></span><span class="hljs-tag"> </span><span class="hljs-attribute"><span class="hljs-tag"><span class="hljs-attr">class</span></span></span><span class="hljs-tag">=</span><span class="hljs-value"><span class="hljs-tag"><span class="hljs-string">"com.hyq.exception.MyException"</span></span></span><span class="hljs-tag">/&gt;</span></span></code></pre><p>浏览器地址栏中请求<span style="background-color: rgb(255, 255, 255);">http://localhost:8080/user/find</span></p><p><img src="/MyBlog/files/0ecceff7-95e6-4a46-9974-7e9374c7d76d.png" alt="搜狗截图20161112132359" style="max-width:100%;"></p><p>同时也可在控制台中看到异常信息的输出。</p><p><br></p><p><font size="5" color="#008080">3、Spring Mvc 上传图片</font></p><p>使用Spring Mvc进行文件上传时，需要在springmvc的配置文件中加入下面配置：</p><pre style="max-width: 100%;" id="preId"><code class="xml hljs" codemark="1" id="codeId"><span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">bean</span></span></span><span class="hljs-tag"> </span><span class="hljs-attribute"><span class="hljs-tag"><span class="hljs-attr">id</span></span></span><span class="hljs-tag">=</span><span class="hljs-value"><span class="hljs-tag"><span class="hljs-string">"multipartResolver"</span></span></span><span class="hljs-tag">
+        </span><span class="hljs-attribute"><span class="hljs-tag"><span class="hljs-attr">class</span></span></span><span class="hljs-tag">=</span><span class="hljs-value"><span class="hljs-tag"><span class="hljs-string">"org.springframework.web.multipart.commons.CommonsMultipartResolver"</span></span></span><span class="hljs-tag">&gt;</span></span>
+		<span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">property</span></span></span><span class="hljs-tag"> </span><span class="hljs-attribute"><span class="hljs-tag"><span class="hljs-attr">name</span></span></span><span class="hljs-tag">=</span><span class="hljs-value"><span class="hljs-tag"><span class="hljs-string">"defaultEncoding"</span></span></span><span class="hljs-tag"> </span><span class="hljs-attribute"><span class="hljs-tag"><span class="hljs-attr">value</span></span></span><span class="hljs-tag">=</span><span class="hljs-value"><span class="hljs-tag"><span class="hljs-string">"UTF-8"</span></span></span><span class="hljs-tag">/&gt;</span></span>  
+	    <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">property</span></span></span><span class="hljs-tag"> </span><span class="hljs-attribute"><span class="hljs-tag"><span class="hljs-attr">name</span></span></span><span class="hljs-tag">=</span><span class="hljs-value"><span class="hljs-tag"><span class="hljs-string">"maxUploadSize"</span></span></span><span class="hljs-tag"> </span><span class="hljs-attribute"><span class="hljs-tag"><span class="hljs-attr">value</span></span></span><span class="hljs-tag">=</span><span class="hljs-value"><span class="hljs-tag"><span class="hljs-string">"10000000"</span></span></span><span class="hljs-tag">/&gt;</span></span>
+	<span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">bean</span></span></span><span class="hljs-tag">&gt;</span></span></code></pre><p>此外还要添加这两个jar包：<a href="https://mvnrepository.com/artifact/org.apache.commons/com.springsource.org.apache.commons.fileupload" target="_blank">com.springsource.org.apache.commons.fileupload-1.2.0.jar</a>、<a href="https://mvnrepository.com/artifact/org.apache.commons/com.springsource.org.apache.commons.io" target="_blank">com.springsource.org.apache.commons.io-1.4.0.jar</a></p><p>下面给出一个单文件上传和多文件上传的实例：</p><p>1、上传页面index.html</p><pre style="max-width: 100%;" id="preId"><code class="cs hljs" codemark="1" id="codeId">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;meta charset=<span class="hljs-string"><span class="hljs-string">"UTF-8"</span></span>&gt;
+&lt;title&gt;Insert title here&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;form action=<span class="hljs-string"><span class="hljs-string">"upload.do"</span></span> method=<span class="hljs-string"><span class="hljs-string">"post"</span></span> enctype=<span class="hljs-string"><span class="hljs-string">"multipart/form-data"</span></span>&gt;
+		选择文件：&lt;input type=<span class="hljs-string"><span class="hljs-string">"file"</span></span> name=<span class="hljs-string"><span class="hljs-string">"file"</span></span>&gt;
+		&lt;p&gt;
+		&lt;input type=<span class="hljs-string"><span class="hljs-string">"submit"</span></span> <span class="hljs-keyword"><span class="hljs-keyword">value</span></span>=<span class="hljs-string"><span class="hljs-string">"上传文件"</span></span>&gt;
+	&lt;/form&gt;
+	&lt;p&gt;&lt;hr&gt;&lt;/p&gt;
+	&lt;form action=<span class="hljs-string"><span class="hljs-string">"upload2.do"</span></span> method=<span class="hljs-string"><span class="hljs-string">"post"</span></span> enctype=<span class="hljs-string"><span class="hljs-string">"multipart/form-data"</span></span>&gt;
+		&lt;p&gt;
+			文件<span class="hljs-number"><span class="hljs-number">1</span></span>：&lt;input type=<span class="hljs-string"><span class="hljs-string">"file"</span></span> name=<span class="hljs-string"><span class="hljs-string">"file"</span></span>&gt;
+		&lt;/p&gt;
+		&lt;p&gt;
+			文件<span class="hljs-number"><span class="hljs-number">2</span></span>：&lt;input type=<span class="hljs-string"><span class="hljs-string">"file"</span></span> name=<span class="hljs-string"><span class="hljs-string">"file"</span></span>&gt;
+		&lt;/p&gt;
+		&lt;p&gt;
+			文件<span class="hljs-number"><span class="hljs-number">3</span></span>：&lt;input type=<span class="hljs-string"><span class="hljs-string">"file"</span></span> name=<span class="hljs-string"><span class="hljs-string">"file"</span></span>&gt;
+		&lt;/p&gt;
+		&lt;input type=<span class="hljs-string"><span class="hljs-string">"submit"</span></span> <span class="hljs-keyword"><span class="hljs-keyword">value</span></span>=<span class="hljs-string"><span class="hljs-string">"上传文件"</span></span>&gt;
+	&lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre><p>2、FileUploadController.java</p><pre style="max-width: 100%;" id="preId"><code class="java hljs" codemark="1" id="codeId"><span class="hljs-keyword"><span class="hljs-keyword">package</span></span> com.java1234.controller;
+
+<span class="hljs-keyword"><span class="hljs-keyword">import</span></span> java.io.File;
+
+<span class="hljs-keyword"><span class="hljs-keyword">import</span></span> javax.servlet.http.HttpServletRequest;
+
+<span class="hljs-keyword"><span class="hljs-keyword">import</span></span> org.springframework.stereotype.Controller;
+<span class="hljs-keyword"><span class="hljs-keyword">import</span></span> org.springframework.web.bind.annotation.RequestMapping;
+<span class="hljs-keyword"><span class="hljs-keyword">import</span></span> org.springframework.web.bind.annotation.RequestParam;
+<span class="hljs-keyword"><span class="hljs-keyword">import</span></span> org.springframework.web.multipart.MultipartFile;
+
+<span class="hljs-annotation"><span class="hljs-meta">@Controller</span></span>
+<span class="hljs-keyword"><span class="hljs-keyword">public</span></span> <span class="hljs-class"><span class="hljs-keyword"><span class="hljs-class"><span class="hljs-keyword">class</span></span></span><span class="hljs-class"> </span><span class="hljs-title"><span class="hljs-class"><span class="hljs-title">FileUploadController</span></span></span><span class="hljs-class"> </span></span>{
+
+	<span class="hljs-annotation"><span class="hljs-meta">@RequestMapping</span></span>(<span class="hljs-string"><span class="hljs-string">"/upload"</span></span>)
+	<span class="hljs-function"><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword">public</span></span></span><span class="hljs-function"> String </span><span class="hljs-title"><span class="hljs-function"><span class="hljs-title">uploadFile</span></span></span><span class="hljs-params"><span class="hljs-function"><span class="hljs-params">(@RequestParam(</span></span><span class="hljs-string"><span class="hljs-function"><span class="hljs-params"><span class="hljs-string">"file"</span></span></span></span><span class="hljs-function"><span class="hljs-params">)</span></span></span><span class="hljs-function"> MultipartFile file,HttpServletRequest request) </span><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword">throws</span></span></span><span class="hljs-function"> Exception</span></span>{
+		System.out.println(<span class="hljs-string"><span class="hljs-string">"单文件上传"</span></span>);
+		String filePath = request.getServletContext().getRealPath(<span class="hljs-string"><span class="hljs-string">"/"</span></span>);
+		System.out.println(<span class="hljs-string"><span class="hljs-string">"原文件名：--"</span></span>+file.getOriginalFilename()+<span class="hljs-string"><span class="hljs-string">"--"</span></span>);
+		<span class="hljs-comment"><span class="hljs-comment">//可以根据下面语句判断上传的文件是否为空</span></span>
+		<span class="hljs-keyword"><span class="hljs-keyword">if</span></span>(!<span class="hljs-string"><span class="hljs-string">""</span></span>.equals(file.getOriginalFilename())){
+			file.transferTo(<span class="hljs-keyword"><span class="hljs-keyword">new</span></span> File(filePath+<span class="hljs-string"><span class="hljs-string">"upload/"</span></span>+file.getOriginalFilename()));
+		}<span class="hljs-keyword"><span class="hljs-keyword">else</span></span>{
+			System.out.println(<span class="hljs-string"><span class="hljs-string">"未选择上传的文件"</span></span>);
+		}
+		System.out.println(<span class="hljs-string"><span class="hljs-string">"------分割线------"</span></span>);
+		<span class="hljs-keyword"><span class="hljs-keyword">return</span></span> <span class="hljs-string"><span class="hljs-string">"redirect:success.html"</span></span>;
+	}
+	
+	<span class="hljs-annotation"><span class="hljs-meta">@RequestMapping</span></span>(<span class="hljs-string"><span class="hljs-string">"/upload2"</span></span>)
+	<span class="hljs-function"><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword">public</span></span></span><span class="hljs-function"> String </span><span class="hljs-title"><span class="hljs-function"><span class="hljs-title">uploadFiles</span></span></span><span class="hljs-params"><span class="hljs-function"><span class="hljs-params">(@RequestParam(</span></span><span class="hljs-string"><span class="hljs-function"><span class="hljs-params"><span class="hljs-string">"file"</span></span></span></span><span class="hljs-function"><span class="hljs-params">)</span></span></span><span class="hljs-function"> MultipartFile[] files,HttpServletRequest request) </span><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword">throws</span></span></span><span class="hljs-function"> Exception</span></span>{
+		System.out.println(<span class="hljs-string"><span class="hljs-string">"多文件上传"</span></span>);
+		String filePath = request.getServletContext().getRealPath(<span class="hljs-string"><span class="hljs-string">"/"</span></span>);
+		<span class="hljs-keyword"><span class="hljs-keyword">for</span></span>(MultipartFile file:files){
+			<span class="hljs-keyword"><span class="hljs-keyword">if</span></span>(<span class="hljs-string"><span class="hljs-string">""</span></span>.equals(file.getOriginalFilename())){
+				System.out.println(<span class="hljs-string"><span class="hljs-string">"未选择上传的文件"</span></span>);
+			}<span class="hljs-keyword"><span class="hljs-keyword">else</span></span>{
+				System.out.println(<span class="hljs-string"><span class="hljs-string">"原文件名：--"</span></span>+file.getOriginalFilename()+<span class="hljs-string"><span class="hljs-string">"--"</span></span>);
+				file.transferTo(<span class="hljs-keyword"><span class="hljs-keyword">new</span></span> File(filePath+<span class="hljs-string"><span class="hljs-string">"upload/"</span></span>+file.getOriginalFilename()));
+			}
+		}
+		System.out.println(<span class="hljs-string"><span class="hljs-string">"------分割线------"</span></span>);
+		<span class="hljs-keyword"><span class="hljs-keyword">return</span></span> <span class="hljs-string"><span class="hljs-string">"redirect:success.html"</span></span>;
+	}
+	
+}
+</code></pre><p>下面进行单文件上传和多文件上传测试可以看到控制台有如下输出：</p><pre style="max-width: 100%;" id="preId"><code class="cs hljs" codemark="1" id="codeId">单文件上传
+原文件名：-<span class="hljs-number">-</span><span class="hljs-number"><span class="hljs-number">3</span></span>c782f4d7dd3de35<span class="hljs-number">-</span><span class="hljs-number"><span class="hljs-number">52</span></span>f9737614ce151b-ae294a596652e94c94407941dce5c072_i.jpg--
+------分割线------
+多文件上传
+原文件名：-<span class="hljs-number">-</span><span class="hljs-number"><span class="hljs-number">1403951389938.</span></span>jpg--
+原文件名：-<span class="hljs-number">-</span><span class="hljs-number"><span class="hljs-number">1403951390993.</span></span>jpg--
+原文件名：-<span class="hljs-number">-</span><span class="hljs-number"><span class="hljs-number">201604071137298161.</span></span>jpg--
+------分割线------</code></pre><p><br></p><p><br></p></p>
+    <p style="height: 0;border-bottom: 1px #707172 solid;margin: 5px 0px"></p>
+    <p>关键词：<span style="font-size: 18px;font-family: 楷体;color: yellow;">Spring Mvc拦截器</span></p>
+</div>
+					</div>
+				</div>
+
+				<div class="right">
+					<div class="subnav">
+						<h3 align="center">个人简介</h3>
+		                <p align="center">
+		                    <img src="les/a161ea4a-ade2-4695-b2c3-85c568706ad9.jpg" style="width: 100px;height: 100px;">
+		                </p>
+		                <p>
+		                	<span style="margin-right: 10px;font-size: 16px;color: yellow">签名:</span>
+		                	<span style="color: #f1fdff;font-size: 18px;font-family: 楷体">不为繁华易匠心</span>
+		                </p>
+		                <p>
+		                	<span style="margin-right: 10px;font-size: 16px;color: yellow;">介绍:</span>
+		                	<span style="color: #f1fdff;font-size: 18px;font-family: 楷体">${github.introduce}</span>
+		                </p>
+
+		                <p style="height: 0;border-bottom: 1px #f9fbfd solid;margin: 5px 0px"></p>
+
+						<h3>文章分类</h3>
+						<ul>
+						    <li class="main_type_list_li">
+    <a class="main_type_list_a" href="/type//29.html">
+        <span><img src="/files/icons/type_list.png"></span>
+        <span>1</span>
+        <span style="margin-left: 5px;color: #9f9f9f;">(1)</span>
+    </a>
+</li><li class="main_type_list_li">
+    <a class="main_type_list_a" href="/type//26.html">
+        <span><img src="/files/icons/type_list.png"></span>
+        <span>新类型</span>
+        <span style="margin-left: 5px;color: #9f9f9f;">(0)</span>
+    </a>
+</li><li class="main_type_list_li">
+    <a class="main_type_list_a" href="/type//17.html">
+        <span><img src="/files/icons/type_list.png"></span>
+        <span>Thinking In Java 学习笔记</span>
+        <span style="margin-left: 5px;color: #9f9f9f;">(1)</span>
+    </a>
+</li><li class="main_type_list_li">
+    <a class="main_type_list_a" href="/type//16.html">
+        <span><img src="/files/icons/type_list.png"></span>
+        <span>Spring Mvc相关</span>
+        <span style="margin-left: 5px;color: #9f9f9f;">(2)</span>
+    </a>
+</li><li class="main_type_list_li">
+    <a class="main_type_list_a" href="/type//15.html">
+        <span><img src="/files/icons/type_list.png"></span>
+        <span>MyBatis相关</span>
+        <span style="margin-left: 5px;color: #9f9f9f;">(5)</span>
+    </a>
+</li><li class="main_type_list_li">
+    <a class="main_type_list_a" href="/type//14.html">
+        <span><img src="/files/icons/type_list.png"></span>
+        <span>mysql相关</span>
+        <span style="margin-left: 5px;color: #9f9f9f;">(1)</span>
+    </a>
+</li><li class="main_type_list_li">
+    <a class="main_type_list_a" href="/type//13.html">
+        <span><img src="/files/icons/type_list.png"></span>
+        <span>一些感想</span>
+        <span style="margin-left: 5px;color: #9f9f9f;">(1)</span>
+    </a>
+</li><li class="main_type_list_li">
+    <a class="main_type_list_a" href="/type//12.html">
+        <span><img src="/files/icons/type_list.png"></span>
+        <span>Servlet&Jsp</span>
+        <span style="margin-left: 5px;color: #9f9f9f;">(4)</span>
+    </a>
+</li><li class="main_type_list_li">
+    <a class="main_type_list_a" href="/type//11.html">
+        <span><img src="/files/icons/type_list.png"></span>
+        <span>Util类汇总</span>
+        <span style="margin-left: 5px;color: #9f9f9f;">(6)</span>
+    </a>
+</li><li class="main_type_list_li">
+    <a class="main_type_list_a" href="/type//10.html">
+        <span><img src="/files/icons/type_list.png"></span>
+        <span>学习网站收集</span>
+        <span style="margin-left: 5px;color: #9f9f9f;">(1)</span>
+    </a>
+</li><li class="main_type_list_li">
+    <a class="main_type_list_a" href="/type//9.html">
+        <span><img src="/files/icons/type_list.png"></span>
+        <span>Spring相关</span>
+        <span style="margin-left: 5px;color: #9f9f9f;">(5)</span>
+    </a>
+</li><li class="main_type_list_li">
+    <a class="main_type_list_a" href="/type//8.html">
+        <span><img src="/files/icons/type_list.png"></span>
+        <span>数据结构和算法</span>
+        <span style="margin-left: 5px;color: #9f9f9f;">(3)</span>
+    </a>
+</li><li class="main_type_list_li">
+    <a class="main_type_list_a" href="/type//7.html">
+        <span><img src="/files/icons/type_list.png"></span>
+        <span>Java基础</span>
+        <span style="margin-left: 5px;color: #9f9f9f;">(9)</span>
+    </a>
+</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="clearer"><span></span></div>
+			</div>
+
+			<div class="footer" style="padding-top: 20px">
+		        <div align="center" style="margin-top: 0px">
+		            <span id="copyright">Copyright©2018 挪威司机</span>
+		        </div>
+		    </div>
+		</div>
+	</body>
+
+	<script type="text/javascript">
+	    $("code").attr("class","java");
+		$("code").attr("id","codeId");
+    	$("pre").attr("id","preId");
+	    hljs.initHighlightingOnLoad();
+	    
+    	setDate();
+    	function setDate() {
+	        var mydate = new Date();
+	        var str = "";
+	        str += (mydate.getMonth() + 1) + "月";
+	        str += mydate.getDate() + "日 ";
+	        var dday = mydate.getDay();
+	        var weekday=["星期日","星期一","星期二","星期三","星期四","星期五","星期六"];
+	        str += weekday[dday];
+	        $("#currentTime").text(str);
+	    };
+	</script>
+
+</html>
