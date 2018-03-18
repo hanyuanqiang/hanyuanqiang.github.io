@@ -140,7 +140,7 @@ MyInterceptor的preHandle方法...
 MyInterceptor的postHandle方法...
 MyInterceptor2的postHandle方法...
 MyInterceptor的afterCompletion方法...
-MyInterceptor2的afterCompletion方法...</code></pre><p class="cye-lm-tag">在postHandle方法处打个断点可以看到如下结果：</p><p class="cye-lm-tag"><img src="/MyBlog/files/63cde9fc-9418-4995-a0e7-77e88dcdcf80.png" alt="搜狗截图20161111234628" style="max-width:100%;"></p><p class="cye-lm-tag">说明在此处的modelAndView就是Controller中返回，view就是将要跳转的视图名(如果controller中没有指定要跳转的视图名，则view是controller的请求路径，即“user/add”)</p><p class="cye-lm-tag"><br></p><p class="cye-lm-tag"><font size="5" color="#008080">2、Spring Mvc 异常处理</font></p><ul><li><font size="4" color="#808000">使用Spring Mvc提供的SimpleMappingExceptionResolver</font></li></ul><div>该方法只需在spring mvc的配置文件中加入如下配置：</div><div></div><pre style="max-width: 100%;" id="preId"><code class="xml hljs" codemark="1" id="codeId"><span class="hljs-comment"><span class="hljs-comment">&lt;!-- 总错误处理--&gt;</span></span>
+MyInterceptor2的afterCompletion方法...</code></pre><p class="cye-lm-tag">在postHandle方法处打个断点可以看到如下结果：</p><p class="cye-lm-tag"><img src="/MyBlog/files/article_pic/63cde9fc-9418-4995-a0e7-77e88dcdcf80.png" alt="搜狗截图20161111234628" style="max-width:100%;"></p><p class="cye-lm-tag">说明在此处的modelAndView就是Controller中返回，view就是将要跳转的视图名(如果controller中没有指定要跳转的视图名，则view是controller的请求路径，即“user/add”)</p><p class="cye-lm-tag"><br></p><p class="cye-lm-tag"><font size="5" color="#008080">2、Spring Mvc 异常处理</font></p><ul><li><font size="4" color="#808000">使用Spring Mvc提供的SimpleMappingExceptionResolver</font></li></ul><div>该方法只需在spring mvc的配置文件中加入如下配置：</div><div></div><pre style="max-width: 100%;" id="preId"><code class="xml hljs" codemark="1" id="codeId"><span class="hljs-comment"><span class="hljs-comment">&lt;!-- 总错误处理--&gt;</span></span>
     <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">bean</span></span></span><span class="hljs-tag"> </span><span class="hljs-attribute"><span class="hljs-tag"><span class="hljs-attr">id</span></span></span><span class="hljs-tag">=</span><span class="hljs-value"><span class="hljs-tag"><span class="hljs-string">"exceptionResolver"</span></span></span><span class="hljs-tag"> </span><span class="hljs-attribute"><span class="hljs-tag"><span class="hljs-attr">class</span></span></span><span class="hljs-tag">=</span><span class="hljs-value"><span class="hljs-tag"><span class="hljs-string">"org.springframework.web.servlet.handler.SimpleMappingExceptionResolver"</span></span></span><span class="hljs-tag">&gt;</span></span>
         <span class="hljs-comment"><span class="hljs-comment">&lt;!--设置发生错误时的默认跳转页面,在jsp页面中可以使用${exception}来获取异常信息--&gt;</span></span>
         <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">property</span></span></span><span class="hljs-tag"> </span><span class="hljs-attribute"><span class="hljs-tag"><span class="hljs-attr">name</span></span></span><span class="hljs-tag">=</span><span class="hljs-value"><span class="hljs-tag"><span class="hljs-string">"defaultErrorView"</span></span></span><span class="hljs-tag">&gt;</span></span>
@@ -182,7 +182,7 @@ MyInterceptor2的afterCompletion方法...</code></pre><p class="cye-lm-tag">在p
             <span class="hljs-keyword"><span class="hljs-keyword">throw</span></span> <span class="hljs-keyword"><span class="hljs-keyword">new</span></span> Exception();
         }
         <span class="hljs-keyword"><span class="hljs-keyword">return</span></span> modelAndView;
-    }</code></pre><p>最后在Spring Mvc配置文件中加入如下配置：</p><pre style="max-width: 100%;" id="preId"><code class="xml hljs" codemark="1" id="codeId"><span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">bean</span></span></span><span class="hljs-tag"> </span><span class="hljs-attribute"><span class="hljs-tag"><span class="hljs-attr">id</span></span></span><span class="hljs-tag">=</span><span class="hljs-value"><span class="hljs-tag"><span class="hljs-string">"myException"</span></span></span><span class="hljs-tag"> </span><span class="hljs-attribute"><span class="hljs-tag"><span class="hljs-attr">class</span></span></span><span class="hljs-tag">=</span><span class="hljs-value"><span class="hljs-tag"><span class="hljs-string">"com.hyq.exception.MyException"</span></span></span><span class="hljs-tag">/&gt;</span></span></code></pre><p>浏览器地址栏中请求<span style="background-color: rgb(255, 255, 255);">http://localhost:8080/user/find</span></p><p><img src="/MyBlog/files/0ecceff7-95e6-4a46-9974-7e9374c7d76d.png" alt="搜狗截图20161112132359" style="max-width:100%;"></p><p>同时也可在控制台中看到异常信息的输出。</p><p><br></p><p><font size="5" color="#008080">3、Spring Mvc 上传图片</font></p><p>使用Spring Mvc进行文件上传时，需要在springmvc的配置文件中加入下面配置：</p><pre style="max-width: 100%;" id="preId"><code class="xml hljs" codemark="1" id="codeId"><span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">bean</span></span></span><span class="hljs-tag"> </span><span class="hljs-attribute"><span class="hljs-tag"><span class="hljs-attr">id</span></span></span><span class="hljs-tag">=</span><span class="hljs-value"><span class="hljs-tag"><span class="hljs-string">"multipartResolver"</span></span></span><span class="hljs-tag">
+    }</code></pre><p>最后在Spring Mvc配置文件中加入如下配置：</p><pre style="max-width: 100%;" id="preId"><code class="xml hljs" codemark="1" id="codeId"><span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">bean</span></span></span><span class="hljs-tag"> </span><span class="hljs-attribute"><span class="hljs-tag"><span class="hljs-attr">id</span></span></span><span class="hljs-tag">=</span><span class="hljs-value"><span class="hljs-tag"><span class="hljs-string">"myException"</span></span></span><span class="hljs-tag"> </span><span class="hljs-attribute"><span class="hljs-tag"><span class="hljs-attr">class</span></span></span><span class="hljs-tag">=</span><span class="hljs-value"><span class="hljs-tag"><span class="hljs-string">"com.hyq.exception.MyException"</span></span></span><span class="hljs-tag">/&gt;</span></span></code></pre><p>浏览器地址栏中请求<span style="background-color: rgb(255, 255, 255);">http://localhost:8080/user/find</span></p><p><img src="/MyBlog/files/article_pic/0ecceff7-95e6-4a46-9974-7e9374c7d76d.png" alt="搜狗截图20161112132359" style="max-width:100%;"></p><p>同时也可在控制台中看到异常信息的输出。</p><p><br></p><p><font size="5" color="#008080">3、Spring Mvc 上传图片</font></p><p>使用Spring Mvc进行文件上传时，需要在springmvc的配置文件中加入下面配置：</p><pre style="max-width: 100%;" id="preId"><code class="xml hljs" codemark="1" id="codeId"><span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">bean</span></span></span><span class="hljs-tag"> </span><span class="hljs-attribute"><span class="hljs-tag"><span class="hljs-attr">id</span></span></span><span class="hljs-tag">=</span><span class="hljs-value"><span class="hljs-tag"><span class="hljs-string">"multipartResolver"</span></span></span><span class="hljs-tag">
         </span><span class="hljs-attribute"><span class="hljs-tag"><span class="hljs-attr">class</span></span></span><span class="hljs-tag">=</span><span class="hljs-value"><span class="hljs-tag"><span class="hljs-string">"org.springframework.web.multipart.commons.CommonsMultipartResolver"</span></span></span><span class="hljs-tag">&gt;</span></span>
 		<span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">property</span></span></span><span class="hljs-tag"> </span><span class="hljs-attribute"><span class="hljs-tag"><span class="hljs-attr">name</span></span></span><span class="hljs-tag">=</span><span class="hljs-value"><span class="hljs-tag"><span class="hljs-string">"defaultEncoding"</span></span></span><span class="hljs-tag"> </span><span class="hljs-attribute"><span class="hljs-tag"><span class="hljs-attr">value</span></span></span><span class="hljs-tag">=</span><span class="hljs-value"><span class="hljs-tag"><span class="hljs-string">"UTF-8"</span></span></span><span class="hljs-tag">/&gt;</span></span>  
 	    <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">property</span></span></span><span class="hljs-tag"> </span><span class="hljs-attribute"><span class="hljs-tag"><span class="hljs-attr">name</span></span></span><span class="hljs-tag">=</span><span class="hljs-value"><span class="hljs-tag"><span class="hljs-string">"maxUploadSize"</span></span></span><span class="hljs-tag"> </span><span class="hljs-attribute"><span class="hljs-tag"><span class="hljs-attr">value</span></span></span><span class="hljs-tag">=</span><span class="hljs-value"><span class="hljs-tag"><span class="hljs-string">"10000000"</span></span></span><span class="hljs-tag">/&gt;</span></span>
@@ -293,79 +293,79 @@ MyInterceptor2的afterCompletion方法...</code></pre><p class="cye-lm-tag">在p
 						<ul>
 						    <li class="main_type_list_li">
     <a class="main_type_list_a" href="/type/29.html">
-        <span><img src="/files/icons/type_list.png"></span>
+        <span><img src="/static/icons/type_list.png"></span>
         <span>1</span>
         <span style="margin-left: 5px;color: #9f9f9f;">(1)</span>
     </a>
 </li><li class="main_type_list_li">
     <a class="main_type_list_a" href="/type/26.html">
-        <span><img src="/files/icons/type_list.png"></span>
+        <span><img src="/static/icons/type_list.png"></span>
         <span>新类型</span>
         <span style="margin-left: 5px;color: #9f9f9f;">(0)</span>
     </a>
 </li><li class="main_type_list_li">
     <a class="main_type_list_a" href="/type/17.html">
-        <span><img src="/files/icons/type_list.png"></span>
+        <span><img src="/static/icons/type_list.png"></span>
         <span>Thinking In Java 学习笔记</span>
         <span style="margin-left: 5px;color: #9f9f9f;">(1)</span>
     </a>
 </li><li class="main_type_list_li">
     <a class="main_type_list_a" href="/type/16.html">
-        <span><img src="/files/icons/type_list.png"></span>
+        <span><img src="/static/icons/type_list.png"></span>
         <span>Spring Mvc相关</span>
         <span style="margin-left: 5px;color: #9f9f9f;">(2)</span>
     </a>
 </li><li class="main_type_list_li">
     <a class="main_type_list_a" href="/type/15.html">
-        <span><img src="/files/icons/type_list.png"></span>
+        <span><img src="/static/icons/type_list.png"></span>
         <span>MyBatis相关</span>
         <span style="margin-left: 5px;color: #9f9f9f;">(5)</span>
     </a>
 </li><li class="main_type_list_li">
     <a class="main_type_list_a" href="/type/14.html">
-        <span><img src="/files/icons/type_list.png"></span>
+        <span><img src="/static/icons/type_list.png"></span>
         <span>mysql相关</span>
         <span style="margin-left: 5px;color: #9f9f9f;">(1)</span>
     </a>
 </li><li class="main_type_list_li">
     <a class="main_type_list_a" href="/type/13.html">
-        <span><img src="/files/icons/type_list.png"></span>
+        <span><img src="/static/icons/type_list.png"></span>
         <span>一些感想</span>
         <span style="margin-left: 5px;color: #9f9f9f;">(1)</span>
     </a>
 </li><li class="main_type_list_li">
     <a class="main_type_list_a" href="/type/12.html">
-        <span><img src="/files/icons/type_list.png"></span>
+        <span><img src="/static/icons/type_list.png"></span>
         <span>Servlet&Jsp</span>
         <span style="margin-left: 5px;color: #9f9f9f;">(4)</span>
     </a>
 </li><li class="main_type_list_li">
     <a class="main_type_list_a" href="/type/11.html">
-        <span><img src="/files/icons/type_list.png"></span>
+        <span><img src="/static/icons/type_list.png"></span>
         <span>Util类汇总</span>
         <span style="margin-left: 5px;color: #9f9f9f;">(6)</span>
     </a>
 </li><li class="main_type_list_li">
     <a class="main_type_list_a" href="/type/10.html">
-        <span><img src="/files/icons/type_list.png"></span>
+        <span><img src="/static/icons/type_list.png"></span>
         <span>学习网站收集</span>
         <span style="margin-left: 5px;color: #9f9f9f;">(1)</span>
     </a>
 </li><li class="main_type_list_li">
     <a class="main_type_list_a" href="/type/9.html">
-        <span><img src="/files/icons/type_list.png"></span>
+        <span><img src="/static/icons/type_list.png"></span>
         <span>Spring相关</span>
         <span style="margin-left: 5px;color: #9f9f9f;">(5)</span>
     </a>
 </li><li class="main_type_list_li">
     <a class="main_type_list_a" href="/type/8.html">
-        <span><img src="/files/icons/type_list.png"></span>
+        <span><img src="/static/icons/type_list.png"></span>
         <span>数据结构和算法</span>
         <span style="margin-left: 5px;color: #9f9f9f;">(3)</span>
     </a>
 </li><li class="main_type_list_li">
     <a class="main_type_list_a" href="/type/7.html">
-        <span><img src="/files/icons/type_list.png"></span>
+        <span><img src="/static/icons/type_list.png"></span>
         <span>Java基础</span>
         <span style="margin-left: 5px;color: #9f9f9f;">(9)</span>
     </a>
