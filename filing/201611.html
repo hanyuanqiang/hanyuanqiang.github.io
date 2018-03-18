@@ -36,67 +36,198 @@
 								<span>所有文章</span>
 							</a>
 						</p>
-						<div id="article_detail">
-    <p id="article_detail_title" align="center">关于时间的util类：DateUtil.java</p>
-    <p align="center" style="margin-bottom: 5px;">
-        <span class="article_detail_time_type">2016-10-22 07:12:55</span>
-        <span style="margin: 0 10px;"></span>
-        <span class="article_detail_time_type">原创</span>
-        <span style="margin: 0 10px;"></span>
-        <span class="article_detail_time_type">分类：Util类汇总</span>
-    </p>
-    <div class="common_line"></div>
-    <p><p>具体代码如下：</p><pre style="max-width:100%;overflow-x:auto;"><code class="java hljs" codemark="1"><span class="hljs-keyword">package</span> com.util;
-
-
-<span class="hljs-keyword">import</span> java.text.SimpleDateFormat;
-<span class="hljs-keyword">import</span> java.util.Date;
-<span class="hljs-comment">/**
- * 日期工具类
- * <span class="hljs-doctag">@author</span> Administrator
- *
- */</span>
-<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DateUtil</span> </span>{
-
-	<span class="hljs-comment">//把日期类型转换为String</span>
-	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title">formatDate</span><span class="hljs-params">(Date date,String format)</span></span>{
-		String result=<span class="hljs-string">""</span>;
-		SimpleDateFormat sdf=<span class="hljs-keyword">new</span> SimpleDateFormat(format);
-		<span class="hljs-keyword">if</span>(date!=<span class="hljs-keyword">null</span>){
-			result=sdf.format(date);
-		}
-		<span class="hljs-keyword">return</span> result;
-	}
-
-	<span class="hljs-comment">//把字符串转换为日期类型</span>
-	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Date <span class="hljs-title">formatString</span><span class="hljs-params">(String str,String format)</span> <span class="hljs-keyword">throws</span> Exception</span>{
-		<span class="hljs-keyword">if</span>(str==<span class="hljs-keyword">null</span>&amp;&amp;<span class="hljs-string">""</span>.equals(str)){
-			<span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;
-		}<span class="hljs-keyword">else</span>{
-			SimpleDateFormat sdf=<span class="hljs-keyword">new</span> SimpleDateFormat(format);
-			<span class="hljs-keyword">return</span> sdf.parse(str);
-		}
-	}
-
-	<span class="hljs-comment">//获取当前日期字符串(年月日时分秒)</span>
-	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title">getCurrentDateStr</span><span class="hljs-params">()</span><span class="hljs-keyword">throws</span> Exception</span>{
-		Date date=<span class="hljs-keyword">new</span> Date();
-		SimpleDateFormat sdf=<span class="hljs-keyword">new</span> SimpleDateFormat(<span class="hljs-string">"yyyyMMddHHmmss"</span>);
-		<span class="hljs-keyword">return</span> sdf.format(date);
-	}
-
-	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> Exception </span>{
-		System.out.println(formatDate(<span class="hljs-keyword">new</span> Date(), <span class="hljs-string">"yyyy-MM-dd HH:mm:ss"</span>));
-		Date date = formatString(<span class="hljs-string">"2016-12-10 22:38:09"</span>, <span class="hljs-string">"yyyy-MM-dd HH:mm:ss"</span>);
-		System.out.println(date);
-		System.out.println(getCurrentDateStr());
-	}
-	
-}
-
-</code></pre><p>输出结果如下：</p><p><img src="/files/article_pic/bd1f3a2c-84b0-4e67-b441-199f51462813.png" alt="搜狗截图20161021231216" style="max-width:100%;"></p><p><br></p></p>
-    <p style="height: 0;border-bottom: 1px #707172 solid;margin: 5px 0px"></p>
-    <p>关键词：<span style="font-size: 18px;font-family: 楷体;color: yellow;">java 日期工具类</span></p>
+						<div id="article_list">
+	<table>
+		<tr>
+		    <td align="center" colspan="3">
+		        <h3 style="margin:0px;padding: 0px;">文章列表</h3>
+		    </td>    
+		</tr>
+		<tr style="height: 15px">
+		    <td colspan="3"></td>
+		</tr>
+        <tr>
+    <td align="center" style="width: 20px">
+        <img style="width: 16px;height: 17px;" src="/static/icons/article_list.png">
+    </td>
+    <td style="width: 450px">
+        <a id="article_list_a" href="/article/2016/11/18/075843.html">JSON格式相关知识点</a>
+    </td>
+    <td align="center" width="120px">
+        <span id="article_list_date_span">2016-11-18</span>
+    </td>
+</tr>
+<tr style="height: 13px">
+    <td colspan="3">
+        <p style="height: 0;border-bottom: 1px #404000 solid;margin: 0;padding: 0px;"></p>
+    </td>
+</tr><tr>
+    <td align="center" style="width: 20px">
+        <img style="width: 16px;height: 17px;" src="/static/icons/article_list.png">
+    </td>
+    <td style="width: 450px">
+        <a id="article_list_a" href="/article/2016/11/16/070902.html">Servlet和Jsp中的一些小知识点汇总</a>
+    </td>
+    <td align="center" width="120px">
+        <span id="article_list_date_span">2016-11-16</span>
+    </td>
+</tr>
+<tr style="height: 13px">
+    <td colspan="3">
+        <p style="height: 0;border-bottom: 1px #404000 solid;margin: 0;padding: 0px;"></p>
+    </td>
+</tr><tr>
+    <td align="center" style="width: 20px">
+        <img style="width: 16px;height: 17px;" src="/static/icons/article_list.png">
+    </td>
+    <td style="width: 450px">
+        <a id="article_list_a" href="/article/2016/11/12/073025.html">Spring Mvc知识点汇总(1)</a>
+    </td>
+    <td align="center" width="120px">
+        <span id="article_list_date_span">2016-11-12</span>
+    </td>
+</tr>
+<tr style="height: 13px">
+    <td colspan="3">
+        <p style="height: 0;border-bottom: 1px #404000 solid;margin: 0;padding: 0px;"></p>
+    </td>
+</tr><tr>
+    <td align="center" style="width: 20px">
+        <img style="width: 16px;height: 17px;" src="/static/icons/article_list.png">
+    </td>
+    <td style="width: 450px">
+        <a id="article_list_a" href="/article/2016/11/06/214842.html">Mybatis基础 —— 分页和缓存</a>
+    </td>
+    <td align="center" width="120px">
+        <span id="article_list_date_span">2016-11-06</span>
+    </td>
+</tr>
+<tr style="height: 13px">
+    <td colspan="3">
+        <p style="height: 0;border-bottom: 1px #404000 solid;margin: 0;padding: 0px;"></p>
+    </td>
+</tr><tr>
+    <td align="center" style="width: 20px">
+        <img style="width: 16px;height: 17px;" src="/static/icons/article_list.png">
+    </td>
+    <td style="width: 450px">
+        <a id="article_list_a" href="/article/2016/11/06/204659.html">Mybatis基础 —— 动态SQL</a>
+    </td>
+    <td align="center" width="120px">
+        <span id="article_list_date_span">2016-11-06</span>
+    </td>
+</tr>
+<tr style="height: 13px">
+    <td colspan="3">
+        <p style="height: 0;border-bottom: 1px #404000 solid;margin: 0;padding: 0px;"></p>
+    </td>
+</tr><tr>
+    <td align="center" style="width: 20px">
+        <img style="width: 16px;height: 17px;" src="/static/icons/article_list.png">
+    </td>
+    <td style="width: 450px">
+        <a id="article_list_a" href="/article/2016/11/05/223332.html">Mybatis基础 —— 一对多关系实现</a>
+    </td>
+    <td align="center" width="120px">
+        <span id="article_list_date_span">2016-11-05</span>
+    </td>
+</tr>
+<tr style="height: 13px">
+    <td colspan="3">
+        <p style="height: 0;border-bottom: 1px #404000 solid;margin: 0;padding: 0px;"></p>
+    </td>
+</tr><tr>
+    <td align="center" style="width: 20px">
+        <img style="width: 16px;height: 17px;" src="/static/icons/article_list.png">
+    </td>
+    <td style="width: 450px">
+        <a id="article_list_a" href="/article/2016/11/05/220004.html">Mybatis基础 —— 一对一关系实现</a>
+    </td>
+    <td align="center" width="120px">
+        <span id="article_list_date_span">2016-11-05</span>
+    </td>
+</tr>
+<tr style="height: 13px">
+    <td colspan="3">
+        <p style="height: 0;border-bottom: 1px #404000 solid;margin: 0;padding: 0px;"></p>
+    </td>
+</tr><tr>
+    <td align="center" style="width: 20px">
+        <img style="width: 16px;height: 17px;" src="/static/icons/article_list.png">
+    </td>
+    <td style="width: 450px">
+        <a id="article_list_a" href="/article/2016/11/05/090100.html">MyBatis入门</a>
+    </td>
+    <td align="center" width="120px">
+        <span id="article_list_date_span">2016-11-05</span>
+    </td>
+</tr>
+<tr style="height: 13px">
+    <td colspan="3">
+        <p style="height: 0;border-bottom: 1px #404000 solid;margin: 0;padding: 0px;"></p>
+    </td>
+</tr><tr>
+    <td align="center" style="width: 20px">
+        <img style="width: 16px;height: 17px;" src="/static/icons/article_list.png">
+    </td>
+    <td style="width: 450px">
+        <a id="article_list_a" href="/article/2016/11/03/085411.html">Servlet里Url-Mapping中/* 和/的区别</a>
+    </td>
+    <td align="center" width="120px">
+        <span id="article_list_date_span">2016-11-03</span>
+    </td>
+</tr>
+<tr style="height: 13px">
+    <td colspan="3">
+        <p style="height: 0;border-bottom: 1px #404000 solid;margin: 0;padding: 0px;"></p>
+    </td>
+</tr><tr>
+    <td align="center" style="width: 20px">
+        <img style="width: 16px;height: 17px;" src="/static/icons/article_list.png">
+    </td>
+    <td style="width: 450px">
+        <a id="article_list_a" href="/article/2016/11/02/205149.html">Spring MVC 配置步骤</a>
+    </td>
+    <td align="center" width="120px">
+        <span id="article_list_date_span">2016-11-02</span>
+    </td>
+</tr>
+<tr style="height: 13px">
+    <td colspan="3">
+        <p style="height: 0;border-bottom: 1px #404000 solid;margin: 0;padding: 0px;"></p>
+    </td>
+</tr><tr>
+    <td align="center" style="width: 20px">
+        <img style="width: 16px;height: 17px;" src="/static/icons/article_list.png">
+    </td>
+    <td style="width: 450px">
+        <a id="article_list_a" href="/article/2016/11/02/064749.html">关于mysql数据库的一些常用操作命令</a>
+    </td>
+    <td align="center" width="120px">
+        <span id="article_list_date_span">2016-11-02</span>
+    </td>
+</tr>
+<tr style="height: 13px">
+    <td colspan="3">
+        <p style="height: 0;border-bottom: 1px #404000 solid;margin: 0;padding: 0px;"></p>
+    </td>
+</tr><tr>
+    <td align="center" style="width: 20px">
+        <img style="width: 16px;height: 17px;" src="/static/icons/article_list.png">
+    </td>
+    <td style="width: 450px">
+        <a id="article_list_a" href="/article/2016/11/02/031425.html">关于从InputStream流中读取汉字不完整的问题</a>
+    </td>
+    <td align="center" width="120px">
+        <span id="article_list_date_span">2016-11-02</span>
+    </td>
+</tr>
+<tr style="height: 13px">
+    <td colspan="3">
+        <p style="height: 0;border-bottom: 1px #404000 solid;margin: 0;padding: 0px;"></p>
+    </td>
+</tr>
+    </table>
 </div>
 					</div>
 				</div>
