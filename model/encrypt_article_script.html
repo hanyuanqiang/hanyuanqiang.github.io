@@ -1,8 +1,11 @@
 <script type="text/javascript">
 	var content = $("#article_detail_content").html();
-	$("#article_detail_content").html('<button onclick="decryptMethod()">文章已加密</button>');
+	$("#article_detail_content").html('<p align="center">
+        <span style="color: #c39b63;font-size: 16px;margin-right: 10px">该文章已加密</span>
+        <button style="cursor: pointer;border-radius: 5px" onclick="decryptMethod()">我要查看</button>
+    </p>');
 	function decryptMethod(){
-		var key = window.prompt("输入密码即可解码");
+		var key = window.prompt("输入密码后即可查看");
 		content = content.split("|");
 		var result = "";
 		for(var i=0;i<content.length-1;i++){
