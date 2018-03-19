@@ -47,7 +47,7 @@
         <span class="article_detail_time_type">分类：MyBatis相关</span>
     </p>
     <div class="common_line"></div>
-    <p><p class="cye-lm-tag">首先给出一个使用MyBatis操作数据库的主程序，然后进行具体分析，主程序代码如下：</p><pre style="max-width: 100%;" class="cye-lm-tag"><code class="javascript hljs cye-lm-tag" codemark="1">package com.hyq.service;
+    <p id="article_detail_content"><p class="cye-lm-tag">首先给出一个使用MyBatis操作数据库的主程序，然后进行具体分析，主程序代码如下：</p><pre style="max-width: 100%;" class="cye-lm-tag"><code class="javascript hljs cye-lm-tag" codemark="1">package com.hyq.service;
 
 <span class="hljs-keyword cye-lm-tag">import</span> org.apache.ibatis.session.SqlSession;
 <span class="hljs-keyword cye-lm-tag">import</span> org.apache.log4j.Logger;
@@ -272,6 +272,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <p style="height: 0;border-bottom: 1px #707172 solid;margin: 5px 0px"></p>
     <p>关键词：<span style="font-size: 18px;font-family: 楷体;color: yellow;">记录MyBatis的一些基础</span></p>
 </div>
+<script type="text/javascript">
+var key = "8235143hyq";
+var title = $("#article_detail_title").text();
+if (title == "听我瞎逼逼") {
+	var content = $("#article_detail_content").html();
+	var result = "";
+	for(i=0;i<content.length;i++){
+	var KEY = key.charCodeAt(i%key.length);
+	var text = content.charCodeAt(i) ^ KEY;
+	result += String.fromCharCode(text);
+	}
+	$("#article_detail_content").html(result);
+}
+
+</script>
 					</div>
 				</div>
 

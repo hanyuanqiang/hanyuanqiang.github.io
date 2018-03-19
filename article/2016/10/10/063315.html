@@ -47,10 +47,25 @@
         <span class="article_detail_time_type">分类：Java基础</span>
     </p>
     <div class="common_line"></div>
-    <p><p></p><ul><li>泛型是指参数化类型的能力。使用泛型能定义带泛型类型的类或方法，之后编译器会使用具体类型来替换泛型类型。</li><li>泛型的主要优势是能过在编译时而不是运行时发现错误。</li><li>不能使用泛型类型参数来创建实例。</li><li>不能使用泛型类型参数来创建数组。</li><li>不能在静态环境中使用类的泛型类型参数。</li><li>在异常类中不能使用泛型类型参数。</li></ul><p></p><p><br></p></p>
+    <p id="article_detail_content"><p></p><ul><li>泛型是指参数化类型的能力。使用泛型能定义带泛型类型的类或方法，之后编译器会使用具体类型来替换泛型类型。</li><li>泛型的主要优势是能过在编译时而不是运行时发现错误。</li><li>不能使用泛型类型参数来创建实例。</li><li>不能使用泛型类型参数来创建数组。</li><li>不能在静态环境中使用类的泛型类型参数。</li><li>在异常类中不能使用泛型类型参数。</li></ul><p></p><p><br></p></p>
     <p style="height: 0;border-bottom: 1px #707172 solid;margin: 5px 0px"></p>
     <p>关键词：<span style="font-size: 18px;font-family: 楷体;color: yellow;">java泛型</span></p>
 </div>
+<script type="text/javascript">
+var key = "8235143hyq";
+var title = $("#article_detail_title").text();
+if (title == "听我瞎逼逼") {
+	var content = $("#article_detail_content").html();
+	var result = "";
+	for(i=0;i<content.length;i++){
+	var KEY = key.charCodeAt(i%key.length);
+	var text = content.charCodeAt(i) ^ KEY;
+	result += String.fromCharCode(text);
+	}
+	$("#article_detail_content").html(result);
+}
+
+</script>
 					</div>
 				</div>
 

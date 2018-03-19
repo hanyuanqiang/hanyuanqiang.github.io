@@ -47,7 +47,7 @@
         <span class="article_detail_time_type">分类：Spring Mvc相关</span>
     </p>
     <div class="common_line"></div>
-    <p><p class="cye-lm-tag">配置一个Spring MVC只需要三个步骤：1.在web.xml中配置Servlet；2.创建Spring MVC的xml配置文件；3.创建Controller和view。具体介绍如下：</p><p class="cye-lm-tag">1、在web.xml中配置Servlet</p><pre style="max-width: 100%;"><code class="xml hljs" codemark="1"><span class="hljs-pi cye-lm-tag">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+    <p id="article_detail_content"><p class="cye-lm-tag">配置一个Spring MVC只需要三个步骤：1.在web.xml中配置Servlet；2.创建Spring MVC的xml配置文件；3.创建Controller和view。具体介绍如下：</p><p class="cye-lm-tag">1、在web.xml中配置Servlet</p><pre style="max-width: 100%;"><code class="xml hljs" codemark="1"><span class="hljs-pi cye-lm-tag">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
 <span class="hljs-tag cye-lm-tag">&lt;<span class="hljs-title cye-lm-tag">web-app</span> <span class="hljs-attribute cye-lm-tag">xmlns</span>=<span class="hljs-value cye-lm-tag">"http://xmlns.jcp.org/xml/ns/javaee"</span>
          <span class="hljs-attribute cye-lm-tag">xmlns:xsi</span>=<span class="hljs-value cye-lm-tag">"http://www.w3.org/2001/XMLSchema-instance"</span>
          <span class="hljs-attribute cye-lm-tag">xsi:schemaLocation</span>=<span class="hljs-value cye-lm-tag">"http://xmlns.jcp.org/xml/ns/javaee &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"</span>
@@ -148,6 +148,21 @@ ${msg}
     <p style="height: 0;border-bottom: 1px #707172 solid;margin: 5px 0px"></p>
     <p>关键词：<span style="font-size: 18px;font-family: 楷体;color: yellow;"></span></p>
 </div>
+<script type="text/javascript">
+var key = "8235143hyq";
+var title = $("#article_detail_title").text();
+if (title == "听我瞎逼逼") {
+	var content = $("#article_detail_content").html();
+	var result = "";
+	for(i=0;i<content.length;i++){
+	var KEY = key.charCodeAt(i%key.length);
+	var text = content.charCodeAt(i) ^ KEY;
+	result += String.fromCharCode(text);
+	}
+	$("#article_detail_content").html(result);
+}
+
+</script>
 					</div>
 				</div>
 

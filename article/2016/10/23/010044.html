@@ -47,7 +47,7 @@
         <span class="article_detail_time_type">分类：Servlet&Jsp</span>
     </p>
     <div class="common_line"></div>
-    <p><p>首先需要定义一个文件进行文件上传的页面upload.jsp，具体代码如下：</p><pre style="max-width:100%;overflow-x:auto;"><code class="cs hljs" codemark="1">&lt;%@ page language=<span class="hljs-string">"java"</span> contentType=<span class="hljs-string">"text/html; charset=UTF-8"</span>
+    <p id="article_detail_content"><p>首先需要定义一个文件进行文件上传的页面upload.jsp，具体代码如下：</p><pre style="max-width:100%;overflow-x:auto;"><code class="cs hljs" codemark="1">&lt;%@ page language=<span class="hljs-string">"java"</span> contentType=<span class="hljs-string">"text/html; charset=UTF-8"</span>
     pageEncoding=<span class="hljs-string">"UTF-8"</span>%&gt;
 &lt;!DOCTYPE html PUBLIC <span class="hljs-string">"-//W3C//DTD HTML 4.01 Transitional//EN"</span> <span class="hljs-string">"http://www.w3.org/TR/html4/loose.dtd"</span>&gt;
 &lt;html&gt;
@@ -131,6 +131,21 @@
     <p style="height: 0;border-bottom: 1px #707172 solid;margin: 5px 0px"></p>
     <p>关键词：<span style="font-size: 18px;font-family: 楷体;color: yellow;">servlet文件上传，图片上传</span></p>
 </div>
+<script type="text/javascript">
+var key = "8235143hyq";
+var title = $("#article_detail_title").text();
+if (title == "听我瞎逼逼") {
+	var content = $("#article_detail_content").html();
+	var result = "";
+	for(i=0;i<content.length;i++){
+	var KEY = key.charCodeAt(i%key.length);
+	var text = content.charCodeAt(i) ^ KEY;
+	result += String.fromCharCode(text);
+	}
+	$("#article_detail_content").html(result);
+}
+
+</script>
 					</div>
 				</div>
 

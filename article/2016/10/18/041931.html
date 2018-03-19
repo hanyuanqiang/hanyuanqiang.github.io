@@ -47,7 +47,7 @@
         <span class="article_detail_time_type">分类：数据结构和算法</span>
     </p>
     <div class="common_line"></div>
-    <p><p>上次写了个用深度优先搜索解决数独的程序，写完后试了好几个数独，感觉大部分都在递归10000次以内可以解决(前提是先用initSolve()进行初步解决)，但是递归毕竟耗内存，于是在想能不能用堆栈代替递归，琢磨了好久写了个凑合能看到程序<img src="/files/article_pic/laugh.gif">，具体如下：<br></p><p>1、定义一个描述空格节点的类BlankNode.java</p><pre style="max-width:100%;overflow-x:auto;"><code class="java hljs" codemark="1"><span class="hljs-keyword">package</span> com.hyq.sudoku;
+    <p id="article_detail_content"><p>上次写了个用深度优先搜索解决数独的程序，写完后试了好几个数独，感觉大部分都在递归10000次以内可以解决(前提是先用initSolve()进行初步解决)，但是递归毕竟耗内存，于是在想能不能用堆栈代替递归，琢磨了好久写了个凑合能看到程序<img src="/files/article_pic/laugh.gif">，具体如下：<br></p><p>1、定义一个描述空格节点的类BlankNode.java</p><pre style="max-width:100%;overflow-x:auto;"><code class="java hljs" codemark="1"><span class="hljs-keyword">package</span> com.hyq.sudoku;
 
 <span class="hljs-keyword">import</span> java.util.ArrayList;
 <span class="hljs-keyword">import</span> java.util.List;
@@ -407,6 +407,21 @@
     <p style="height: 0;border-bottom: 1px #707172 solid;margin: 5px 0px"></p>
     <p>关键词：<span style="font-size: 18px;font-family: 楷体;color: yellow;">使用栈代替深度优先搜索</span></p>
 </div>
+<script type="text/javascript">
+var key = "8235143hyq";
+var title = $("#article_detail_title").text();
+if (title == "听我瞎逼逼") {
+	var content = $("#article_detail_content").html();
+	var result = "";
+	for(i=0;i<content.length;i++){
+	var KEY = key.charCodeAt(i%key.length);
+	var text = content.charCodeAt(i) ^ KEY;
+	result += String.fromCharCode(text);
+	}
+	$("#article_detail_content").html(result);
+}
+
+</script>
 					</div>
 				</div>
 

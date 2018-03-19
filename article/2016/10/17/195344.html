@@ -47,7 +47,7 @@
         <span class="article_detail_time_type">分类：Spring相关</span>
     </p>
     <div class="common_line"></div>
-    <p><p>在配置EhCache缓存实现之前，首先要添加相关的jar包：ehcache-core-2.6.11.jar、slf4j-api-1.7.21.jar。其中ehcache-core-2.6.11.jar是EhCache的核心jar包，而slf4j-api-1.7.21.jar则是该缓存工具所使用的日志工具。</p><p>为了使用EhCache，同样需要在应用的类加载路径下面添加一个ehcache.xml配置文件，代码如下：</p><pre style="max-width:100%;overflow-x:auto;"><code class="xml hljs" codemark="1"><span class="php"><span class="hljs-meta">&lt;?</span>xml version=<span class="hljs-string">"1.0"</span> encoding=<span class="hljs-string">"utf-8"</span><span class="hljs-meta">?&gt;</span></span>
+    <p id="article_detail_content"><p>在配置EhCache缓存实现之前，首先要添加相关的jar包：ehcache-core-2.6.11.jar、slf4j-api-1.7.21.jar。其中ehcache-core-2.6.11.jar是EhCache的核心jar包，而slf4j-api-1.7.21.jar则是该缓存工具所使用的日志工具。</p><p>为了使用EhCache，同样需要在应用的类加载路径下面添加一个ehcache.xml配置文件，代码如下：</p><pre style="max-width:100%;overflow-x:auto;"><code class="xml hljs" codemark="1"><span class="php"><span class="hljs-meta">&lt;?</span>xml version=<span class="hljs-string">"1.0"</span> encoding=<span class="hljs-string">"utf-8"</span><span class="hljs-meta">?&gt;</span></span>
 <span class="hljs-tag">&lt;<span class="hljs-name">ehcache</span>&gt;</span>
 	<span class="hljs-tag">&lt;<span class="hljs-name">diskStore</span> <span class="hljs-attr">path</span>=<span class="hljs-string">"java.io.tmpdir"</span>/&gt;</span>
 	<span class="hljs-comment">&lt;!-- 配置默认的缓存区 --&gt;</span>
@@ -360,6 +360,21 @@
     <p style="height: 0;border-bottom: 1px #707172 solid;margin: 5px 0px"></p>
     <p>关键词：<span style="font-size: 18px;font-family: 楷体;color: yellow;">Spring 缓存</span></p>
 </div>
+<script type="text/javascript">
+var key = "8235143hyq";
+var title = $("#article_detail_title").text();
+if (title == "听我瞎逼逼") {
+	var content = $("#article_detail_content").html();
+	var result = "";
+	for(i=0;i<content.length;i++){
+	var KEY = key.charCodeAt(i%key.length);
+	var text = content.charCodeAt(i) ^ KEY;
+	result += String.fromCharCode(text);
+	}
+	$("#article_detail_content").html(result);
+}
+
+</script>
 					</div>
 				</div>
 

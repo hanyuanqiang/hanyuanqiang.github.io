@@ -47,7 +47,7 @@
         <span class="article_detail_time_type">分类：Java基础</span>
     </p>
     <div class="common_line"></div>
-    <p><p>Lambda表达式是Java8的重要更新，也是被广大开发者期待已久的新特性。Lambda表达式支持将代码块作为方法参数，Lambda表达式允许使用更简洁的代码来创建只有一个抽象方法的接口（这种接口被称为函数式接口）的实例。</p><p><font size="5" color="#008000">1、Lambda表达式入门</font></p><p>下面通过一个简单的例子初步了解Lambda表达式，代码如下：</p><p>Product接口只有一个抽象方法</p><pre style="max-width: 100%;"><code class="java hljs" codemark="1"><span class="hljs-keyword">package</span> com.lambda;
+    <p id="article_detail_content"><p>Lambda表达式是Java8的重要更新，也是被广大开发者期待已久的新特性。Lambda表达式支持将代码块作为方法参数，Lambda表达式允许使用更简洁的代码来创建只有一个抽象方法的接口（这种接口被称为函数式接口）的实例。</p><p><font size="5" color="#008000">1、Lambda表达式入门</font></p><p>下面通过一个简单的例子初步了解Lambda表达式，代码如下：</p><p>Product接口只有一个抽象方法</p><pre style="max-width: 100%;"><code class="java hljs" codemark="1"><span class="hljs-keyword">package</span> com.lambda;
 
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Product</span> </span>{
 
@@ -91,6 +91,21 @@
     <p style="height: 0;border-bottom: 1px #707172 solid;margin: 5px 0px"></p>
     <p>关键词：<span style="font-size: 18px;font-family: 楷体;color: yellow;">Lambda表达式</span></p>
 </div>
+<script type="text/javascript">
+var key = "8235143hyq";
+var title = $("#article_detail_title").text();
+if (title == "听我瞎逼逼") {
+	var content = $("#article_detail_content").html();
+	var result = "";
+	for(i=0;i<content.length;i++){
+	var KEY = key.charCodeAt(i%key.length);
+	var text = content.charCodeAt(i) ^ KEY;
+	result += String.fromCharCode(text);
+	}
+	$("#article_detail_content").html(result);
+}
+
+</script>
 					</div>
 				</div>
 

@@ -47,7 +47,7 @@
         <span class="article_detail_time_type">分类：Java基础</span>
     </p>
     <div class="common_line"></div>
-    <p><p class="cye-lm-tag"><font size="3" face="宋体">最近在捣鼓通过 java.net.URL 抓取网页内容的时候，遇到一个非常奇怪的问题，就是在我抓取下来的内容中99%的字符编码都是对的，但是就是有几个地方会出现??或者???这样乱码的情况，起初我一直以为是我编码弄错了，于是换各种编码都试了一遍，结果发现用其他编码的时候网页内容是完全乱码的，只有使用原编码UTF-8的时候才能使内容基本正常显示(虽然有几个地方乱码)，所以我觉得编码没问题，就是UTF-8，但是我又有点强迫症，看到内容里面夹杂着???这样的乱码就很难受，所以我迫使自己一定要找到原因，后来通过反反复复的调试，发现乱码的地方无一不是原本应该是汉字显示的地方，而且是每次字符流读取写入的交接点，于是我就寻思着是不是编码处汉字占的字节刚好被buffer截断，然后把不完整的字节转码写入导致乱码。为了验证这个设想我就增大的buffer的数组长度，发现果然乱码的地方变了，有时候把buffer设置的足够大的话还有可能可以消除乱码。下面我将写个例子来演示乱码情况以及解决方法：</font></p><p class="cye-lm-tag"><font size="5" color="#008080">1、首先是会出现乱码的情况，代码如下：</font></p><pre style="max-width: 100%;"><code class="java hljs" codemark="1"><span class="hljs-keyword cye-lm-tag">package</span> com.urlResource;
+    <p id="article_detail_content"><p class="cye-lm-tag"><font size="3" face="宋体">最近在捣鼓通过 java.net.URL 抓取网页内容的时候，遇到一个非常奇怪的问题，就是在我抓取下来的内容中99%的字符编码都是对的，但是就是有几个地方会出现??或者???这样乱码的情况，起初我一直以为是我编码弄错了，于是换各种编码都试了一遍，结果发现用其他编码的时候网页内容是完全乱码的，只有使用原编码UTF-8的时候才能使内容基本正常显示(虽然有几个地方乱码)，所以我觉得编码没问题，就是UTF-8，但是我又有点强迫症，看到内容里面夹杂着???这样的乱码就很难受，所以我迫使自己一定要找到原因，后来通过反反复复的调试，发现乱码的地方无一不是原本应该是汉字显示的地方，而且是每次字符流读取写入的交接点，于是我就寻思着是不是编码处汉字占的字节刚好被buffer截断，然后把不完整的字节转码写入导致乱码。为了验证这个设想我就增大的buffer的数组长度，发现果然乱码的地方变了，有时候把buffer设置的足够大的话还有可能可以消除乱码。下面我将写个例子来演示乱码情况以及解决方法：</font></p><p class="cye-lm-tag"><font size="5" color="#008080">1、首先是会出现乱码的情况，代码如下：</font></p><pre style="max-width: 100%;"><code class="java hljs" codemark="1"><span class="hljs-keyword cye-lm-tag">package</span> com.urlResource;
 
 <span class="hljs-keyword cye-lm-tag">import</span> java.io.InputStream;
 <span class="hljs-keyword cye-lm-tag">import</span> java.net.HttpURLConnection;
@@ -129,6 +129,21 @@
     <p style="height: 0;border-bottom: 1px #707172 solid;margin: 5px 0px"></p>
     <p>关键词：<span style="font-size: 18px;font-family: 楷体;color: yellow;">InputStream流</span></p>
 </div>
+<script type="text/javascript">
+var key = "8235143hyq";
+var title = $("#article_detail_title").text();
+if (title == "听我瞎逼逼") {
+	var content = $("#article_detail_content").html();
+	var result = "";
+	for(i=0;i<content.length;i++){
+	var KEY = key.charCodeAt(i%key.length);
+	var text = content.charCodeAt(i) ^ KEY;
+	result += String.fromCharCode(text);
+	}
+	$("#article_detail_content").html(result);
+}
+
+</script>
 					</div>
 				</div>
 

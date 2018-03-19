@@ -47,7 +47,7 @@
         <span class="article_detail_time_type">分类：数据结构和算法</span>
     </p>
     <div class="common_line"></div>
-    <p><p>这两天闲来无事在玩数独，碰到一道挺难解的数独，于是琢磨着写个程序来求解数独。一开始我在想能不能把所有解决数独的思路和推理方法写入到程序中，看能不能把所有数独破解了，后来试了一下，写不出来，，，因为有些推理思路是多不推理，我目前实在是抽象不出来把它写入程序中，所以目前我只把一些我能写的简单解题思路写入代码中，程序初步形成之后，我试了一下解决简单的数组，没问题。但我输入了一个较复杂的数组，这就解不出来了。。。。怎么办呢，网上一搜，看到有用深度优先搜索法求解的(一开始我也想过，但以为穷举会很耗时间，结果想多了)，于是我也琢磨了一下后来也用深度优先搜索解决了，下面是具体源码(代码比较乱，凑合看)：</p><pre style="max-width:100%;overflow-x:auto;"><code class="java hljs" codemark="1"><span class="hljs-keyword">package</span> com.hyq.chapter03;
+    <p id="article_detail_content"><p>这两天闲来无事在玩数独，碰到一道挺难解的数独，于是琢磨着写个程序来求解数独。一开始我在想能不能把所有解决数独的思路和推理方法写入到程序中，看能不能把所有数独破解了，后来试了一下，写不出来，，，因为有些推理思路是多不推理，我目前实在是抽象不出来把它写入程序中，所以目前我只把一些我能写的简单解题思路写入代码中，程序初步形成之后，我试了一下解决简单的数组，没问题。但我输入了一个较复杂的数组，这就解不出来了。。。。怎么办呢，网上一搜，看到有用深度优先搜索法求解的(一开始我也想过，但以为穷举会很耗时间，结果想多了)，于是我也琢磨了一下后来也用深度优先搜索解决了，下面是具体源码(代码比较乱，凑合看)：</p><pre style="max-width:100%;overflow-x:auto;"><code class="java hljs" codemark="1"><span class="hljs-keyword">package</span> com.hyq.chapter03;
 
 <span class="hljs-keyword">import</span> java.util.*;
 
@@ -249,6 +249,21 @@
     <p style="height: 0;border-bottom: 1px #707172 solid;margin: 5px 0px"></p>
     <p>关键词：<span style="font-size: 18px;font-family: 楷体;color: yellow;">数独，深度优先</span></p>
 </div>
+<script type="text/javascript">
+var key = "8235143hyq";
+var title = $("#article_detail_title").text();
+if (title == "听我瞎逼逼") {
+	var content = $("#article_detail_content").html();
+	var result = "";
+	for(i=0;i<content.length;i++){
+	var KEY = key.charCodeAt(i%key.length);
+	var text = content.charCodeAt(i) ^ KEY;
+	result += String.fromCharCode(text);
+	}
+	$("#article_detail_content").html(result);
+}
+
+</script>
 					</div>
 				</div>
 

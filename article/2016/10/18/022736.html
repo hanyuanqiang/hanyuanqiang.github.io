@@ -47,7 +47,7 @@
         <span class="article_detail_time_type">分类：Spring相关</span>
     </p>
     <div class="common_line"></div>
-    <p><p>Spring同时支持编程式事务策略和声明式事务策略，通常推荐采用声明式事务策略。下面通过一个简单的实例来测试Spring的事务功能。</p><p>1、定义一个接口类</p><pre style="max-width:100%;overflow-x:auto;"><code class="java hljs" codemark="1"><span class="hljs-keyword">package</span> com.hyq.transaction.dao;
+    <p id="article_detail_content"><p>Spring同时支持编程式事务策略和声明式事务策略，通常推荐采用声明式事务策略。下面通过一个简单的实例来测试Spring的事务功能。</p><p>1、定义一个接口类</p><pre style="max-width:100%;overflow-x:auto;"><code class="java hljs" codemark="1"><span class="hljs-keyword">package</span> com.hyq.transaction.dao;
 
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">NewsDao</span> </span>{
 
@@ -163,6 +163,21 @@
     <p style="height: 0;border-bottom: 1px #707172 solid;margin: 5px 0px"></p>
     <p>关键词：<span style="font-size: 18px;font-family: 楷体;color: yellow;">Spring 事务，配置事务策略</span></p>
 </div>
+<script type="text/javascript">
+var key = "8235143hyq";
+var title = $("#article_detail_title").text();
+if (title == "听我瞎逼逼") {
+	var content = $("#article_detail_content").html();
+	var result = "";
+	for(i=0;i<content.length;i++){
+	var KEY = key.charCodeAt(i%key.length);
+	var text = content.charCodeAt(i) ^ KEY;
+	result += String.fromCharCode(text);
+	}
+	$("#article_detail_content").html(result);
+}
+
+</script>
 					</div>
 				</div>
 

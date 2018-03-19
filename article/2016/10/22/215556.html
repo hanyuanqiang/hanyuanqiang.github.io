@@ -47,7 +47,7 @@
         <span class="article_detail_time_type">分类：Util类汇总</span>
     </p>
     <div class="common_line"></div>
-    <p><p>在些项目过程中，我们有时候需要提取html代码中的纯文本内容，忽略其中的标签。这个工具类的作用就是提取html代码中的纯文本。首先，在写代码之前要先添加这两个jar包：<a href="https://mvnrepository.com/artifact/org.htmlparser/htmllexer/2.1" target="_blank" style="">htmllexer-2.1.jar</a>、<a href="https://mvnrepository.com/artifact/org.htmlparser/htmlparser/2.1" target="_blank" style="">htmlparser-2.1.jar</a>。具体代码如下：</p><pre style="max-width:100%;overflow-x:auto;"><code class="java hljs" codemark="1"><span class="hljs-keyword">package</span> com.hyq.util;
+    <p id="article_detail_content"><p>在些项目过程中，我们有时候需要提取html代码中的纯文本内容，忽略其中的标签。这个工具类的作用就是提取html代码中的纯文本。首先，在写代码之前要先添加这两个jar包：<a href="https://mvnrepository.com/artifact/org.htmlparser/htmllexer/2.1" target="_blank" style="">htmllexer-2.1.jar</a>、<a href="https://mvnrepository.com/artifact/org.htmlparser/htmlparser/2.1" target="_blank" style="">htmlparser-2.1.jar</a>。具体代码如下：</p><pre style="max-width:100%;overflow-x:auto;"><code class="java hljs" codemark="1"><span class="hljs-keyword">package</span> com.hyq.util;
 
 <span class="hljs-keyword">import</span> org.htmlparser.Parser;
 <span class="hljs-keyword">import</span> org.htmlparser.visitors.TextExtractingVisitor;
@@ -86,6 +86,21 @@
     <p style="height: 0;border-bottom: 1px #707172 solid;margin: 5px 0px"></p>
     <p>关键词：<span style="font-size: 18px;font-family: 楷体;color: yellow;">解析html代码，提取纯文本</span></p>
 </div>
+<script type="text/javascript">
+var key = "8235143hyq";
+var title = $("#article_detail_title").text();
+if (title == "听我瞎逼逼") {
+	var content = $("#article_detail_content").html();
+	var result = "";
+	for(i=0;i<content.length;i++){
+	var KEY = key.charCodeAt(i%key.length);
+	var text = content.charCodeAt(i) ^ KEY;
+	result += String.fromCharCode(text);
+	}
+	$("#article_detail_content").html(result);
+}
+
+</script>
 					</div>
 				</div>
 

@@ -47,7 +47,7 @@
         <span class="article_detail_time_type">分类：MyBatis相关</span>
     </p>
     <div class="common_line"></div>
-    <p><p>使用Student和Address表示一对一关系，即一个学生对应一个地址，下面给出这两个实体类：</p><p>Student.java</p><pre style="max-width: 100%;"><code class="java hljs" codemark="1"><span class="hljs-keyword">package</span> com.hyq.model;
+    <p id="article_detail_content"><p>使用Student和Address表示一对一关系，即一个学生对应一个地址，下面给出这两个实体类：</p><p>Student.java</p><pre style="max-width: 100%;"><code class="java hljs" codemark="1"><span class="hljs-keyword">package</span> com.hyq.model;
 
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Student</span> </span>{
 	<span class="hljs-keyword">private</span> Integer id;
@@ -187,6 +187,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <p style="height: 0;border-bottom: 1px #707172 solid;margin: 5px 0px"></p>
     <p>关键词：<span style="font-size: 18px;font-family: 楷体;color: yellow;"></span></p>
 </div>
+<script type="text/javascript">
+var key = "8235143hyq";
+var title = $("#article_detail_title").text();
+if (title == "听我瞎逼逼") {
+	var content = $("#article_detail_content").html();
+	var result = "";
+	for(i=0;i<content.length;i++){
+	var KEY = key.charCodeAt(i%key.length);
+	var text = content.charCodeAt(i) ^ KEY;
+	result += String.fromCharCode(text);
+	}
+	$("#article_detail_content").html(result);
+}
+
+</script>
 					</div>
 				</div>
 

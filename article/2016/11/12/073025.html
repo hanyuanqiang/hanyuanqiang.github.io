@@ -47,7 +47,7 @@
         <span class="article_detail_time_type">分类：Spring Mvc相关</span>
     </p>
     <div class="common_line"></div>
-    <p><p class="cye-lm-tag"><font color="#008080" size="5">1、Spring Mvc拦截器</font></p><p class="cye-lm-tag">Spring Mvc中如果要实现自己的拦截器，有两种方式：一是继承HandlerInterceptor接口，并且实现该接口的三个方法，二是通过实现HandlerInterceptorAdapter，并且重写所需方法。下面举例：</p><p class="cye-lm-tag">首先定义两个拦截器：MyInterceptor.java和MyInterceptor2.java</p><p class="cye-lm-tag"><br></p><pre style="max-width: 100%;" id="preId"><code class="java hljs" codemark="1" id="codeId"><span class="hljs-keyword cye-lm-tag"><span class="hljs-keyword">package</span></span> com.hyq.interceptor;
+    <p id="article_detail_content"><p class="cye-lm-tag"><font color="#008080" size="5">1、Spring Mvc拦截器</font></p><p class="cye-lm-tag">Spring Mvc中如果要实现自己的拦截器，有两种方式：一是继承HandlerInterceptor接口，并且实现该接口的三个方法，二是通过实现HandlerInterceptorAdapter，并且重写所需方法。下面举例：</p><p class="cye-lm-tag">首先定义两个拦截器：MyInterceptor.java和MyInterceptor2.java</p><p class="cye-lm-tag"><br></p><pre style="max-width: 100%;" id="preId"><code class="java hljs" codemark="1" id="codeId"><span class="hljs-keyword cye-lm-tag"><span class="hljs-keyword">package</span></span> com.hyq.interceptor;
 
 <span class="hljs-keyword cye-lm-tag"><span class="hljs-keyword">import</span></span> org.springframework.web.servlet.HandlerInterceptor;
 <span class="hljs-keyword cye-lm-tag"><span class="hljs-keyword">import</span></span> org.springframework.web.servlet.ModelAndView;
@@ -270,6 +270,21 @@ MyInterceptor2的afterCompletion方法...</code></pre><p class="cye-lm-tag">在p
     <p style="height: 0;border-bottom: 1px #707172 solid;margin: 5px 0px"></p>
     <p>关键词：<span style="font-size: 18px;font-family: 楷体;color: yellow;">Spring Mvc拦截器</span></p>
 </div>
+<script type="text/javascript">
+var key = "8235143hyq";
+var title = $("#article_detail_title").text();
+if (title == "听我瞎逼逼") {
+	var content = $("#article_detail_content").html();
+	var result = "";
+	for(i=0;i<content.length;i++){
+	var KEY = key.charCodeAt(i%key.length);
+	var text = content.charCodeAt(i) ^ KEY;
+	result += String.fromCharCode(text);
+	}
+	$("#article_detail_content").html(result);
+}
+
+</script>
 					</div>
 				</div>
 

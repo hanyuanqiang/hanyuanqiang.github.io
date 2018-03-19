@@ -47,7 +47,7 @@
         <span class="article_detail_time_type">分类：MyBatis相关</span>
     </p>
     <div class="common_line"></div>
-    <p><p class="cye-lm-tag">MyBatis 的强大特性之一便是它的动态 SQL，利用动态 SQL 这一特性可以彻底摆脱根据不同条件拼接 SQL 语句的痛苦。</p><p class="cye-lm-tag">通常使用动态 SQL 不可能是独立的一部分,MyBatis 当然使用一种强大的动态 SQL 语言来改进这种情形,这种语言可以被用在任意的 SQL 映射语句中。</p><p class="cye-lm-tag">动态 SQL 元素和使用 JSTL 或其他类似基于 XML 的文本处理器相似。在 MyBatis 之前的版本中,有很多的元素需要来了解。MyBatis 3 大大提升了它们,现在用不到原先一半的元素就可以了。MyBatis 采用功能强大的基于 OGNL 的表达式来消除其他元素。</p><ul><li>if</li><li>choose (when, otherwise)</li><li>trim (where, set)</li><li>foreach</li></ul><p class="cye-lm-tag">&nbsp;废话不多说，下面直接贴代码：</p><p class="cye-lm-tag">1、首先是实体类</p><pre style="max-width: 100%;" class="cye-lm-tag"><code class="java hljs cye-lm-tag" codemark="1"><span class="hljs-keyword cye-lm-tag">package</span> com.hyq.model;
+    <p id="article_detail_content"><p class="cye-lm-tag">MyBatis 的强大特性之一便是它的动态 SQL，利用动态 SQL 这一特性可以彻底摆脱根据不同条件拼接 SQL 语句的痛苦。</p><p class="cye-lm-tag">通常使用动态 SQL 不可能是独立的一部分,MyBatis 当然使用一种强大的动态 SQL 语言来改进这种情形,这种语言可以被用在任意的 SQL 映射语句中。</p><p class="cye-lm-tag">动态 SQL 元素和使用 JSTL 或其他类似基于 XML 的文本处理器相似。在 MyBatis 之前的版本中,有很多的元素需要来了解。MyBatis 3 大大提升了它们,现在用不到原先一半的元素就可以了。MyBatis 采用功能强大的基于 OGNL 的表达式来消除其他元素。</p><ul><li>if</li><li>choose (when, otherwise)</li><li>trim (where, set)</li><li>foreach</li></ul><p class="cye-lm-tag">&nbsp;废话不多说，下面直接贴代码：</p><p class="cye-lm-tag">1、首先是实体类</p><pre style="max-width: 100%;" class="cye-lm-tag"><code class="java hljs cye-lm-tag" codemark="1"><span class="hljs-keyword cye-lm-tag">package</span> com.hyq.model;
 
 <span class="hljs-keyword cye-lm-tag">public</span> <span class="hljs-class cye-lm-tag"><span class="hljs-keyword cye-lm-tag">class</span> <span class="hljs-title cye-lm-tag">Student</span> </span>{
 
@@ -309,6 +309,21 @@ Student [id=<span class="hljs-number cye-lm-tag">1</span>, name=张三, age=<spa
     <p style="height: 0;border-bottom: 1px #707172 solid;margin: 5px 0px"></p>
     <p>关键词：<span style="font-size: 18px;font-family: 楷体;color: yellow;">MyBatis动态SQL</span></p>
 </div>
+<script type="text/javascript">
+var key = "8235143hyq";
+var title = $("#article_detail_title").text();
+if (title == "听我瞎逼逼") {
+	var content = $("#article_detail_content").html();
+	var result = "";
+	for(i=0;i<content.length;i++){
+	var KEY = key.charCodeAt(i%key.length);
+	var text = content.charCodeAt(i) ^ KEY;
+	result += String.fromCharCode(text);
+	}
+	$("#article_detail_content").html(result);
+}
+
+</script>
 					</div>
 				</div>
 
