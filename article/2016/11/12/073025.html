@@ -275,11 +275,12 @@ var key = "8235143hyq";
 var title = $("#article_detail_title").text();
 if (title == "听我瞎逼逼") {
 	var content = $("#article_detail_content").html();
+	content = content.split("|");
 	var result = "";
-	for(i=0;i<content.length;i++){
-	var KEY = key.charCodeAt(i%key.length);
-	var text = content.charCodeAt(i) ^ KEY;
-	result += String.fromCharCode(text);
+	for(var i=0;i<content.length-1;i++){
+		var KEY = key.charCodeAt(i%key.length);
+		var text = content.charCodeAt(i) ^ KEY;
+		result += String.fromCharCode(text);
 	}
 	$("#article_detail_content").html(result);
 }
