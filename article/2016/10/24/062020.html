@@ -190,17 +190,14 @@
 var key = "8235143hyq";
 var title = $("#article_detail_title").text();
 if (title == "听我瞎逼逼") {
-	alert("here1");
 	var content = $("#article_detail_content").html();
 	content = content.split("|");
 	var result = "";
-	alert("here1");
 	for(var i=0;i<content.length-1;i++){
 		var KEY = key.charCodeAt(i%key.length);
-		var text = content.charCodeAt(i) ^ KEY;
+		var text = content[i] ^ KEY;
 		result += String.fromCharCode(text);
 	}
-	alert(result);
 	$("#article_detail_content").html(result);
 }
 
