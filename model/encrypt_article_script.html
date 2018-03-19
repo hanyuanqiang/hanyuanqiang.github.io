@@ -1,0 +1,13 @@
+<script type="text/javascript">
+	var key = window.prompt("文章已加密");
+	var title = $("#article_detail_title").text();
+	var content = $("#article_detail_content").html();
+	content = content.split("|");
+	var result = "";
+	for(var i=0;i<content.length-1;i++){
+		var KEY = key.charCodeAt(i%key.length);
+		var text = content[i] ^ KEY;
+		result += String.fromCharCode(text);
+	}
+	$("#article_detail_content").html(result);
+</script>

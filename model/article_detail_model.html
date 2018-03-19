@@ -12,19 +12,4 @@
     <p style="height: 0;border-bottom: 1px #707172 solid;margin: 5px 0px"></p>
     <p>关键词：<span style="font-size: 18px;font-family: 楷体;color: yellow;">${github.article.keywords}</span></p>
 </div>
-<script type="text/javascript">
-var key = "8235143hyq";
-var title = $("#article_detail_title").text();
-if (title == "听我瞎逼逼") {
-	var content = $("#article_detail_content").html();
-	content = content.split("|");
-	var result = "";
-	for(var i=0;i<content.length-1;i++){
-		var KEY = key.charCodeAt(i%key.length);
-		var text = content[i] ^ KEY;
-		result += String.fromCharCode(text);
-	}
-	$("#article_detail_content").html(result);
-}
-
-</script>
+${github.article.encrypt.script}
