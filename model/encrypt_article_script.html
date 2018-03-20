@@ -2,14 +2,18 @@
 	var content = $("#article_detail_content").html();
 	$("#article_detail_content").html('<p align="center"><span style="color: #c39b63;font-size: 16px;margin-right: 10px">该文章已加密</span><button style="cursor: pointer;border-radius: 5px" onclick="decryptMethod()">我要查看</button></p>');
 	function decryptMethod(){
-		var key = window.prompt("输入密码后即可查看");
-		content = content.split("|");
-		var result = "";
-		for(var i=0;i<content.length-1;i++){
-			var KEY = key.charCodeAt(i%key.length);
-			var text = content[i] ^ KEY;
-			result += String.fromCharCode(text);
+		var key = window.prompt("错误密码会导致文章乱码，刷新页面可再次尝试！");
+		if (key == "" || key == null) {
+			alert("密码不能为空!");
+		}else{
+			content = content.split("|");
+			var result = "";
+			for(var i=0;i<content.length-1;i++){
+				var KEY = key.charCodeAt(i%key.length);
+				var text = content[i] ^ KEY;
+				result += String.fromCharCode(text);
+			}
+			$("#article_detail_content").html(result);
 		}
-		$("#article_detail_content").html(result);
 	}
 </script>

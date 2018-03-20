@@ -55,15 +55,19 @@
 	var content = $("#article_detail_content").html();
 	$("#article_detail_content").html('<p align="center"><span style="color: #c39b63;font-size: 16px;margin-right: 10px">该文章已加密</span><button style="cursor: pointer;border-radius: 5px" onclick="decryptMethod()">我要查看</button></p>');
 	function decryptMethod(){
-		var key = window.prompt("输入密码后即可查看");
-		content = content.split("|");
-		var result = "";
-		for(var i=0;i<content.length-1;i++){
-			var KEY = key.charCodeAt(i%key.length);
-			var text = content[i] ^ KEY;
-			result += String.fromCharCode(text);
+		var key = window.prompt("错误密码会导致文章乱码，刷新页面可再次尝试！");
+		if (key == "" || key == null) {
+			alert("密码不能为空!");
+		}else{
+			content = content.split("|");
+			var result = "";
+			for(var i=0;i<content.length-1;i++){
+				var KEY = key.charCodeAt(i%key.length);
+				var text = content[i] ^ KEY;
+				result += String.fromCharCode(text);
+			}
+			$("#article_detail_content").html(result);
 		}
-		$("#article_detail_content").html(result);
 	}
 </script>
 					</div>
@@ -73,15 +77,16 @@
 					<div class="subnav">
 						<h3 align="center">个人简介</h3>
 		                <p align="center">
-		                    <img src="/files/avatar/7dd1ae05-7be8-407c-b243-5a2e4d239e9e.jpg" style="width: 100px;height: 100px;">
+		                    <img src="/files/avatar/1ec399ed-7c7b-45d9-8ce3-ef8f36518833.jpg" style="width: 100px;height: 100px;">
 		                </p>
 		                <p>
 		                	<span style="margin-right: 10px;font-size: 16px;color: yellow">签名:</span>
-		                	<span style="color: #f1fdff;font-size: 18px;font-family: 楷体">不为繁华易匠心</span>
+		                	<span style="color: #f1fdff;font-size: 18px;font-family: 楷体">我再也不安慰自己了</span>
 		                </p>
 		                <p>
 		                	<span style="margin-right: 10px;font-size: 16px;color: yellow;">介绍:</span>
-		                	<span style="color: #f1fdff;font-size: 18px;font-family: 楷体">没错我就叫韩远强没错我就叫韩远强没错我就叫韩远强没错我就叫韩远强没错我就叫韩远强没错我就叫韩远强没错我就叫韩远强没错我就叫韩远强没错我就叫韩远强没错我就叫韩远强没错我就叫韩远强没错我就叫韩远强没错我就叫韩远强</span>
+		                	<span style="color: #f1fdff;font-size: 18px;font-family: 楷体">看了很多，了解的却很少。知道的很多，懂的也很少！
+我不懂，也不问。我想，就这样也行吧！</span>
 		                </p>
 
 		                <p style="height: 0;border-bottom: 1px #f9fbfd solid;margin: 5px 0px"></p>
@@ -89,12 +94,6 @@
 						<h3>文章分类</h3>
 						<ul>
 						    <li class="main_type_list_li">
-    <a class="main_type_list_a" href="/type/29.html">
-        <span><img src="/static/icons/type_list.png"></span>
-        <span>测试类型</span>
-        <span style="margin-left: 5px;color: #9f9f9f;">(0)</span>
-    </a>
-</li><li class="main_type_list_li">
     <a class="main_type_list_a" href="/type/17.html">
         <span><img src="/static/icons/type_list.png"></span>
         <span>Thinking In Java 学习笔记</span>
