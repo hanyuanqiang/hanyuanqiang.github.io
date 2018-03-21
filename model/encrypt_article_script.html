@@ -6,9 +6,9 @@
 		if (key == "" || key == null) {
 			alert("密码不能为空!");
 		}else{
-			content = content.split("|");
+			content = content.split("${github.xor.crypto.separator}");
 			var result = "";
-			for(var i=0;i<content.length-1;i++){
+			for(var i=0;i<content.length;i++){
 				var KEY = key.charCodeAt(i%key.length);
 				var text = content[i] ^ KEY;
 				result += String.fromCharCode(text);
