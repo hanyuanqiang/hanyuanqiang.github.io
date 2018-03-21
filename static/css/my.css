@@ -54,9 +54,13 @@
     margin: 0px auto 10px;
     height: 1px;
     width: 98%;
-    border-bottom: solid 1px #c0c0c0;
+    border-bottom: solid 1px #505000;
     float: none;
     clear: both;
+}
+
+#article_detail{
+    margin: 0px 15px;
 }
 
 #article_detail_title{
@@ -72,7 +76,6 @@
 #article_editor{
     margin-top: 10px;
     margin-left: -15px;
-    /*border: 1px solid goldenrod;*/
     width: 890px;
 }
 
