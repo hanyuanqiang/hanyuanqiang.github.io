@@ -62,10 +62,8 @@
         btn: ['我有密码','返回'] //按钮
     },function(){
         layer.prompt({title: '请输入密码', formType: 1}, function(pass, index){
-            layer.close(index);
-
 			var content = $("#article_detail_content").html();
-			$("#article_detail_content").text("");
+			$("#article_detail_content").text('');
 			content = content.split(",");
 			var result = "";
 			for(var i=0;i<content.length;i++){
@@ -74,7 +72,7 @@
 				result += String.fromCharCode(text);
 			}
 			$("#article_detail_content").html(result);
-			layer.close();
+			layer.close(index);
         });
     },function(){
     	window.history.back();
