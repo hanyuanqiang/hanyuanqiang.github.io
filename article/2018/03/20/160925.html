@@ -56,14 +56,12 @@
     <p>关键词：<span style="font-size: 18px;font-family: 楷体;color: yellow;">回忆有点痛</span></p>
 </div>
 <script type="text/javascript">
-
-	layer.confirm('查看该文章需要密码，若密码错误则文章会乱码', {
+	layer.confirm('<span style="color:red">查看该文章需要密码，若密码错误则文章会乱码</span>', {
         closeBtn:0,
         btn: ['我有密码','返回'] //按钮
     },function(){
         layer.prompt({title: '请输入密码', formType: 1}, function(pass, index){
 			var content = $("#article_detail_content").html();
-			$("#article_detail_content").text('');
 			content = content.split(",");
 			var result = "";
 			for(var i=0;i<content.length;i++){
