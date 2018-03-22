@@ -69,6 +69,10 @@
     margin-bottom: 7px;
 }
 
+#article_detail_content{
+    word-wrap : break-word;
+}
+
 .article_detail_time_type{
     font-size: 14px;
 }
