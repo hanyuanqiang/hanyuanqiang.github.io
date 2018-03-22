@@ -70,7 +70,7 @@
 }
 
 #article_detail_content{
-    word-wrap : break-all;
+    word-break: break-all;
 }
 
 .article_detail_time_type{
