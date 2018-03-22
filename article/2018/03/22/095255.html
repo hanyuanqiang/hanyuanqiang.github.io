@@ -7,9 +7,13 @@
 <link rel="stylesheet" type="text/css" href="/static/highlight/styles/docco.css">
 <link rel="stylesheet" type="text/css" href="/static/template/template.css">
 <link rel="stylesheet" type="text/css" href="/static/css/my.css">
+<link rel="stylesheet" type="text/css" href="/static/layer/mobile/need/layer.css">
+
 
 <script src="/static/jquery/jquery.min.js"></script>
 <script src="/static/highlight/highlight.pack.js"></script>
+<script src="/static/layer/layer.js"></script>
+
 <title>挪威司机</title>
 </head>
 
@@ -52,23 +56,28 @@
     <p>关键词：<span style="font-size: 18px;font-family: 楷体;color: yellow;"></span></p>
 </div>
 <script type="text/javascript">
-	var content = $("#article_detail_content").html();
-	$("#article_detail_content").html('<p align="center"><span style="color: #c39b63;font-size: 16px;margin-right: 10px">该文章已加密</span><button style="cursor: pointer;border-radius: 5px" onclick="decryptMethod()">我要查看</button></p>');
-	function decryptMethod(){
-		var key = window.prompt("错误密码会导致文章乱码，刷新页面可再次尝试！");
-		if (key == "" || key == null) {
-			alert("密码不能为空!");
-		}else{
+
+	layer.confirm('查看该文章需要密码，若密码错误则文章会乱码', {
+        closeBtn:0,
+        btn: ['我有密码','返回'] //按钮
+    },function(){
+        layer.prompt({title: '请输入密码', formType: 1}, function(pass, index){
+            layer.close(index);
+
+			var content = $("#article_detail_content").html();
+			$("#article_detail_content").text("");
 			content = content.split(",");
 			var result = "";
 			for(var i=0;i<content.length;i++){
-				var KEY = key.charCodeAt(i%key.length);
+				var KEY = pass.charCodeAt(i%pass.length);
 				var text = content[i] ^ KEY;
 				result += String.fromCharCode(text);
 			}
 			$("#article_detail_content").html(result);
-		}
-	}
+        });
+    },,function(){
+    	window.history.back();
+    });
 </script>
 					</div>
 				</div>
