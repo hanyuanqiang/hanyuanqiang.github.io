@@ -41,37 +41,60 @@
 								<span>所有文章</span>
 							</a>
 						</p>
-						<div id="article_list">
-	<table>
-		<tr>
-		    <td align="center" colspan="3">
-		        <h3 style="margin:0px;padding: 0px;">文章列表</h3>
-		    </td>    
-		</tr>
-		<tr style="height: 15px">
-		    <td colspan="3"></td>
-		</tr>
-        <tr>
-    <td align="center" style="width: 20px">
-        <img style="width: 16px;height: 17px;" src="/static/icons/article_list.png">
-    </td>
-    <td style="width: 450px">
-        <a id="article_list_a" href="/article/2016/10/19/085855.html">收集的学习网站</a>
-    </td>
-    <td style="width: 60px">
-        
-    </td>
-    <td align="center" width="120px">
-        <span id="article_list_date_span">2016-10-19</span>
-    </td>
-</tr>
-<tr style="height: 5px">
-    <td colspan="4">
-        <p style="height: 0;border-bottom: 1px #404000 solid;margin: 0;padding: 0px;"></p>
-    </td>
-</tr>
-    </table>
+						<div id="article_detail">
+    <p id="article_detail_title" align="center">斗鱼自动发送弹幕脚本（粗糙版）</p>
+    <p align="center" style="margin-bottom: 5px;">
+        <span class="article_detail_time_type">2018-04-10 02:02:42</span>
+        <span style="margin: 0 10px;"></span>
+        <span class="article_detail_time_type">原创</span>
+        <span style="margin: 0 10px;"></span>
+        <span class="article_detail_time_type">分类：生活、杂想</span>
+    </p>
+    <div class="common_line"></div>
+    <p id="article_detail_content"><pre><code>$("div[class='expression fl']").html("&lt;button onclick='start()'&gt;开始&lt;/button&gt;");//替换表情
+$("div").remove("div[class='unread-msgs fl']");	//移除站内信
+$("div[class='fl noble--broadcast-box']").html("&lt;button onclick='stop()'&gt;暂停&lt;/button&gt;");//替换喇叭
+$("div[class='fl noble--barrage-box status--nobel-disabled']").html("&lt;button onclick='end()'&gt;结束&lt;/button&gt;");//替换贵族弹幕
+$("div[class='filter-keywords fl ']").html("&lt;span style='color:red'&gt;未开始&lt;/span&gt;");//替换过滤
+$("div").remove("div[class='hyperlink-chat fl']");//移除超级链接
+
+var int;
+function start(){
+	$("div[class='filter-keywords fl ']").html("&lt;span style='color:red'&gt;正在执行&lt;/span&gt;");//替换过滤
+	var content = $(".cs-textarea").val();
+	var intervalTime = 400;
+	var tag = true;
+	int = setInterval(function () {
+		if (content == "") {
+			$("div[class='filter-keywords fl ']").html("&lt;span style='color:red'&gt;请输入内容&lt;/span&gt;");//替换过滤
+			window.clearInterval(int);
+		}else{
+			if(tag){
+		        $("#js-send-msg .cs-textarea").val(content);
+		    }else{
+		        $("#js-send-msg .cs-textarea").val(content+"~");
+		    }
+		    if ($("#js-send-msg .b-btn").text() == '发送') {
+		    	$("#js-send-msg .b-btn").click();
+		    	tag = !tag;
+		    }
+		}
+	},intervalTime);
+}
+function stop(){
+	$("div[class='filter-keywords fl ']").html("&lt;span style='color:red'&gt;暂停执行&lt;/span&gt;");//替换过滤
+	window.clearInterval(int);
+	$(".cs-textarea").val(content);
+}
+function end(){
+	$("div[class='filter-keywords fl ']").html("&lt;span style='color:red'&gt;结束执行&lt;/span&gt;");//替换过滤
+	window.clearInterval(int);
+	$(".cs-textarea").val("");
+}</code></pre><p><br></p></p>
+    <p style="height: 0;border-bottom: 1px #707172 solid;margin: 5px 0px"></p>
+    <p>关键词：<span style="font-size: 18px;font-family: 楷体;color: yellow;">随便写写</span></p>
 </div>
+
 					</div>
 				</div>
 
