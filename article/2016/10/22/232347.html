@@ -1,0 +1,237 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+<link rel="shortcut icon"type="image/x-icon" href="/static/icons/nw_driver.ico"media="screen" />
+<link rel="stylesheet" type="text/css" href="/static/highlight/styles/docco.css">
+<link rel="stylesheet" type="text/css" href="/static/template/template.css">
+<link rel="stylesheet" type="text/css" href="/static/css/my.css">
+<link rel="stylesheet" type="text/css" href="/static/layer/mobile/need/layer.css">
+
+
+<script src="/static/jquery/jquery.min.js"></script>
+<script src="/static/highlight/highlight.pack.js"></script>
+<script src="/static/layer/layer.js"></script>
+
+<title>挪威司机</title>
+</head>
+
+	<!-- default margin = default layout -->
+	<body>
+		<div class="t_container" style="width:1200px;margin: 0 auto">
+			<div class="header">
+				<div style="height: 100%;padding-top: 10px;margin: 0px;">
+		            <p id="currentTime" align="right" style="margin: 0px 20px;height: 25px;font-size: 16px"></p>
+		            <p class="head_en" style="margin: 0px 130px;">
+		            	Keep track of what I really think.<br>
+		                Hope that many years later, we still have the courage to remember!
+		            </p>
+		        </div>
+			</div>
+
+			<div class="stripes"><span></span></div>
+
+			<div class="main">
+
+				<div class="left">
+					<div class="content">
+						<p align="right" style="margin: 0px;padding: 0px;">
+							<a href="https://hanyuanqiang.github.io" style="text-decoration: none;color: #c39b63;cursor: pointer;">
+								<span>所有文章</span>
+							</a>
+						</p>
+						<div id="article_detail">
+    <p id="article_detail_title" align="center">正则表达式基础篇</p>
+    <p align="center" style="margin-bottom: 5px;">
+        <span class="article_detail_time_type">2016-10-22 23:23:47</span>
+        <span style="margin: 0 10px;"></span>
+        <span class="article_detail_time_type">原创</span>
+        <span style="margin: 0 10px;"></span>
+        <span class="article_detail_time_type">分类：Java基础</span>
+    </p>
+    <div class="common_line"></div>
+    <p id="article_detail_content"><p><font face="宋体" size="4" color="#808000">1、正则表达式所支持的合法字符</font></p><table style="color:gray;" class="" border="1"><tbody><tr><td style="width:20%;" align="center"><span><font color="#880000">&nbsp;字符</font><br></span></td><td align="center" style="text-align: center;"><span><font color="#880000">解释 </font><br></span></td></tr><tr><td align="center"><span></span>x<br></td><td><span></span>字符x（x可代表任何合法的字符）<br></td></tr><tr><td align="center"><span>\0mnn</span></td><td><span></span>八进制数0mnn所表示的字符<br></td></tr><tr><td align="center"><span>\xhh</span></td><td><span>十六进制值0xhh所表示的字符</span></td></tr><tr><td align="center"><span>\uhhhh</span></td><td><span>十六进制值0xhhhh所表示的Unicode字符</span></td></tr><tr><td align="center"><span>\t</span></td><td><span>制表符('\u0009')</span></td></tr><tr><td align="center"><span>\n</span></td><td><span>换行符('\u000A')</span></td></tr><tr><td align="center"><span>\r</span></td><td><span>回车符('\u000D')</span></td></tr><tr><td valign="top" align="center">\f<br></td><td valign="top">换页符('\u000C')<br></td></tr><tr><td valign="top" align="center">\a<br></td><td valign="top">报警(bell)符('\u0007')<br></td></tr><tr><td valign="top" align="center">\e<br></td><td valign="top">Escape符('\u001B')<br></td></tr><tr><td valign="top" align="center">\cx<br></td><td valign="top">x对应的控制符。例如，\cM匹配Ctrl-M。x值必须为A~Z或a~z之一<br></td></tr></tbody></table><p><br></p><p><font face="宋体" size="4" color="#808000">2、正则表达式中的特殊字符</font></p><p><img src="/files/article_pic/f270343b-cfb9-4f59-b24a-f39402f66da8.png" alt="搜狗截图20161022233513" style="max-width:100%;"></p><p><br></p><p><font size="4" color="#808000">3、预定义字符</font></p><table style="color:gray;" class="" border="1"><tbody><tr><td style="text-align: center;">&nbsp;<font color="#880000">预定义字符</font></td><td style="text-align: center;"><font color="#880000">说明&nbsp;</font></td></tr><tr><td style="text-align: center;">&nbsp;.</td><td>&nbsp;可以匹配任何字符</td></tr><tr><td style="text-align: center;">&nbsp;\d</td><td>&nbsp;匹配0~9的所有数字</td></tr><tr><td style="text-align: center;">&nbsp;\D</td><td>&nbsp;匹配非数字</td></tr><tr><td style="text-align: center;">&nbsp;\s</td><td>&nbsp;匹配所有的空白字符，包括空格、制表符、回车符、换页符、换行符等</td></tr><tr><td style="text-align: center;">&nbsp;\S</td><td>&nbsp;匹配所有的非空白字符</td></tr><tr><td style="text-align: center;">&nbsp;\w</td><td>&nbsp;匹配所有的单词字符，包括0~9所有数字、26个大小写英文字母和下划线(_)</td></tr><tr><td style="text-align: center;">&nbsp;\W</td><td>&nbsp;匹配所有的非单词字符</td></tr></tbody></table><br><p><font color="#008080">上面七个预定义字符其实很容易记忆——d是digit的意思，代表数字；s是space的意思，代表空格；w是word的意思，代表单词。d、s、w的大写形式恰好匹配与之前相反的字符。</font></p><p><br></p><p><font color="#808000" size="4">4、方括号表达式</font></p><table style="color:gray;" class="" border="1"><tbody><tr><td style="text-align: center;">&nbsp;<font color="#880000">方括号表达式</font></td><td style="text-align: center;"><font color="#880000">说明</font>&nbsp;</td></tr><tr><td style="text-align: center;">&nbsp;表示枚举</td><td>&nbsp;例如[abc]，表示a、b、c其中任意一个字符；[gz]，表示g、z其中任意一个字符&nbsp;</td></tr><tr><td style="text-align: center;">&nbsp;表示范围</td><td>&nbsp;例如[a-f]，表示a~f范围内的任意字符；[\\u0041-\\u0056]，表示十六进制字符\u0041到\u0056范围的字符。<br>&nbsp;范围可以和枚举结合使用，如[a-cx-z]，表示a~c、x~z范围内的任意字符</td></tr><tr><td style="text-align: center;">&nbsp;表示求否：^</td><td>&nbsp;例如[^abc]，表示非a、b、c的任意字符；[^a-f]，表示不是a~f范围内的任意字符</td></tr><tr><td style="text-align: center;">&nbsp;表示"与"运算符：&&amp;</td><td>&nbsp;例如[a-z&amp;&amp;[def]]，求a~z的[def]的交集，表示d、e或f<br>&nbsp;[a-z&amp;&amp;[^bc]]，a~z范围内的所有字符，除了b和c之外，即[ad-z]<br>&nbsp;[a-z&amp;&amp;[^m-p]]，a~z范围内的所有字符，除了m~p范围之外的字符，即[a-lq-z]</td></tr><tr><td>&nbsp;表示“并”运算符</td><td>&nbsp;并运算与前面的枚举类似。例如[a-d[m-p]]，表示[a-dm-p]</td></tr></tbody></table><br><p><font color="#008080">正则表达式还支持圆括号表达式，用于将多个表达式组成一个子表达式，圆括号中可以使用“或”运算符(|)，例如，正则表达式"((public)|(protected)|(private))"用于匹配java的三个访问控制符其中一个。</font></p><p><br></p><p><font size="4" color="#808000">5、边界匹配符</font></p><table style="color:gray;" class="" border="1"><tbody><tr><td style="text-align: center;">&nbsp;<font color="#880000">边界匹配符</font></td><td style="text-align: center;">&nbsp;<font color="#880000">说明</font></td></tr><tr><td style="text-align: center;">&nbsp;^</td><td>&nbsp;行的开头</td></tr><tr><td style="text-align: center;">&nbsp;$</td><td>&nbsp;行的结尾</td></tr><tr><td style="text-align: center;">&nbsp;\b</td><td>&nbsp;单词的边界</td></tr><tr><td style="text-align: center;">&nbsp;\B</td><td>&nbsp;非单词的边界</td></tr><tr><td style="text-align: center;">&nbsp;\A</td><td>&nbsp;输入的开头&nbsp;</td></tr><tr><td style="text-align: center;">&nbsp;\G</td><td>&nbsp;前一个匹配的结尾</td></tr><tr><td style="text-align: center;">&nbsp;\Z</td><td>&nbsp;输入的结尾，仅用于最后的结束符</td></tr><tr><td style="text-align: center;">&nbsp;\z</td><td>&nbsp;输入的结尾</td></tr></tbody></table><br><p><font color="#008080">对上面的匹配符作进一步说明：</font></p><p><img src="/files/article_pic/e890c19e-19c8-4b62-a57f-8333a6fd5714.png" alt="搜狗截图20161024103532" style="max-width:100%;"></p><p><br></p></p>
+    <p style="height: 0;border-bottom: 1px #707172 solid;margin: 5px 0px"></p>
+    <p>
+    	关键词：<span style="font-size: 18px;font-family: 楷体;color: yellow;">正则表达式</span>
+    	<span style="width:20px">&nbsp;</span>
+    	最后更新：
+        <span style="font-size: 15px;color: yellow;">2018-03-19 02:07:38</span>
+    </p>
+</div>
+
+					</div>
+				</div>
+
+				<div class="right">
+					<div class="subnav">
+						<h3 align="center">个人简介</h3>
+		                <p align="center">
+		                    <img src="/files/avatar/9024168c-5098-4c4c-a796-9bf7e17b5bbc.jpg" style="width: 100px;height: 100px;border-radius: 8px">
+		                </p>
+		                <p>
+		                	<span style="margin-right: 10px;font-size: 16px;color: yellow">名称:</span>
+		                	<span style="color: #f1fdff;font-size: 18px;font-family: 楷体">挪威司机</span>
+		                </p>
+		                <p>
+		                	<span style="margin-right: 10px;font-size: 16px;color: yellow">签名:</span>
+		                	<span style="color: #f1fdff;font-size: 18px;font-family: 楷体">我再也不安慰自己了</span>
+		                </p>
+		                <p>
+		                	<span style="margin-right: 10px;font-size: 16px;color: yellow;">介绍:</span>
+		                	<span style="color: #f1fdff;font-size: 18px;font-family: 楷体">看了很多，了解的却很少。知道的很多，懂的也很少！ 我不懂，也不问。我想，就这样也行吧！
+习惯了逃避，怕，我就跑，一直跑，甚至跑到另一个世界我也不会转身面对的。人，真的好奇怪。</span>
+		                </p>
+
+		                <p style="height: 0;border-bottom: 1px #f9fbfd solid;margin: 5px 0px"></p>
+
+						<h3>文章分类</h3>
+						<ul>
+						    <li class="main_type_list_li">
+    <a class="main_type_list_a" href="/type/18.html">
+        <span><img src="/static/icons/type_list.png"></span>
+        <span>随便写写的代码</span>
+        <span style="margin-left: 5px;color: #9f9f9f;">(2)</span>
+    </a>
+</li><li class="main_type_list_li">
+    <a class="main_type_list_a" href="/type/17.html">
+        <span><img src="/static/icons/type_list.png"></span>
+        <span>Thinking In Java 学习笔记</span>
+        <span style="margin-left: 5px;color: #9f9f9f;">(1)</span>
+    </a>
+</li><li class="main_type_list_li">
+    <a class="main_type_list_a" href="/type/16.html">
+        <span><img src="/static/icons/type_list.png"></span>
+        <span>Spring Mvc相关</span>
+        <span style="margin-left: 5px;color: #9f9f9f;">(2)</span>
+    </a>
+</li><li class="main_type_list_li">
+    <a class="main_type_list_a" href="/type/15.html">
+        <span><img src="/static/icons/type_list.png"></span>
+        <span>MyBatis相关</span>
+        <span style="margin-left: 5px;color: #9f9f9f;">(5)</span>
+    </a>
+</li><li class="main_type_list_li">
+    <a class="main_type_list_a" href="/type/14.html">
+        <span><img src="/static/icons/type_list.png"></span>
+        <span>mysql相关</span>
+        <span style="margin-left: 5px;color: #9f9f9f;">(1)</span>
+    </a>
+</li><li class="main_type_list_li">
+    <a class="main_type_list_a" href="/type/13.html">
+        <span><img src="/static/icons/type_list.png"></span>
+        <span>生活、杂想</span>
+        <span style="margin-left: 5px;color: #9f9f9f;">(3)</span>
+    </a>
+</li><li class="main_type_list_li">
+    <a class="main_type_list_a" href="/type/12.html">
+        <span><img src="/static/icons/type_list.png"></span>
+        <span>Servlet&Jsp</span>
+        <span style="margin-left: 5px;color: #9f9f9f;">(4)</span>
+    </a>
+</li><li class="main_type_list_li">
+    <a class="main_type_list_a" href="/type/11.html">
+        <span><img src="/static/icons/type_list.png"></span>
+        <span>Util类汇总</span>
+        <span style="margin-left: 5px;color: #9f9f9f;">(6)</span>
+    </a>
+</li><li class="main_type_list_li">
+    <a class="main_type_list_a" href="/type/10.html">
+        <span><img src="/static/icons/type_list.png"></span>
+        <span>学习网站收集</span>
+        <span style="margin-left: 5px;color: #9f9f9f;">(1)</span>
+    </a>
+</li><li class="main_type_list_li">
+    <a class="main_type_list_a" href="/type/9.html">
+        <span><img src="/static/icons/type_list.png"></span>
+        <span>Spring相关</span>
+        <span style="margin-left: 5px;color: #9f9f9f;">(5)</span>
+    </a>
+</li><li class="main_type_list_li">
+    <a class="main_type_list_a" href="/type/8.html">
+        <span><img src="/static/icons/type_list.png"></span>
+        <span>数据结构和算法</span>
+        <span style="margin-left: 5px;color: #9f9f9f;">(3)</span>
+    </a>
+</li><li class="main_type_list_li">
+    <a class="main_type_list_a" href="/type/7.html">
+        <span><img src="/static/icons/type_list.png"></span>
+        <span>Java基础</span>
+        <span style="margin-left: 5px;color: #9f9f9f;">(9)</span>
+    </a>
+</li>
+						</ul>
+
+						<p style="height: 0;border-bottom: 1px #f9fbfd solid;margin: 5px 0px"></p>
+
+						<h3>文章归档</h3>
+						<ul>
+						    <li class="main_type_list_li">
+    <a class="main_type_list_a" href="/filing/201804.html">
+        <span><img src="/static/icons/filing_list.png"></span>
+        <span>2018年04月</span>
+        <span style="margin-left: 5px;color: #9f9f9f;">(2)</span>
+    </a>
+</li><li class="main_type_list_li">
+    <a class="main_type_list_a" href="/filing/201803.html">
+        <span><img src="/static/icons/filing_list.png"></span>
+        <span>2018年03月</span>
+        <span style="margin-left: 5px;color: #9f9f9f;">(2)</span>
+    </a>
+</li><li class="main_type_list_li">
+    <a class="main_type_list_a" href="/filing/201612.html">
+        <span><img src="/static/icons/filing_list.png"></span>
+        <span>2016年12月</span>
+        <span style="margin-left: 5px;color: #9f9f9f;">(1)</span>
+    </a>
+</li><li class="main_type_list_li">
+    <a class="main_type_list_a" href="/filing/201611.html">
+        <span><img src="/static/icons/filing_list.png"></span>
+        <span>2016年11月</span>
+        <span style="margin-left: 5px;color: #9f9f9f;">(12)</span>
+    </a>
+</li><li class="main_type_list_li">
+    <a class="main_type_list_a" href="/filing/201610.html">
+        <span><img src="/static/icons/filing_list.png"></span>
+        <span>2016年10月</span>
+        <span style="margin-left: 5px;color: #9f9f9f;">(25)</span>
+    </a>
+</li>
+						</ul>
+
+					</div>
+				</div>
+
+				<div class="clearer"><span></span></div>
+			</div>
+
+			<div class="footer" style="padding-top: 20px">
+		        <div align="center" style="margin-top: 0px">
+		            <span id="copyright">Copyright©<span id="copyrightYear"></span> 挪威司机</span>
+		        </div>
+		    </div>
+		</div>
+	</body>
+
+	<script type="text/javascript">
+	    $("code").attr("class","java");
+		$("code").attr("id","codeId");
+    	$("pre").attr("id","preId");
+	    hljs.initHighlightingOnLoad();
+	    
+    	setDate();
+    	function setDate() {
+	        var mydate = new Date();
+	        var str = "";
+	        str += (mydate.getMonth() + 1) + "月";
+	        str += mydate.getDate() + "日 ";
+	        var dday = mydate.getDay();
+	        var weekday=["星期日","星期一","星期二","星期三","星期四","星期五","星期六"];
+	        str += weekday[dday];
+	        $("#currentTime").text(str);
+	        $("#copyrightYear").text(mydate.getFullYear());
+	    };
+	</script>
+
+</html>
