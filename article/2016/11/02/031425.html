@@ -131,7 +131,12 @@
 }
 </code></pre><p>可以看到控制台有如下输出：</p><p><img src="/files/article_pic/a9b358f2-7d07-4b10-b080-7866d9dc828a.png" alt="搜狗截图20161101194531" style="max-width:100%;"></p><p>可看出buffer每次从输入流中读取的数据都有可能不一样，所以该问题的解决办法本质上是先不输入流中的所有字节读取到buffer中，然后统一转码为utf-8格式的字符串，这样就不会出现局部乱码问题。</p><p>值得注意的是，上面程序中出现了用Thread.sleep(700)，使用线程睡眠是为了防止由于读取速度过快导致读取的字节数为零(如上面输出结果中有些读取操作就为0)，适当延迟是为了从输入流中读取更多的字节数。上面程序只有当两次读取均为0字节时才认为输入流中的字节全部读取完毕。</p><p><br></p></p>
     <p style="height: 0;border-bottom: 1px #707172 solid;margin: 5px 0px"></p>
-    <p>关键词：<span style="font-size: 18px;font-family: 楷体;color: yellow;">InputStream流</span></p>
+    <p>
+    	关键词：<span style="font-size: 18px;font-family: 楷体;color: yellow;">InputStream流</span>
+    	<span style="width:20px">&nbsp;</span>
+    	最后更新：
+        <span style="font-size: 15px;color: yellow;">2018-03-19 10:07:38</span>
+    </p>
 </div>
 
 					</div>

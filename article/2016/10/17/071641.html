@@ -53,7 +53,12 @@
     <div class="common_line"></div>
     <p id="article_detail_content"><p>execution是Spring AOP中最主要的切入点指示符，该切入点的用法相对复杂，execution表达式的格式如下：</p><p><font size="4" color="#000000"><font color="#808080">execution(</font><font color="#008080">modifiers-pattern</font><font color="#808080">?</font> <font color="#880000">ret-type-pattern</font> <font color="#800080">declaring-type-pattern</font><font color="#808080">?</font><font color="#0000ff">name-pattern</font><font color="#808080">(</font><font color="#00ffff">param-pattern</font><font color="#808080">)</font> <font color="#c0c0c0">throws-pattern</font><font color="#808080">?)</font></font></p><p>上面格式中的execution是不变的，用于作为execution表达式的开头，整个表达式中的解释如下:</p><ul><li><font color="#008080">modifiers-pattern</font>：指定方法的修饰符，支持通配符，该部分可以省略。</li></ul><ul><li><font color="#880000">ret-type-pattern</font>：指定方法的返回值类型，支持通配符，可以使用"*"通配符来匹配所有的返回值类型。</li></ul><ul><li><font color="#800080">declaring-type-pattern</font>：指定方法所属的类，支持通配符，该部分可以省略。</li></ul><ul><li><font color="#0000ff">name-pattern</font>：指定匹配指定的方法名，支持通配符，可以使用"*"通配符来匹配所有方法。</li></ul><ul><li><font color="#00ffff">param-pattern</font>：指定方法声明中的形参列表，支持两个通配符，即"*"和".."，其中“*”代表一个任意类型的参数，而“..”代表零个或多个任意类型的参数。例如，()匹配一个不接受任何参数的方法，而(..)匹配一个接受任意数量参数的方法，(*)匹配了一个接受一个任何类型的参数的方法，(*,String)匹配了一个接受两个参数的方法，其中第一个参数是任意类型，第二个参数必须是String类型。</li></ul><ul><li><font color="#c0c0c0">throws-pattern</font>：指定方法声明抛出的异常，支持通配符，该部分可以省略。</li></ul><p><br></p></p>
     <p style="height: 0;border-bottom: 1px #707172 solid;margin: 5px 0px"></p>
-    <p>关键词：<span style="font-size: 18px;font-family: 楷体;color: yellow;">Spring AOP，切入点指示符</span></p>
+    <p>
+    	关键词：<span style="font-size: 18px;font-family: 楷体;color: yellow;">Spring AOP，切入点指示符</span>
+    	<span style="width:20px">&nbsp;</span>
+    	最后更新：
+        <span style="font-size: 15px;color: yellow;">2018-03-08 09:46:36</span>
+    </p>
 </div>
 
 					</div>

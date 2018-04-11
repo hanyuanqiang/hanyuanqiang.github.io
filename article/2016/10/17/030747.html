@@ -172,7 +172,12 @@
 	<span class="hljs-attribute">at</span> com.hyq.aspect.test.AspectTest.main(AspectTest.java:12)
 </code></pre><p>虽然解决这个错误可以把bean-aspect.xml中的 &lt;aop:config&gt;配置中加入属性 proxy-target-class="true"，但不建议这么做。</p><p>访问目标方法最简单的做法是定义增强处理方法时将第一个参数定义为JoinPoint类型，当该增强处理方法被调用时，该JoinPoint参数就代表了织入增强处理的连接点。JoinPoint里包含如下几个常用方法：</p><p>Object[] getArgs()：返回执行目标方法时的参数</p><p>Signatrue getSignature()：返回被增强的方法的相关信息</p><p>Object getTarget()：返回被织入增强处理的目标对象</p><p>例如获取类名：joinPoint.getTarget().getClass()、获取方法名：joinPoint.getSignature().getName()、获取方法第一个参数：joinPoint.getArgs()[0]</p><p><br></p></p>
     <p style="height: 0;border-bottom: 1px #707172 solid;margin: 5px 0px"></p>
-    <p>关键词：<span style="font-size: 18px;font-family: 楷体;color: yellow;">Spring AOP</span></p>
+    <p>
+    	关键词：<span style="font-size: 18px;font-family: 楷体;color: yellow;">Spring AOP</span>
+    	<span style="width:20px">&nbsp;</span>
+    	最后更新：
+        <span style="font-size: 15px;color: yellow;">2018-03-19 10:07:38</span>
+    </p>
 </div>
 
 					</div>

@@ -165,7 +165,12 @@
 }
 </code></pre><p>执行主程序后发现程序报错：</p><p><font color="#ff0000">Exception&nbsp;in&nbsp;thread&nbsp;"main"&nbsp;<font color="#008080">org.springframework.dao.DuplicateKeyException</font>:&nbsp;PreparedStatementCallback;&nbsp;SQL&nbsp;[insert&nbsp;into&nbsp;news_inf&nbsp;values(1,?,?)];</font></p><p><font color="#ff0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Duplicate&nbsp;entry&nbsp;'1'&nbsp;for&nbsp;key&nbsp;'PRIMARY';&nbsp;nested&nbsp;exception&nbsp;is&nbsp;com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException:</font></p><p><font color="#ff0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Duplicate&nbsp;entry&nbsp;'1'&nbsp;for&nbsp;key&nbsp;'PRIMARY'</font></p><p>这表明不能插入两条主键相同的数据。同时查看数据库发现一条数据也没发现，说明事务生效。</p><p><font size="4">附 </font>数据库表结构：</p><p><img src="/files/article_pic/3bc53cf0-a1fe-49db-b319-7f8568c91208.png" alt="搜狗截图20161017182715" style="max-width:100%;"></p><p><br></p><p><font face="楷体" size="4" color="#808000">注意</font>：如果要使用注解来实现事务，请看上面配置文件bean-transaction.xml中中间注释的那段说明</p><p>@Transaction注解有如下属性：</p><ul><li>isolation：用于指定事务的隔离级别。默认为底层事务的隔离级别。</li><li>noRollbackFor：指定遇到特定异常时强制不回滚事务。</li><li>noRollbackForClassName：指定遇到特定的多个异常时强制不回滚事务。该属性值可以指定多个异常类名。</li><li>propagation：指定事务的传播行为。</li><li>readOnly：指定事务是否只读。</li><li>rollbackFor：指定遇到特定异常时强制回滚事务。</li><li>rollbackForClassName：指定遇到特定的多个异常时强制回滚事务。该属性值可以指定多个异常类名。</li><li>timeout：指定事务的超时时长。</li></ul><p>如果使用@Transactional修饰Bean类，则表明这些事务设置对整个Bean类起作用；如果使用@Transactional修饰Bean类中的某个方法，则表明这些事务设置只对该方法有效。</p><p><br></p></p>
     <p style="height: 0;border-bottom: 1px #707172 solid;margin: 5px 0px"></p>
-    <p>关键词：<span style="font-size: 18px;font-family: 楷体;color: yellow;">Spring 事务，配置事务策略</span></p>
+    <p>
+    	关键词：<span style="font-size: 18px;font-family: 楷体;color: yellow;">Spring 事务，配置事务策略</span>
+    	<span style="width:20px">&nbsp;</span>
+    	最后更新：
+        <span style="font-size: 15px;color: yellow;">2018-03-19 10:07:38</span>
+    </p>
 </div>
 
 					</div>
